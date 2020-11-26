@@ -22,18 +22,18 @@ message InstanceValue {
 }
 
 message DataPoint {
-    InstanceValue instval = 1;
+    InstanceValue ival = 1;
 }
 
 message KeyMember {
-    InstanceValue key = 1;
+    InstanceValue ival = 1;
 }
 
 message Key {
-    repeated KeyMember key = 1;
+    repeated KeyMember keym = 1;
 }
 
 message DataSet {
-    repeated DataPoint datapt = 1;
+    repeated DataPoint datap = 1;
     repeated Key key = 2;
 }
