@@ -39,10 +39,12 @@ class DatasetTest(unittest.TestCase):
         self.assertTrue("42" == my_ival.value)
 
     def test_create_DataPoint(self):
-        pass
+        my_datapoint = DataPoint("42")
+        self.assertTrue("42" == my_datapoint.ival)
 
     def test_create_KeyMember(self):
-        pass
+        my_keymember = KeyMember("42")
+        self.assertTrue("42" == my_keymember.ival)
 
     def test_create_Key(self):
         pass
