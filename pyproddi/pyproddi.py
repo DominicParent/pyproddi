@@ -20,8 +20,6 @@ class InstanceValue:
 class DataPoint:
     def __init__(self, ival, key):
         self.ival = ival
-        self.key = []
-        self.key.append(key)
 
 class KeyMember:
     def __init__(self, ival):
@@ -32,9 +30,18 @@ class Key:
         self.keym = []
         self.keym.append(keym)
 
+    def addkeymember(self, keym):
+        self.keym.append(keym)
+
 class DataSet:
     def __init__(self, datap, key):
         self.datap = []
         self.key = []
         self.datap.append(datap)
         self.key.append(key)
+
+    def addkey(self, key):
+        self.key.append(key)
+
+    def adddatapoint(self, datap):
+        self.datap.append(datap)
