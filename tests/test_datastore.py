@@ -19,7 +19,11 @@
 
 import unittest
 
-from pyproddi.pyproddi import InstanceValue
+from pyproddi.model import InstanceValue
+from pyproddi.model import DataPoint
+from pyproddi.model import KeyMember
+from pyproddi.model import Key
+from pyproddi.model import DataSet
 
 class DatasetTest(unittest.TestCase):
     def setUp(self):
@@ -32,7 +36,7 @@ class DatasetTest(unittest.TestCase):
 
     def test_create_InstanceValue(self):
         my_ival = InstanceValue("42")
-        self.assertTrue("42" == my_ival)
+        self.assertTrue("42" == my_ival.value)
 
     def test_create_DataPoint(self):
         pass
