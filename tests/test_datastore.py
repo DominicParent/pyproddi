@@ -47,16 +47,25 @@ class DatasetTest(unittest.TestCase):
         self.assertTrue("42" == my_keymember.ival)
 
     def test_create_Key(self):
-        pass
+        my_key = Key(InstanceValue("42"))
+        self.assertTrue("42" == my_key.keym[0].value)
 
     def test_add_KeyMember(self):
-        pass
+        my_key = Key(InstanceValue("42"))
+        my_key.addkeymember(KeyMember("43"))
+        self.assertTrue("43" == my_key.keym[1].ival)
 
     def test_create_DataSet(self):
-        pass
+        my_dataset = DataSet(DataPoint("42"), Key(KeyMember("43")))
+        self.assertTrue("42" == my_dataset.datap[0].ival)
+        self.assertTrue("43" == my_dataset.key[0].keym[0].ival)
 
     def test_add_Key(self):
-        pass
+        my_dataset = DataSet(DataPoint("42"), Key(KeyMember("43")))
+        my_dataset.addkey(Key(KeyMember("44")))
+        self.assertTrue("44" == my_dataset.key[1].keym[0].ival)
 
     def test_add_Datapoint(self):
-        pass
+        my_dataset = DataSet(DataPoint("42"), Key(KeyMember("43")))
+        my_dataset.adddatapoint(DataPoint("44"))
+        self.assertTrue("44" == my_dataset.datap[1].ival)
