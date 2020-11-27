@@ -16,3 +16,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+import unittest
+
+from pyproddi.model import InstanceValue
+from pyproddi.model import DataPoint
+from pyproddi.model import KeyMember
+from pyproddi.model import Key
+from pyproddi.model import DataSet
+
+class ProtoTest(unittest.TestCase):
+    def setUp(self):
+        print("++++++++++++++")
+        print("New test %s" % self._testMethodName)
+        print("++++++++++++++")
+
+    def tearDown(self):
+        pass
+
+    def test_create_buff(self):
+        pass
+
+    def test_write_buff(self):
+        pass
+
+    def test_read_buff(self):
+        pass
