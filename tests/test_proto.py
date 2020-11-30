@@ -63,7 +63,34 @@ class ProtoTest(unittest.TestCase):
         print(my_ds)
 
     def test_write_buff(self):
-        pass
+        my_ds = dataset_pb2.DataSet()
+        my_key = my_ds.key.add()
+        my_keym = my_key.keym.add()
+        my_ival = my_keym.ival
+        my_ival.value = self.my_ival1.value
+
+        f = open(sys.argv[1], "wb")
+        f.write(address_book.SerializeToString())
+        f.close()
 
     def test_read_buff(self):
-        pass
+        my_ds = dataset_pb2.DataSet()
+        my_key = my_ds.key.add()
+        my_keym = my_key.keym.add()
+        my_ival = my_keym.ival
+        my_ival.value = self.my_ival1.value
+
+        f = open(sys.argv[1], "wb")
+        f.write(address_book.SerializeToString())
+        f.close()
+
+        my_ds2 = dataset_pb2.DataSet()
+
+        try:
+            f = open(sys.argv[1], "wb")
+            my_ds2.ParseFromString(f.read())
+            f.close()
+        except IOError:
+            print sys.argv[1] + ": Could not open file."
+
+        self.assertTrue(str(my_ds)==str(my_ds2))
