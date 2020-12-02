@@ -18,7 +18,7 @@ class InstanceValue:
         self.value = value
 
 class DataPoint:
-    def __init__(self, ival, key):
+    def __init__(self, ival):
         self.ival = ival
 
 class KeyMember:
