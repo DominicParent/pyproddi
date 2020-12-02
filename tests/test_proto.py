@@ -18,6 +18,7 @@
 
 
 import unittest
+import sys
 
 from pyproddi.model import InstanceValue
 from pyproddi.model import DataPoint
@@ -62,35 +63,22 @@ class ProtoTest(unittest.TestCase):
 
         print(my_ds)
 
-    def test_write_buff(self):
+    def test_read_write_buff(self):
         my_ds = dataset_pb2.DataSet()
         my_key = my_ds.key.add()
         my_keym = my_key.keym.add()
         my_ival = my_keym.ival
         my_ival.value = self.my_ival1.value
 
-        f = open(sys.argv[1], "wb")
-        f.write(address_book.SerializeToString())
-        f.close()
+        my_ds_serial = my_ds.SerializeToString()
 
-    def test_read_buff(self):
-        my_ds = dataset_pb2.DataSet()
-        my_key = my_ds.key.add()
-        my_keym = my_key.keym.add()
-        my_ival = my_keym.ival
-        my_ival.value = self.my_ival1.value
+        my_ds2 = my_ds
 
-        f = open(sys.argv[1], "wb")
-        f.write(address_book.SerializeToString())
-        f.close()
+        my_ds2.ParseFromString(my_ds_serial)
 
-        my_ds2 = dataset_pb2.DataSet()
-
-        try:
-            f = open(sys.argv[1], "wb")
-            my_ds2.ParseFromString(f.read())
-            f.close()
-        except IOError:
-            print sys.argv[1] + ": Could not open file."
+        print("my_ds")
+        print(my_ds)
+        print("my_ds2")
+        print(my_ds2)
 
         self.assertTrue(str(my_ds)==str(my_ds2))
