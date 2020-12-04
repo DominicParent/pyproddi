@@ -64,13 +64,13 @@ class DataSet:
             for km in k.keym:
                 kmpb = kpb.keym.add()
                 ivalpb = kmpb.ival
-                ivalpb.value = InstanceValue(km.ival.value)
+                ivalpb.value = km.ival.value
 
         for d in self.datap:
             dpb = dspb.datap.add()
-            ivalpb = d.ival
-            ivalpb.value = InstanceValue(d.ival.value)
-
+            ivalpb = dpb.ival
+            ivalpb.value = d.ival.value
+            
         return dspb
 
 
