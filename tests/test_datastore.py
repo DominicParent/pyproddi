@@ -69,3 +69,15 @@ class DatasetTest(unittest.TestCase):
         my_dataset = DataSet(DataPoint("42"), Key(KeyMember("43")))
         my_dataset.adddatapoint(DataPoint("44"))
         self.assertTrue("44" == my_dataset.datap[1].ival)
+
+    def test_converttopb(self):
+        my_dataset = DataSet(DataPoint(InstanceValue("42")),
+                             Key(KeyMember(InstanceValue("43"))))
+        print("Print PB")
+        print(my_dataset.converttopb())
+        print("Print Dataset")
+        print(my_dataset)
+        
+
+    def test_serializetopb(self):
+        pass
