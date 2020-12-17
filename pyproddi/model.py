@@ -37,7 +37,9 @@ class Key:
         self.keym.append(keym)
 
 class DataSet:
-    def __init__(self, datap, key):
+    def __init__(self, name, datap, key):
+        self.name = name
+        self.uuid = uuid.uuid4()
         self.datap = []
         self.key = []
         self.datap.append(datap)
