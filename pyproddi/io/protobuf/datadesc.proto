@@ -1,0 +1,297 @@
+// Copyright © Her Majesty the Queen in Right of Canada, as represented
+// by the Minister of Statistics Canada, 2020.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package datadesc;
+
+message Concept {
+    repeated string ConceptName;
+    string Description;
+    repeated Concept ExcludesConceptReference;
+    repeated Concept IncludesConceptReference;
+    string IsCharactaristic;
+    repeated string Label;
+    repeated Concept SimilarConcept;
+    repeated Concept SubclassOfReference;
+}
+
+// Filler class.
+message CategoryScheme {
+    string Name;
+}
+
+// Filler class.
+message UnitType {
+    string Name;
+}
+
+message ConceptualVariable {
+    CategoryScheme CategorySchemeReference;
+    Concept ConceptReference;
+    repeated string ConceptualVariableName;
+    string Description;
+    repeated string Label;
+    UnitType UnitTypeReference;
+    }
+
+// Filler class.
+message ManagedRepresentation {
+    string Name;
+}
+
+message RepresentedVariable {
+    CategoryScheme CategorySchemeReference;
+    Concept ConceptReference;
+    ConceptualVariable ConceptualVariableReference;
+    string Description;
+    repeated string Label;
+    repeated string RepresentedVariableName;
+    UnitType UnitTypeReference;
+    string ValueRepresentation;
+    ManagedRepresentation ValueRepresentationReference;
+    }
+
+// Filler class.
+message MeasurementItem {
+    string Name;
+}
+
+// Filler class.
+message Question {
+    string Name;
+}
+
+// Filler class.
+message Universe {
+    string Name;
+}
+
+// Filler class.
+message Weighting {
+    string Name;
+}
+
+message Variable {
+    string AnalysisUnit;
+    Concept ConceptReference;
+    ConceptualVariable ConceptualVariableReference;
+    string Description;
+    string EmbargoReference;
+    bool IsGeographic;
+    bool IsTemporal;
+    bool IsWeight;
+    repeated string Label;
+    repeated MeasurementItem MeasurementReference;
+    string OutParameter;
+    repeated Question QuestionReference;
+    RepresentedVariable RepresentedVariableReference;
+    string SourceParameterReference;
+    string SourceUnit;
+    repeated Variable SourceVariableReference;
+    UnitType UnitTypeReference;
+    repeated Universe UniverseReference;
+    string VariableRepresentation;
+    Weighting WeightingProcessReference;
+}
+
+// Filler class.
+message MissingValuesReference {
+    string Name;
+}
+
+message VariableStatistics {
+    repeated string FilteredCategoryStatistics;
+    MissingValuesReference ManagedMissingValuesRepresentation;
+    string StandardWeightReference;
+    repeated string SummaryStatistic;
+    string TotalResponses;
+    repeated string UnfilteredCategoryStatistics;
+    Variable VariableReference;
+    Variable WeightVariableReference;
+}
+
+message VariableGroup {
+    Concept ConceptReference;
+    string Description;
+    bool IsOrdered;
+    repeated string Keyword;
+    repeated string Label;
+    repeated string Subject;
+    string TypeOfVariableGroup;
+    Universe UniverseReference;
+    repeated string VariableGroupName;
+    VariableGroup VariableGroupReference;
+    Variable VariableReference;
+}
+
+message VariableScheme {
+    string Description;
+    repeated string Label;
+    repeated VariableGroup VariableGroupeReference;
+    repeated Variable VariableReference;
+    repeated string VariableSchemeName;
+    repeated VariableScheme VariableSchemeReference;
+}
+
+message Dataset {
+    string ArrayBase;
+    repeated string DataSetName;
+    VariableScheme DefaultVariableSchemeReference;
+    Variable IdentifyingVariableReference;
+    string ItemSet;
+    string RecordSet;
+    string VariableSet;
+}
+
+message RecordLayout {
+    string ArryaBase;
+    string CharacterSet;
+    repeated string DataItem;
+    VariableScheme DefaultVariableSchemeReference;
+    bool NamesOnFirstRow;
+}
+
+// Filler class.
+message DataRelationship {
+    string Name;
+}
+
+// Filler class.
+message ManagedMissingValuesRepresentation {
+    string Name;
+}
+
+// Filler class.
+message InformationClassification {
+    string Name;
+}
+
+// Filler class.
+message QualityStatement {
+    string Name;
+}
+
+message PhysicalInstance {
+    string ByteOrder;
+    string Citation;
+    string Coverage;
+    repeated string DataFileIdentification;
+    string DataFileVersion;
+    repeated string DataFingerprint;
+    repeated DataRelationship DataRelationshipReference;
+    ManagedMissingValuesRepresentation DefaultMissingValuesReference;
+    string GrossFileStructure;
+    repeated InformationClassification InformationClassificationReference;
+    bool ProprietaryInfo;
+    repeated QualityStatement QualityStatementReference;
+    repeated RecordLayout RecordLayoutReference;
+    string StatisticalSummary;
+    repeated VariableGroup VariableGroupReference;
+}
+
+// Filler class.
+message RepresentedVariableGroup {
+    string Name;
+}
+
+// Filler class.
+message RepresentedVariable {
+    string Name;
+}
+
+message RepresentedVariableScheme {
+    string Description;
+    repeated string Label;
+    repeated RepresentedVariableGroup RepresentedVariableGroupReference;
+    repeated RepresentedVariable RepresentedVariableReference;
+    repeated string RepresentedVariableSchemeName;
+    repeated RepresentedVariableScheme RepresentedVariableSchemeReference;
+}
+
+// Filler class.
+message CategoryScheme {
+    string Name;
+}
+
+// Filler class.
+message CodeListScheme {
+    string Name;
+}
+
+// Filler class.
+message ManagedRepresentationScheme {
+    string Name;
+}
+
+// Filler class.
+message CubeScheme {
+    string Name;
+}
+
+message LogicalProduct {
+    repeated CategoryScheme CategorySchemeReference;
+    repeated CodeListScheme CodeListSchemeReference;
+    repeated ManagedRepresentationScheme ManagedRepresentationSchemeReference;
+    repeated CubeScheme NCubeSchemeReference;
+    repeated RepresentedVariableScheme RepresentedVariableSchemeReference;
+    repeated VariableScheme VariableSchemeReference;
+}
+
+message RecordLayoutGroup {
+    Concept ConceptReference;
+    string Description;
+    bool IsOrdered;
+    repeated string Keyword;
+    repeated string Label;
+    repeated string RecordLayoutGroupName;
+    RecordLayoutGroup RecordLayoutGroupReference;
+    RecordLayout RecordLayoutReference;
+    repeated string Subject;
+    string TypeOfRecordLayoutGroup;
+    repeated Universe UniverseReference;
+}
+
+message PhysicalStructure {
+    string DefaultDataType;
+    string DefaultDecimalPositions;
+    string DefaultDecimalSeparator;
+    string DefaultDelimiter;
+    string DefaultDigitGroupSeparator;
+    string Description;
+    string FileFormat;
+    repeated string GrossRecordStructure;
+    repeated string Label;
+    repeated string PhysicalStructureName;
+}
+
+message BaseRecordLayout {
+    string EndOfLineMarker;
+    PhysicalStructure PhysicalStructureLinkReference;
+    string TextQualifier;
+}
+
+message PhysicalStructureGroup {
+    Concept ConceptReference;
+    string Description;
+    bool IsOrdered
+    repeated string Keyword;
+    repeated string Label;
+    repeated string PhysicalStructureGroupName;
+    PhysicalStructureGroup PhysicalStructureReference;
+    repeated string Subject;
+    string TypeOfPhysicalStructureGroup;
+    repeated Universe UniverseReference;
+}
