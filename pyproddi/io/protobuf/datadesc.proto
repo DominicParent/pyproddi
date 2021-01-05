@@ -28,6 +28,16 @@ message Concept {
     repeated Concept SubclassOfReference;
 }
 
+// Filler class.
+message CategoryScheme {
+    string Name;
+}
+
+// Filler class.
+message UnitType {
+    string Name;
+}
+
 message ConceptualVariable {
     CategoryScheme CategorySchemeReference;
     Concept ConceptReference;
@@ -36,6 +46,11 @@ message ConceptualVariable {
     repeated string Label;
     UnitType UnitTypeReference;
     }
+
+// Filler class.
+message ManagedRepresentation {
+    string Name;
+}
 
 message RepresentedVariable {
     CategoryScheme CategorySchemeReference;
@@ -48,6 +63,26 @@ message RepresentedVariable {
     string ValueRepresentation;
     ManagedRepresentation ValueRepresentationReference;
     }
+
+// Filler class.
+message MeasurementItem {
+    string Name;
+}
+
+// Filler class.
+message Question {
+    string Name;
+}
+
+// Filler class.
+message Universe {
+    string Name;
+}
+
+// Filler class.
+message Weighting {
+    string Name;
+}
 
 message Variable {
     string AnalysisUnit;
@@ -70,6 +105,11 @@ message Variable {
     repeated Universe UniverseReference;
     string VariableRepresentation;
     Weighting WeightingProcessReference;
+}
+
+// Filler class.
+message MissingValuesReference {
+    string Name;
 }
 
 message VariableStatistics {
@@ -124,6 +164,26 @@ message RecordLayout {
     bool NamesOnFirstRow;
 }
 
+// Filler class.
+message DataRelationship {
+    string Name;
+}
+
+// Filler class.
+message ManagedMissingValuesRepresentation {
+    string Name;
+}
+
+// Filler class.
+message InformationClassification {
+    string Name;
+}
+
+// Filler class.
+message QualityStatement {
+    string Name;
+}
+
 message PhysicalInstance {
     string ByteOrder;
     string Citation;
@@ -142,6 +202,16 @@ message PhysicalInstance {
     repeated VariableGroup VariableGroupReference;
 }
 
+// Filler class.
+message RepresentedVariableGroup {
+    string Name;
+}
+
+// Filler class.
+message RepresentedVariable {
+    string Name;
+}
+
 message RepresentedVariableScheme {
     string Description;
     repeated string Label;
@@ -149,6 +219,26 @@ message RepresentedVariableScheme {
     repeated RepresentedVariable RepresentedVariableReference;
     repeated string RepresentedVariableSchemeName;
     repeated RepresentedVariableScheme RepresentedVariableSchemeReference;
+}
+
+// Filler class.
+message CategoryScheme {
+    string Name;
+}
+
+// Filler class.
+message CodeListScheme {
+    string Name;
+}
+
+// Filler class.
+message ManagedRepresentationScheme {
+    string Name;
+}
+
+// Filler class.
+message CubeScheme {
+    string Name;
 }
 
 message LogicalProduct {
