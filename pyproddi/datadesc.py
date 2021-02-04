@@ -20,106 +20,86 @@ class Concept:
     def __init__(self, conceptName, description, excludesConceptReference,
                  includesConceptReference, isCharacteristic, label,
                  similarConcept, subClassOfReference):
-        self.conceptName = []
+        self.conceptName = [] # List of String
         self.conceptName.append(conceptName)
-        self.description = description
-        self.excludesConceptReference = []
+        self.description = description # String
+        self.excludesConceptReference = [] # List of Concept
         self.excludesConceptReference.add(excludesConceptReference)
-        self.includesConceptReference = []
+        self.includesConceptReference = [] # List of Concept
         self.includesConceptReference.add(includesConceptReference)
-        self.isCharacteristic = isCharacteristic
-        self.label = []
+        self.isCharacteristic = isCharacteristic # Boolean
+        self.label = [] # List of String
         self.label.add(label)
-        self.similarConcept = []
+        self.similarConcept = [] # List of Concept
         self.similarConcept.add(similarConcept)
-        self.subclassOfReference = []
+        self.subclassOfReference = [] # List of Concept
         self.subclassOfReference.add(subclassOfReference)
 
+# Filler class.
 class CategoryScheme:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class UnitType:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class ConceptualVariable:
     def __init__(self, categorySchemeReference, conceptReference,
                  conceptualVariableName, description, label,
                  unitTypeReference):
-        self.categorySchemeReference = categorySchemeReference
-        self.conceptReference = conceptReference
-        self.conceptualVariableName = []
+        self.categorySchemeReference = categorySchemeReference # CategoryScheme
+        self.conceptReference = conceptReference # Concept
+        self.conceptualVariableName = [] # List of String
         self.conceptualVariableName.add(conceptualVariableName)
-        self.description = description
-        self.label = []
+        self.description = description # String
+        self.label = [] # List of String
         self.label.add(label)
-        self.unitTypeReference = []
+        self.unitTypeReference = [] # List of UnitType
         self.unitTypeReference.add(unityTypeReference)
 
+# Filler class.
 class ManagedRepresentation:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class RepresentedVariable:
     def __init__(self, categorySchemeReference, conceptReference,
                  conceptualVariableReference, description, label,
                  representedVariableName, unitTypeReference,
                  valueRepresentation, valueRepresentationReference):
-        self.categorySchemeReference = categorySchemeReference
-        self.conceptReference = conceptReference
-        self.conceptualVariableReference = conceptualVariableReference
-        self.description = description
-        self.label = []
+        self.categorySchemeReference = categorySchemeReference # CategoryScheme
+        self.conceptReference = conceptReference # Concept
+        self.conceptualVariableReference = conceptualVariableReference # ConceptualVariable
+        self.description = description # String
+        self.label = [] # List of String
         self.label.add(label)
-        self.representedVariableName = []
+        self.representedVariableName = [] # List of String
         self.representedVariableName.add(representedVariableName)
-        se
-        self.conceptReference = conceptReference
-        self.conceptualVariableName = []
-        self.conceptualVariableName.add(conceptualVariableName)
-        self.description = description
-        self.label = []
-        self.label.add(label)
-        self.unitTypeReference = []
-        self.unitTypeReference.add(unityTypeReference)
+        self.unitTypeReference = unitTypeReference # UnitType
+        self.valueRepresentation = valueRepresentation # String
+        self.valueRepresentationReference = valueRepresentationReference # ManagedRepresentation
 
-class ManagedRepresentation:
-    def __init__(self, name):
-        self.name = name
-
-class RepresentedVariable:
-    def __init__(self, categorySchemeReference, conceptReference,
-                 conceptualVariableReference, description, label,
-                 representedVariableName, unitTypeReference,
-                 valueRepresentation, valueRepresentationReference):
-        self.categorySchemeReference = categorySchemeReference
-        self.conceptReference = conceptReference
-        self.conceptualVariableReference = conceptualVariableReference
-        self.description = description
-        self.label = []
-        self.label.add(label)
-        self.representedVariableName = []
-        self.representedVariableName.add(representedVariableName)
-        self.unitTypeReference = unitTypeReference
-        self.valueRepresentation = valueRepresentation
-        self.valueRepresentationReference = valueRepresentationReference
-
+# Filler class.
 class MeasurementItem:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class Question:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class Universe:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class Weighting:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class Variable:
     def __init__(self, analysisUnit, conceptReference,
@@ -130,35 +110,36 @@ class Variable:
                  sourceUnit, sourceVariableReference, unitTypeReference,
                  universeReference, variableRepresentation,
                  weightingProcessReference):
-        self.analysisUnit = analysisUnit
-        self.conceptReference = conceptReference
-        self.conceptualVariableReference = conceptualVariableReference
-        self.description = description
-        self.embargoReference = embargoReference
-        self.isGeographic = isGeographic
-        self.isTemporal = isTemporal
-        self.isWeight = isWeight
-        self.label = []
+        self.analysisUnit = analysisUnit # String
+        self.conceptReference = conceptReference # Concept
+        self.conceptualVariableReference = conceptualVariableReference # ConceptualVariable
+        self.description = description # String
+        self.embargoReference = embargoReference # String
+        self.isGeographic = isGeographic # Boolean
+        self.isTemporal = isTemporal # Boolean
+        self.isWeight = isWeight # Boolean
+        self.label = [] # List of String
         self.label.add(label)
-        self.measurementReference = []
+        self.measurementReference = [] # List of String
         self.measurementReference.add(measurementReference)
-        self.outParameter = outParameter
-        self.questionReference = []
+        self.outParameter = outParameter # String
+        self.questionReference = [] # List of Question
         self.questionReference.add(questionReference)
-        self.representedVariableReference = representedVariableReference
-        self.sourceParameterReference = sourceParameterReference
-        self.sourceUnit = sourceUnit
-        self.sourceVariableReference = []
+        self.representedVariableReference = representedVariableReference # RepresentedVariable
+        self.sourceParameterReference = sourceParameterReference # String
+        self.sourceUnit = sourceUnit # String
+        self.sourceVariableReference = [] # List of Variable
         self.sourceVariableReference.add(sourceVariableReference)
-        self.unitTypeReference = unitTypeReference
-        self.universeReference = []
+        self.unitTypeReference = unitTypeReference # UnitType
+        self.universeReference = [] # List of Universe
         self.universeReference.add(universeReference)
-        self.variableRepresentation = variableRepresentation
-        self.weightingProcessReference = weightingProcessReference
+        self.variableRepresentation = variableRepresentation # String
+        self.weightingProcessReference = weightingProcessReference # Weighting
 
+# Filler class.
 class MissingValuesReference:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class VariableStatistics:
     def __init__(self, filteredCategoryStatistics, 
@@ -166,92 +147,96 @@ class VariableStatistics:
                  summaryStatistic, totalResponses, 
                  unfilteredCategoryStatistics, variableReference,
                  weightVariableReference):
-        self.filteredCategoryStatistics = []
+        self.filteredCategoryStatistics = [] # List of String
         self.filteredCategoryStatistics.add(filteredCategoryStatistics)
-        self.managedMissingValuesRepresentation = managedMissingValuesRepresentation
-        self.standardWeightReference = standardWeightReference
-        self.summaryStatistic = []
+        self.managedMissingValuesRepresentation = managedMissingValuesRepresentation # MissingValuesReference
+        self.standardWeightReference = standardWeightReference # String
+        self.summaryStatistic = [] # List of String
         self.summaryStatistic.add(summaryStatistic)
-        self.totalResponses = totalResponses
-        self.unfilteredCategoryStatistics = []
+        self.totalResponses = totalResponses # String
+        self.unfilteredCategoryStatistics = [] # List of String
         self.unfilteredCategoryStatistics.add(unfilteredCategoryStatistics)
-        self.variableReference = variableReference
-        self.weightVariableReference = weightVariableReference
+        self.variableReference = variableReference # Variable
+        self.weightVariableReference = weightVariableReference # Variable
 
 class VariableGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
                  label, subject, typeOfVariableGroup, universeReference,
                  variableGroupName, variableGroupReference, variableReference):
-        self.conceptReference = conceptReference
-        self.description = description
-        self.isOrdered = isOrdered
-        self.keyword = []
+        self.conceptReference = conceptReference # Concept
+        self.description = description # String
+        self.isOrdered = isOrdered # Boolean
+        self.keyword = [] # List of String
         self.keyword.add(keyword)
-        self.label = []
+        self.label = [] # List of String
         self.label.add(label)
-        self.subject = []
+        self.subject = [] # List of String
         self.subject.add(subject)
-        self.typeOfVariableGroup = typeOfVariableGroup
-        self.universeReference = universeReference
-        self.variableGroupName = []
+        self.typeOfVariableGroup = typeOfVariableGroup # String
+        self.universeReference = universeReference # Universe
+        self.variableGroupName = [] # List of String
         self.variableGroupName.add(variableGroupName)
-        self.variableGroupReference = variableGroupReference
-        self.variableReference = variableReference
+        self.variableGroupReference = variableGroupReference # VariableGroup
+        self.variableReference = variableReference # Variable
 
 class VariableScheme:
     def __init__(self, description, label, variableGroupReference,
                  variableReference, variableSchemeName, 
                  variableSchemeReference):
-        self.description = description)
-        self.label = []
+        self.description = description # String
+        self.label = [] # List of String
         self.label.add(label)
-        self.variableGroupReference = []
+        self.variableGroupReference = [] # List of VariableGroup
         self.variableGroupReference.add(variableGroupReference)
-        self.variableReference = []
+        self.variableReference = [] # List of Variable
         self.variableReference.add(variableReference)
-        self.variableSchemeName = []
+        self.variableSchemeName = [] # List of String
         self.variableSchemeName.add(variableSchemeName)
-        self.variableSchemeReference = []
+        self.variableSchemeReference = [] # List of VariableScheme
         self.variableSchemeReference.add(variableSchemeReference)
 
 class Dataset:
     def __init__(self, arrayBase, dataSetName, defaultVariableSchemeReference,
                  identifyingVariableReference, itemSet, recordSet, 
                  variableSet):
-        self.arrayBase = arrayBase
-        self.dataSetName = []
+        self.arrayBase = arrayBase # String
+        self.dataSetName = [] # List of String
         self.dataSetName.add(dataSetName)
-        self.defaultVariableSchemeReference = defaultVariableSchemeReference
-        self.identifyingVariableReference = identifyingVariableReference
-        self.itemSet = itemSet
-        seelf.recordSet = recordSet
-        self.variableSet = variableSet
+        self.defaultVariableSchemeReference = defaultVariableSchemeReference # VariableScheme
+        self.identifyingVariableReference = identifyingVariableReference # Variable
+        self.itemSet = itemSet # String
+        seelf.recordSet = recordSet # String
+        self.variableSet = variableSet # String
 
 class RecordLayout:
     def __init__(self, arrayBase, characterSet, dataItem,
                  defaultVariableSchemeReference, namesOnFirstRow):
-        self.arrayBase = arrayBase
-        self.characterSet = characterSet
-        self.dataItem = []
+        self.arrayBase = arrayBase # String
+        self.characterSet = characterSet # String
+        self.dataItem = [] # List of String
         self.dataItem.add(dataItem)
-        self.defaultVariableSchemeReference = defaultVariableSchemeReference
-        self.namesOnFirstRow = namesOnFirstRow
+        self.defaultVariableSchemeReference = defaultVariableSchemeReference # VariableScheme
+        self.namesOnFirstRow = namesOnFirstRow # Boolean
 
+# Filler class.
 class DataRelationship:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class ManagedMissingValuesRepresentation:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class InformationClassification:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class QualityStatement:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class PhysicalInstance:
     def __init__(self, byteOrder, citation, coverage, dataFileIdentification,
@@ -260,84 +245,90 @@ class PhysicalInstance:
                  informationClassificationReference, proprietaryInfo,
                  qualityStatementReference, recordLayoutReference,
                  statisticalSummary, variableGroupReference):
-        self.byteOrder = byteOrder
-        self.citation = citation
-        self.coverage = coverage
-        self.dataFileIdentification = []
+        self.byteOrder = byteOrder # String
+        self.citation = citation # String
+        self.coverage = coverage # String
+        self.dataFileIdentification = [] # List of String
         self.dataFileIdentification.add(dataFileIdentification)
-        self.dataFileVersion = dataFileVersion
-        self.dataFingerprint = []
+        self.dataFileVersion = dataFileVersion # String
+        self.dataFingerprint = [] # List of String
         self.dataFingerprint.add(dataFingerprint)
-        self.dataRelationshipReference = []
+        self.dataRelationshipReference = [] # List of DataRelationship
         self.dataRelationshipReference.add(dataRelationshipReference)
-        self.defaultMissingValuesReference = dfeaultMissingValuesReference
-        self.grossFileStructure = grossFileStructure
-        self.informationClassificationReference = []
+        self.defaultMissingValuesReference = defaultMissingValuesReference # ManagedMissingValuesRepresentation
+        self.grossFileStructure = grossFileStructure # String
+        self.informationClassificationReference = [] # List of InformationClassification
         self.informationClassificationReference.add(informationClassificationReference)
-        self.proprietaryInfo = proprietaryInfo
-        self.qualityStatementReference = []
+        self.proprietaryInfo = proprietaryInfo # Boolean
+        self.qualityStatementReference = [] # List of QualityStatement
         self.qualityStatementReference.add(qualityStatementReference)
-        self.recordLayoutReference = []
+        self.recordLayoutReference = [] # List of RecordLayout
         self.recordLayoutReference.add(recordLayoutReference)
-        self.statisticalSummary = statisticalSummary
-        self.variableGroupReference = []
+        self.statisticalSummary = statisticalSummary # String
+        self.variableGroupReference = [] # List of VariableGroup
         self.variableGroupReference.add(variableGroupReference)
 
+# Filler class.
 class RepresentedVariableGroup:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class RepresentedVariable:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class RepresentedVariableScheme:
     def __init__(self, description, label, representedVariableGroupReference,
                  representedVariableReference, representedVariableSchemeName,
                  representedVariableSchemeReference):
-        self.description = description
-        self.label = []
+        self.description = description # String
+        self.label = [] # List of String
         self.label.add(label)
-        self.representedVariableGroupReference = []
+        self.representedVariableGroupReference = [] # List of RepresentedVariableGroup
         self.representedVariableGroupReference.add(representedVariableGroupReference)
-        self.representedVariableReference = []
+        self.representedVariableReference = [] # List of RepresentedVariable
         self.representedVariableReference.add(representedVariableReference)
-        self.representedVariableSchemeName = []
+        self.representedVariableSchemeName = [] # List of String
         self.representedVariableSchemeName.add(representedVariableSchemeName)
-        self.representedVariableSchemeReference = []
+        self.representedVariableSchemeReference = [] # List of RepresentedVariableScheme
         self.representedVariableSchemeReference.add(representedVariableSchemeReference)
 
+# Filler class.
 class CategoryScheme:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class CodeListScheme:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class ManagedRepresentationScheme:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
+# Filler class.
 class CubeScheme:
     def __init__(self, name):
-        self.name = name
+        self.name = name # String
 
 class LogicalProduct:
     def __init__(self, categorySchemeReference, codeListSchemeReference,
                  managedRepresentationSchemeReference, NCubeSchemeReference,
                  representedVariableSchemeReference, variableSchemeReference):
-        self.categorySchemeReference = []
+        self.categorySchemeReference = [] # List of CategoryScheme
         self.categorySchemeReference.add(categorySchemeReference)
-        self.codeListSchemeReference = []
+        self.codeListSchemeReference = [] # List of CodeListScheme
         self.codeListSchemeReference.add(codeListSChemeReference)
-        self.managedRepresentationSchemeReference = []
+        self.managedRepresentationSchemeReference = [] # List of ManagedRepresetnationScheme
         self.managedRepresentationSchemeReference.add(managedRepresentationSchemeReference)
-        self.nCubeSchemeReference = []
+        self.nCubeSchemeReference = [] # List of CubeScheme
         self.nCubeSchemeReference.add(nCubeSchemeReference)
-        self.representatedVariableSchemeReference = []
+        self.representatedVariableSchemeReference = [] # List of RepresentedVariableScheme
         self.representatedVariableSchemeReference.add(representedVariableSchemeReference)
-        self.variableSchemeReference = []
+        self.variableSchemeReference = [] # List of VariableScheme
         self.variableSchemeReference.add(variableSchemeReference)
 
 class RecordLayoutGroup:
@@ -345,65 +336,65 @@ class RecordLayoutGroup:
                  label, recordLayoutGroupName, recordLayoutGroupReference,
                  recordLayoutReference, subject, typeOfRecordLayoutGroup,
                  universeReference):
-        self.conceptReference = conceptReference
-        self.description = description
-        self.isOrdered = isOrdered
-        self.keyword = []
+        self.conceptReference = conceptReference # Concept
+        self.description = description # String
+        self.isOrdered = isOrdered # Boolean
+        self.keyword = [] # List of String
         self.keyword.add(keyword)
-        self.label = []
+        self.label = [] # List of String
         self.label.add(label)
-        self.recordLayoutGroupName = []
+        self.recordLayoutGroupName = [] # List of String
         self.recordLayoutGroupName.add(recordLayoutGroupName)
-        self.recordLayoutGroupReference = recordLayoutGroupReference
-        self.recordLayoutReference = recordLayoutReference
-        self.subject = []
+        self.recordLayoutGroupReference = recordLayoutGroupReference # RecordLayoutGroup
+        self.recordLayoutReference = recordLayoutReference # RecordLayout
+        self.subject = [] # List of String
         self.subject.add(subject)
-        self.typeOfRecordLayoutGroup = typeOfRecordLayoutGroup
-        self.universeReference = universeReference
+        self.typeOfRecordLayoutGroup = typeOfRecordLayoutGroup # String
+        self.universeReference = universeReference # List of Universe
 
 class PhysicalStructure:
     def __init__(self, defaultDataType, defaultDecimalPositions,
                  defaultDecimalSeparator, defaultDelimiter, 
                  defaultDigitalGroupSeparator, description, fileFormat,
                  grossRecordStructure, label, physicalStructureName):
-        self.defaultDataType = defaultDataType
-        self.defaultDecimalPositions = defaultDecimalPositions
-        self.defaultDecimalSeparator = defaultDecimalSeparator
-        self.defaultDelimiter = defaultDelimiter
-        self.defaultDigitGroupSeparator = defaultDigitGroupSeparator
-        self.description = description
-        self.fileFormat = fileFormat
-        self.grossRecordStructure = []
+        self.defaultDataType = defaultDataType # String
+        self.defaultDecimalPositions = defaultDecimalPositions # String
+        self.defaultDecimalSeparator = defaultDecimalSeparator # String
+        self.defaultDelimiter = defaultDelimiter # String
+        self.defaultDigitGroupSeparator = defaultDigitGroupSeparator # String
+        self.description = description # String
+        self.fileFormat = fileFormat # String
+        self.grossRecordStructure = [] # List of String
         self.grossRecordStructure.add(grossRecordStructure)
-        self.label = []
+        self.label = [] # List of String
         self.label.add(label)
-        self.physicalStructureName = []
+        self.physicalStructureName = [] # List of String
         self.physicalStructureName.add(physicalStructureName)
 
 class BaseRecordLayout:
     def __init__(self, endOfLineMarker, physicalStructureLinkReference,
                  textQualifier):
-        self.endOfLineMarker = endOfLineMarker
-        self.physicalStructureLinkReference = physicalStructureLinkReference
-        self.textQualifier = textQualifier
+        self.endOfLineMarker = endOfLineMarker # String
+        self.physicalStructureLinkReference = physicalStructureLinkReference # PhysicalStructure
+        self.textQualifier = textQualifier # String
 
 class PhysicalStructureGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
                  label, physicalStructureGroupName, physicalStructureReference,
                  ssubject, typeOfPhysicalStructureGroup, universeReference):
-        self.conceptReference = conceptReference
-        self.description = description
-        self.isOrdered = isOrdered
-        self.keyword = []
+        self.conceptReference = conceptReference # Concept
+        self.description = description # String
+        self.isOrdered = isOrdered # Boolean
+        self.keyword = [] # List of String
         self.keyword.add(keyword)
-        self.label = []
+        self.label = [] # List of String
         self.label.add(label)
-        self.physicalStructureGroupName = []
+        self.physicalStructureGroupName = [] # List of String
         self.physicalStructureGroupName.add(physicalStructureGroupName)
-        self.physicalStructureReference = physicalStructureReference
-        self.subject = []
+        self.physicalStructureReference = physicalStructureReference # PhysicalSTructureGroup
+        self.subject = [] # List of String
         self.subject.add(subject)
-        self.typeOfPHysicalStructureGroup = typeOfPHysicalStructureGroup
-        self.universeReference = []
+        self.typeOfPHysicalStructureGroup = typeOfPHysicalStructureGroup # String
+        self.universeReference = [] # List of Universe
         self.universeReference.add(universeReference)
 
