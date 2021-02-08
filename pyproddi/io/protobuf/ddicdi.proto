@@ -15,283 +15,273 @@
 
 syntax = "proto3";
 
-package datadesc;
+package ddicdi;
 
 message Concept {
-    repeated string ConceptName;
-    string Description;
-    repeated Concept ExcludesConceptReference;
-    repeated Concept IncludesConceptReference;
-    string IsCharactaristic;
-    repeated string Label;
-    repeated Concept SimilarConcept;
-    repeated Concept SubclassOfReference;
+    repeated string ConceptName = 1;
+    string Description = 2;
+    repeated Concept ExcludesConceptReference = 3;
+    repeated Concept IncludesConceptReference = 4;
+    string IsCharactaristic = 5;
+    repeated string Label = 6;
+    repeated Concept SimilarConcept = 7;
+    repeated Concept SubclassOfReference = 8;
 }
 
 // Filler class.
 message CategoryScheme {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message UnitType {
-    string Name;
+    string Name = 1;
 }
 
 message ConceptualVariable {
-    CategoryScheme CategorySchemeReference;
-    Concept ConceptReference;
-    repeated string ConceptualVariableName;
-    string Description;
-    repeated string Label;
-    UnitType UnitTypeReference;
+    CategoryScheme CategorySchemeReference = 1;
+    Concept ConceptReference = 2;
+    repeated string ConceptualVariableName = 3;
+    string Description = 4;
+    repeated string Label = 5;
+    UnitType UnitTypeReference = 6;
     }
 
 // Filler class.
 message ManagedRepresentation {
-    string Name;
+    string Name = 1;
 }
 
 message RepresentedVariable {
-    CategoryScheme CategorySchemeReference;
-    Concept ConceptReference;
-    ConceptualVariable ConceptualVariableReference;
-    string Description;
-    repeated string Label;
-    repeated string RepresentedVariableName;
-    UnitType UnitTypeReference;
-    string ValueRepresentation;
-    ManagedRepresentation ValueRepresentationReference;
+    CategoryScheme CategorySchemeReference = 1;
+    Concept ConceptReference = 2;
+    ConceptualVariable ConceptualVariableReference = 3;
+    string Description = 4;
+    repeated string Label = 5;
+    repeated string RepresentedVariableName = 6;
+    UnitType UnitTypeReference = 7;
+    string ValueRepresentation = 8;
+    ManagedRepresentation ValueRepresentationReference = 9;
     }
 
 // Filler class.
 message MeasurementItem {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message Question {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message Universe {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message Weighting {
-    string Name;
+    string Name = 1;
 }
 
 message Variable {
-    string AnalysisUnit;
-    Concept ConceptReference;
-    ConceptualVariable ConceptualVariableReference;
-    string Description;
-    string EmbargoReference;
-    bool IsGeographic;
-    bool IsTemporal;
-    bool IsWeight;
-    repeated string Label;
-    repeated MeasurementItem MeasurementReference;
-    string OutParameter;
-    repeated Question QuestionReference;
-    RepresentedVariable RepresentedVariableReference;
-    string SourceParameterReference;
-    string SourceUnit;
-    repeated Variable SourceVariableReference;
-    UnitType UnitTypeReference;
-    repeated Universe UniverseReference;
-    string VariableRepresentation;
-    Weighting WeightingProcessReference;
+    string AnalysisUnit = 1;
+    Concept ConceptReference = 2;
+    ConceptualVariable ConceptualVariableReference = 3;
+    string Description = 4;
+    string EmbargoReference = 5;
+    bool IsGeographic = 6;
+    bool IsTemporal = 7;
+    bool IsWeight = 8;
+    repeated string Label = 9;
+    repeated MeasurementItem MeasurementReference = 10;
+    string OutParameter = 11;
+    repeated Question QuestionReference = 12;
+    RepresentedVariable RepresentedVariableReference = 13;
+    string SourceParameterReference = 14;
+    string SourceUnit = 15;
+    repeated Variable SourceVariableReference = 16;
+    UnitType UnitTypeReference = 17;
+    repeated Universe UniverseReference = 18;
+    string VariableRepresentation = 19;
+    Weighting WeightingProcessReference = 20;
 }
 
 // Filler class.
 message MissingValuesReference {
-    string Name;
+    string Name = 1;
 }
 
 message VariableStatistics {
-    repeated string FilteredCategoryStatistics;
-    MissingValuesReference ManagedMissingValuesRepresentation;
-    string StandardWeightReference;
-    repeated string SummaryStatistic;
-    string TotalResponses;
-    repeated string UnfilteredCategoryStatistics;
-    Variable VariableReference;
-    Variable WeightVariableReference;
+    repeated string FilteredCategoryStatistics = 1;
+    MissingValuesReference ManagedMissingValuesRepresentation = 2;
+    string StandardWeightReference = 3;
+    repeated string SummaryStatistic = 4;
+    string TotalResponses = 5;
+    repeated string UnfilteredCategoryStatistics = 6;
+    Variable VariableReference = 7;
+    Variable WeightVariableReference = 8;
 }
 
 message VariableGroup {
-    Concept ConceptReference;
-    string Description;
-    bool IsOrdered;
-    repeated string Keyword;
-    repeated string Label;
-    repeated string Subject;
-    string TypeOfVariableGroup;
-    Universe UniverseReference;
-    repeated string VariableGroupName;
-    VariableGroup VariableGroupReference;
-    Variable VariableReference;
+    Concept ConceptReference = 1;
+    string Description = 2;
+    bool IsOrdered = 3;
+    repeated string Keyword = 4;
+    repeated string Label = 5;
+    repeated string Subject = 6;
+    string TypeOfVariableGroup = 7;
+    Universe UniverseReference = 8;
+    repeated string VariableGroupName = 9;
+    VariableGroup VariableGroupReference = 10;
+    Variable VariableReference = 11;
 }
 
 message VariableScheme {
-    string Description;
-    repeated string Label;
-    repeated VariableGroup VariableGroupeReference;
-    repeated Variable VariableReference;
-    repeated string VariableSchemeName;
-    repeated VariableScheme VariableSchemeReference;
+    string Description = 1;
+    repeated string Label = 2;
+    repeated VariableGroup VariableGroupeReference = 3;
+    repeated Variable VariableReference = 4;
+    repeated string VariableSchemeName = 5;
+    repeated VariableScheme VariableSchemeReference = 6;
 }
 
 message Dataset {
-    string ArrayBase;
-    repeated string DataSetName;
-    VariableScheme DefaultVariableSchemeReference;
-    Variable IdentifyingVariableReference;
-    string ItemSet;
-    string RecordSet;
-    string VariableSet;
+    string ArrayBase = 1;
+    repeated string DataSetName = 2;
+    VariableScheme DefaultVariableSchemeReference = 3;
+    Variable IdentifyingVariableReference = 4;
+    string ItemSet = 5;
+    string RecordSet = 6;
+    string VariableSet = 7;
 }
 
 message RecordLayout {
-    string ArryaBase;
-    string CharacterSet;
-    repeated string DataItem;
-    VariableScheme DefaultVariableSchemeReference;
-    bool NamesOnFirstRow;
+    string ArryaBase = 1;
+    string CharacterSet = 2;
+    repeated string DataItem = 3;
+    VariableScheme DefaultVariableSchemeReference = 4;
+    bool NamesOnFirstRow = 5;
 }
 
 // Filler class.
 message DataRelationship {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message ManagedMissingValuesRepresentation {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message InformationClassification {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message QualityStatement {
-    string Name;
+    string Name = 1;
 }
 
 message PhysicalInstance {
-    string ByteOrder;
-    string Citation;
-    string Coverage;
-    repeated string DataFileIdentification;
-    string DataFileVersion;
-    repeated string DataFingerprint;
-    repeated DataRelationship DataRelationshipReference;
-    ManagedMissingValuesRepresentation DefaultMissingValuesReference;
-    string GrossFileStructure;
-    repeated InformationClassification InformationClassificationReference;
-    bool ProprietaryInfo;
-    repeated QualityStatement QualityStatementReference;
-    repeated RecordLayout RecordLayoutReference;
-    string StatisticalSummary;
-    repeated VariableGroup VariableGroupReference;
+    string ByteOrder = 1;
+    string Citation = 2;
+    string Coverage = 3;
+    repeated string DataFileIdentification = 4;
+    string DataFileVersion = 5;
+    repeated string DataFingerprint = 6;
+    repeated DataRelationship DataRelationshipReference = 7;
+    ManagedMissingValuesRepresentation DefaultMissingValuesReference = 8;
+    string GrossFileStructure = 9;
+    repeated InformationClassification InformationClassificationReference = 10;
+    bool ProprietaryInfo = 11;
+    repeated QualityStatement QualityStatementReference = 12;
+    repeated RecordLayout RecordLayoutReference = 13;
+    string StatisticalSummary = 14;
+    repeated VariableGroup VariableGroupReference = 15;
 }
 
 // Filler class.
 message RepresentedVariableGroup {
-    string Name;
-}
-
-// Filler class.
-message RepresentedVariable {
-    string Name;
+    string Name = 1;
 }
 
 message RepresentedVariableScheme {
-    string Description;
-    repeated string Label;
-    repeated RepresentedVariableGroup RepresentedVariableGroupReference;
-    repeated RepresentedVariable RepresentedVariableReference;
-    repeated string RepresentedVariableSchemeName;
-    repeated RepresentedVariableScheme RepresentedVariableSchemeReference;
-}
-
-// Filler class.
-message CategoryScheme {
-    string Name;
+    string Description = 1;
+    repeated string Label = 2;
+    repeated RepresentedVariableGroup RepresentedVariableGroupReference = 3;
+    repeated RepresentedVariable RepresentedVariableReference = 4;
+    repeated string RepresentedVariableSchemeName = 5;
+    repeated RepresentedVariableScheme RepresentedVariableSchemeReference = 6;
 }
 
 // Filler class.
 message CodeListScheme {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message ManagedRepresentationScheme {
-    string Name;
+    string Name = 1;
 }
 
 // Filler class.
 message CubeScheme {
-    string Name;
+    string Name = 1;
 }
 
 message LogicalProduct {
-    repeated CategoryScheme CategorySchemeReference;
-    repeated CodeListScheme CodeListSchemeReference;
-    repeated ManagedRepresentationScheme ManagedRepresentationSchemeReference;
-    repeated CubeScheme NCubeSchemeReference;
-    repeated RepresentedVariableScheme RepresentedVariableSchemeReference;
-    repeated VariableScheme VariableSchemeReference;
+    repeated CategoryScheme CategorySchemeReference = 1;
+    repeated CodeListScheme CodeListSchemeReference = 2;
+    repeated ManagedRepresentationScheme ManagedRepresentationSchemeReference = 3;
+    repeated CubeScheme NCubeSchemeReference = 4;
+    repeated RepresentedVariableScheme RepresentedVariableSchemeReference = 5;
+    repeated VariableScheme VariableSchemeReference = 6;
 }
 
 message RecordLayoutGroup {
-    Concept ConceptReference;
-    string Description;
-    bool IsOrdered;
-    repeated string Keyword;
-    repeated string Label;
-    repeated string RecordLayoutGroupName;
-    RecordLayoutGroup RecordLayoutGroupReference;
-    RecordLayout RecordLayoutReference;
-    repeated string Subject;
-    string TypeOfRecordLayoutGroup;
-    repeated Universe UniverseReference;
+    Concept ConceptReference = 1;
+    string Description = 2;
+    bool IsOrdered = 3;
+    repeated string Keyword = 4;
+    repeated string Label = 5;
+    repeated string RecordLayoutGroupName = 6;
+    RecordLayoutGroup RecordLayoutGroupReference = 7;
+    RecordLayout RecordLayoutReference = 8;
+    repeated string Subject = 9;
+    string TypeOfRecordLayoutGroup = 10;
+    repeated Universe UniverseReference = 11;
 }
 
 message PhysicalStructure {
-    string DefaultDataType;
-    string DefaultDecimalPositions;
-    string DefaultDecimalSeparator;
-    string DefaultDelimiter;
-    string DefaultDigitGroupSeparator;
-    string Description;
-    string FileFormat;
-    repeated string GrossRecordStructure;
-    repeated string Label;
-    repeated string PhysicalStructureName;
+    string DefaultDataType = 1;
+    string DefaultDecimalPositions = 2;
+    string DefaultDecimalSeparator = 3;
+    string DefaultDelimiter = 4;
+    string DefaultDigitGroupSeparator = 5;
+    string Description = 6;
+    string FileFormat = 7;
+    repeated string GrossRecordStructure = 8;
+    repeated string Label = 9;
+    repeated string PhysicalStructureName = 10;
 }
 
 message BaseRecordLayout {
-    string EndOfLineMarker;
-    PhysicalStructure PhysicalStructureLinkReference;
-    string TextQualifier;
+    string EndOfLineMarker = 1;
+    PhysicalStructure PhysicalStructureLinkReference = 2;
+    string TextQualifier = 3;
 }
 
 message PhysicalStructureGroup {
-    Concept ConceptReference;
-    string Description;
-    bool IsOrdered
-    repeated string Keyword;
-    repeated string Label;
-    repeated string PhysicalStructureGroupName;
-    PhysicalStructureGroup PhysicalStructureReference;
-    repeated string Subject;
-    string TypeOfPhysicalStructureGroup;
-    repeated Universe UniverseReference;
+    Concept ConceptReference = 1;
+    string Description = 2;
+    bool IsOrdered = 3;
+    repeated string Keyword = 4;
+    repeated string Label = 5;
+    repeated string PhysicalStructureGroupName = 6;
+    PhysicalStructureGroup PhysicalStructureReference = 7;
+    repeated string Subject = 8;
+    string TypeOfPhysicalStructureGroup = 9;
+    repeated Universe UniverseReference = 10;
 }
