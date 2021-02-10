@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import uuid
-# from pyproddi.io.protobuf import datadesc_pb2 # New protobuf model.
+from pyproddi.io.protobuf import ddicdi_pb2 # New protobuf model.
 
 class Concept:
     def __init__(self, conceptName, description, excludesConceptReference,
@@ -35,15 +35,55 @@ class Concept:
         self.subclassOfReference = [] # List of Concept
         self.subclassOfReference.add(subclassOfReference)
 
+    def to_pb(self):
+        pbm = ddicdi.Concept()
+        
+        for name in self.conceptName:
+            pbname = pbm.Name.add()
+            pbname = name
+
+        pbm.Description = self.description
+        
+        for excon in self.excludesConceptReference:
+            pbexcon = pbm.ExcludesConceptReference.add()
+            pbexcon = excon.to_pb()
+
+        for incon in self.includesConceptReference:
+            pbincon = pbm.IncludeConceptReference.add()
+            pbincon = incon.to_pb()
+
+        pbm.IsCharacteristic = self.isCharacteristic
+
+        for lab in self.label:
+            pblabel = pbm.Label.add()
+            pblabel = lab
+
+        for simcon in self.similarConcept:
+            pbsimcon = pbm.SimilarConcept.add()
+            pbsimcon = simcon.to_pb()
+
+        for subref in self.subclassOfReference:
+            pbsubref = pbm.SubclassOfReference
+            pbsubref = subref.to_pb()
+
 # Filler class.
 class CategoryScheme:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pbm = ddicdi.CategoryScheme()
+
+        pbm.Name = self.name
+
 # Filler class.
 class UnitType:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pbm = ddicdi.UnitType()
+        pbm.Name = self.name
 
 class ConceptualVariable:
     def __init__(self, categorySchemeReference, conceptReference,
@@ -59,10 +99,33 @@ class ConceptualVariable:
         self.unitTypeReference = [] # List of UnitType
         self.unitTypeReference.add(unityTypeReference)
 
+    def to_pb(self):
+        pbm = ddicdi.ConceptualVariable()
+
+        pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
+        pbm.ConceptReference = self.conceptReference.to_pb()
+        
+        for convarname in self.conceptualVariableName:
+            pbconvarname = pbm.ConceptualVariableName.add()
+            pbconvarname = convarname
+
+        pbm.Description = self.description
+
+        for lab in label:
+            pblabel = pbm.Label.add()
+            pblabel = lab
+
+        pbm.UnitTypeReference = self.unitTypeReference.to_pb
+
 # Filler class.
 class ManagedRepresentation:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pbm = ddicdi.ManagedRepresentation()
+
+        pbm.Name = self.name
 
 class RepresentedVariable:
     def __init__(self, categorySchemeReference, conceptReference,
@@ -81,25 +144,55 @@ class RepresentedVariable:
         self.valueRepresentation = valueRepresentation # String
         self.valueRepresentationReference = valueRepresentationReference # ManagedRepresentation
 
+    def to_pb(self):
+        pbm = ddicdi.RepresentedVariable()
+        pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
+        pbm.ConceptReference = self.conceptReference.to_pb()
+        pbm.ConceptualVariableReference = self.conceptualVariableReference.to_pb()
+        pbm.Description = self.description
+        
+        for lab in self.label:
+            pblabel = pbm.Label.add()
+            pblabel = lab
+
+        for repvarname in self.representedVariableName:
+            pbrepvarname = pbm.RepresentedVariableName.add()
+
+        pbm.UnitTypeReference = self.unitTypereference.to_pb()
+        pbm.ValueRepresentation = self.valueRepresentation
+        pbm.ValueRepresentationReference = self.valueRepresentationReference.to_pb()
+
 # Filler class.
 class MeasurementItem:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 # Filler class.
 class Question:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class Universe:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class Weighting:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 class Variable:
     def __init__(self, analysisUnit, conceptReference,
@@ -136,10 +229,16 @@ class Variable:
         self.variableRepresentation = variableRepresentation # String
         self.weightingProcessReference = weightingProcessReference # Weighting
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class MissingValuesReference:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 class VariableStatistics:
     def __init__(self, filteredCategoryStatistics, 
@@ -158,6 +257,9 @@ class VariableStatistics:
         self.unfilteredCategoryStatistics.add(unfilteredCategoryStatistics)
         self.variableReference = variableReference # Variable
         self.weightVariableReference = weightVariableReference # Variable
+
+    def to_pb(self):
+        pass
 
 class VariableGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
@@ -179,6 +281,9 @@ class VariableGroup:
         self.variableGroupReference = variableGroupReference # VariableGroup
         self.variableReference = variableReference # Variable
 
+    def to_pb(self):
+        pass
+
 class VariableScheme:
     def __init__(self, description, label, variableGroupReference,
                  variableReference, variableSchemeName, 
@@ -195,6 +300,9 @@ class VariableScheme:
         self.variableSchemeReference = [] # List of VariableScheme
         self.variableSchemeReference.add(variableSchemeReference)
 
+    def to_pb(self):
+        pass
+
 class Dataset:
     def __init__(self, arrayBase, dataSetName, defaultVariableSchemeReference,
                  identifyingVariableReference, itemSet, recordSet, 
@@ -208,6 +316,9 @@ class Dataset:
         seelf.recordSet = recordSet # String
         self.variableSet = variableSet # String
 
+    def to_pb(self):
+        pass
+
 class RecordLayout:
     def __init__(self, arrayBase, characterSet, dataItem,
                  defaultVariableSchemeReference, namesOnFirstRow):
@@ -218,25 +329,40 @@ class RecordLayout:
         self.defaultVariableSchemeReference = defaultVariableSchemeReference # VariableScheme
         self.namesOnFirstRow = namesOnFirstRow # Boolean
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class DataRelationship:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 # Filler class.
 class ManagedMissingValuesRepresentation:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class InformationClassification:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class QualityStatement:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 class PhysicalInstance:
     def __init__(self, byteOrder, citation, coverage, dataFileIdentification,
@@ -268,15 +394,24 @@ class PhysicalInstance:
         self.variableGroupReference = [] # List of VariableGroup
         self.variableGroupReference.add(variableGroupReference)
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class RepresentedVariableGroup:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class RepresentedVariable:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 class RepresentedVariableScheme:
     def __init__(self, description, label, representedVariableGroupReference,
@@ -294,25 +429,40 @@ class RepresentedVariableScheme:
         self.representedVariableSchemeReference = [] # List of RepresentedVariableScheme
         self.representedVariableSchemeReference.add(representedVariableSchemeReference)
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class CategoryScheme:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 # Filler class.
 class CodeListScheme:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class ManagedRepresentationScheme:
     def __init__(self, name):
         self.name = name # String
 
+    def to_pb(self):
+        pass
+
 # Filler class.
 class CubeScheme:
     def __init__(self, name):
         self.name = name # String
+
+    def to_pb(self):
+        pass
 
 class LogicalProduct:
     def __init__(self, categorySchemeReference, codeListSchemeReference,
@@ -330,6 +480,9 @@ class LogicalProduct:
         self.representatedVariableSchemeReference.add(representedVariableSchemeReference)
         self.variableSchemeReference = [] # List of VariableScheme
         self.variableSchemeReference.add(variableSchemeReference)
+
+    def to_pb(self):
+        pass
 
 class RecordLayoutGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
@@ -352,6 +505,9 @@ class RecordLayoutGroup:
         self.typeOfRecordLayoutGroup = typeOfRecordLayoutGroup # String
         self.universeReference = universeReference # List of Universe
 
+    def to_pb(self):
+        pass
+
 class PhysicalStructure:
     def __init__(self, defaultDataType, defaultDecimalPositions,
                  defaultDecimalSeparator, defaultDelimiter, 
@@ -371,12 +527,18 @@ class PhysicalStructure:
         self.physicalStructureName = [] # List of String
         self.physicalStructureName.add(physicalStructureName)
 
+    def to_pb(self):
+        pass
+
 class BaseRecordLayout:
     def __init__(self, endOfLineMarker, physicalStructureLinkReference,
                  textQualifier):
         self.endOfLineMarker = endOfLineMarker # String
         self.physicalStructureLinkReference = physicalStructureLinkReference # PhysicalStructure
         self.textQualifier = textQualifier # String
+
+    def to_pb(self):
+        pass
 
 class PhysicalStructureGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
@@ -398,3 +560,5 @@ class PhysicalStructureGroup:
         self.universeReference = [] # List of Universe
         self.universeReference.add(universeReference)
 
+    def to_pb(self):
+        pass
