@@ -633,7 +633,10 @@ class RepresentedVariableGroup:
         self.name = name # String
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.RepresentedVariableGroup()
+        pbm.Name = self.name
+
+        return pbm
 
 # Filler class.
 class RepresentedVariable:
@@ -641,7 +644,10 @@ class RepresentedVariable:
         self.name = name # String
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.RepresentedVariable()
+        pbm.Name = self.name
+
+        return pbm
 
 class RepresentedVariableScheme:
     def __init__(self, description, label, representedVariableGroupReference,
@@ -660,15 +666,31 @@ class RepresentedVariableScheme:
         self.representedVariableSchemeReference.add(representedVariableSchemeReference)
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.RepresentedVariableScheme()
 
-# Filler class.
-class CategoryScheme:
-    def __init__(self, name):
-        self.name = name # String
+        pbm.Description = self.description
 
-    def to_pb(self):
-        pass
+        for lab in self.label:
+            pblab = pbm.Label.add()
+            pblab = lab
+
+        for rvgr in self.representedVariableGroupReference
+            pbrvgr = pbm.RepresentedVariableGroupReference.add()
+            pbrvgr = rvgr.to_pb()
+
+        for rvr in self.representedVariableReference
+            pbrvr = pbm.RepresentedVariableReference.add()
+            pbrvr = rvr.to_pb()
+
+        for rvsn in self.representedVariableSchemeName
+            pbrvsn = pbm.RepresentedVariableSchemeName.add()
+            pbrvsn = rvsn
+
+        for rvsr in self.representedVariableSchemeReference
+            pbrvsr = pbm.RepresentedVariableSchemeReference.add()
+            pbrvsr = rvsr.to_pb()
+
+        return pbm
 
 # Filler class.
 class CodeListScheme:
@@ -676,7 +698,10 @@ class CodeListScheme:
         self.name = name # String
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.CodeListScheme()
+        pbm.Name = self.name
+
+        return pbm
 
 # Filler class.
 class ManagedRepresentationScheme:
@@ -684,7 +709,10 @@ class ManagedRepresentationScheme:
         self.name = name # String
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.ManagedRepresentationScheme()
+        pbm.Name = self.name
+
+        return pbm
 
 # Filler class.
 class CubeScheme:
@@ -692,7 +720,10 @@ class CubeScheme:
         self.name = name # String
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.CubeScheme()
+        pbm.Name = self.name
+
+        return pbm
 
 class LogicalProduct:
     def __init__(self, categorySchemeReference, codeListSchemeReference,
@@ -712,7 +743,33 @@ class LogicalProduct:
         self.variableSchemeReference.add(variableSchemeReference)
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.LogicalProduct()
+
+        for csr in self.categorySchemeReference
+            pbcsr = pbm.CategorySchemeReference.add()
+            pbcsr = csr.to_pb()
+
+        for clsr in self.codeListSchemeReference
+            pbclsr = pbm.CodeListSchemeReference.add()
+            pbclsr = clsr.to_pb()
+
+        for mrsr in self.managedRepresentationSchemeReference
+            pbmrsr = pbm.ManagedRepresentationSchemeReference.add()
+            pbmrsr = clsr.to_pb()
+
+        for ncsr in self.nCubeSchemeReference
+            pbncsr = pbm.NCubeSChemeReference.add()
+            pbncsr = ncsr.to_pb()
+
+        for rvsr in self.representedVariableSchemeReference
+            pbrvsr = pbm.RepresentedVariableSchemeReference.add()
+            pbrvsr = rvsr.to_pb()
+
+        for vsr in self.variableSchemeReference
+            pbvsr = pbm.VariableSchemeReference.add()
+            pbvsr = vsr.to_pb()
+
+        return pbm
 
 class RecordLayoutGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
@@ -736,7 +793,36 @@ class RecordLayoutGroup:
         self.universeReference = universeReference # List of Universe
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.RecordLayoutGroup()
+
+        pbm.ConceptReference = self.conceptReference.to_pb()
+        pbm.Description = self.description
+        pbm.IsOrdered = self.isOrdered
+
+        for kw in self.keyword:
+            pbkw = pbm.Keyword.add()
+            pbkw = kw
+
+        for lab in self.label:
+            pblab = pbm.Label.add()
+            pblab = lab
+
+        for rlgn in self.recordLayoutGroupName:
+            pbrlgn = pbm.RecordLayoutGroupName.add()
+            pbrlgn = rlgn
+
+        pbm.RecordLayoutGroupReference = self.recordLayoutGroupReference.to_pb()
+        pbm.RecordLayoutReference = self.recordLayoutReference.to_pb()
+
+        for sub in self.subject:
+            pbsub = pbm.Subject.add()
+            pbsub = sub
+
+        pbm.TypeOfRecordLayoutGroup = self.typeOfRecordLayoutGroup
+
+        for uni in self.universe:
+            pbuni = pbm.Universe.add()
+            pbuni = uni.to_pb()
 
 class PhysicalStructure:
     def __init__(self, defaultDataType, defaultDecimalPositions,
@@ -758,7 +844,29 @@ class PhysicalStructure:
         self.physicalStructureName.add(physicalStructureName)
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.PhysicalStructure()
+
+        pbm.DefaultDataType = self.defaultDataType
+        pbm.DefaultDecimalPositions = self.defaultDecimalPositions
+        pbm.DefaultDecimalSeparator = self.defaultDecimalSeparator
+        pbm.DefaultDelimiter = self.defaultDelimiter
+        pbm.DefaultDigitGroupSeparator = self.defaultDigitGroupSeparator
+        pbm.Description = self.description
+        pbm.DefaultFileFormat = self.fileFormat
+        
+        for grs in self.grossRecordStructure:
+            pbgrs = pbm.GrossRecordStructure
+            pbgrs = grs
+
+        for lab in self.label:
+            pblab = pbm.Label
+            pblab = lab
+
+        for psn in self.physicalStructureName:
+            pbpsn = pbm.PhysicalStructureName
+            pbpsn = psn
+
+        return pbm
 
 class BaseRecordLayout:
     def __init__(self, endOfLineMarker, physicalStructureLinkReference,
@@ -768,7 +876,13 @@ class BaseRecordLayout:
         self.textQualifier = textQualifier # String
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.BaseRecordLayout()
+
+        pbm.EndOfLineMarker = self.endOfLineMarker
+        pbm.PhysicalStructureLinkReference = self.physicalStructureLinkReference.to_pb()
+        pbm.TextQualifier = self.textQualifier
+
+        return pbm
 
 class PhysicalStructureGroup:
     def __init__(self, conceptReference, description, isOrdered, keyword,
@@ -791,4 +905,32 @@ class PhysicalStructureGroup:
         self.universeReference.add(universeReference)
 
     def to_pb(self):
-        pass
+        pbm = ddicdi_pb2.PhysicalStructureGroup()
+
+        pbm.ConceptReference = self.conceptReference.to_pb()
+        pbm.Description = self.description
+        pbm.IsOrdered = self.isOrdered
+
+        for kw in self.keyword:
+            pbkw = pbm.Keyword.add()
+            pbkw = kw
+
+        for lab in self.label:
+            pblab = pbm.Label.add()
+            pblab = lab
+
+        for psgn in self.physicalStructureGroupName:
+            pbpsgn = pbm.PhysicalStructureGroupName.add()
+            pbpsgn = psgn
+
+        pbm.PhysicalStructureReference = self.physicalStructureReference.to_pb()
+
+        for sub in self.subject:
+            pbsub = pbm.Subject.add()
+            pbsub = sub
+
+        pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup.to_pb()
+
+        for uni in self.universe:
+            pbuni = pbm.Unviverse.add()
+            pbuni = uni.to_pb()
