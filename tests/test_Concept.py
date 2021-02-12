@@ -28,7 +28,15 @@ class ConceptTestCase(unittest.TestCase):
         print("+++++++++++++++++++++++++++++++++++++++")
 
     def test_Concept(self):
-        my_concept = Concept("test_name", "test_desc", [], [], True, "test_label", [], [])
+        my_concept = Concept("test_name", "test_desc", None, None, "True", "test_label", None, None)
+        
+        print("Python object")
+        print(my_concept)
+
+        my_concept_pb = my_concept.to_pb()
+
+        print("Protocol buffer message")
+        print(my_concept_pb)
 
 if __name__ == "__main__":
     unittest.main()

@@ -22,7 +22,7 @@ message Concept {
     string Description = 2;
     repeated Concept ExcludesConceptReference = 3;
     repeated Concept IncludesConceptReference = 4;
-    string IsCharactaristic = 5;
+    string IsCharacteristic = 5;
     repeated string Label = 6;
     repeated Concept SimilarConcept = 7;
     repeated Concept SubclassOfReference = 8;

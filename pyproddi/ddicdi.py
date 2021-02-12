@@ -36,35 +36,36 @@ class Concept:
         self.subclassOfReference.append(subclassOfReference)
 
     def to_pb(self):
+        if(self is None):
+            return None
+
         pbm = ddicdi_pb2.Concept()
         
         for name in self.conceptName:
-            pbname = pbm.Name.append()
-            pbname = name
+            pbname = pbm.ConceptName.append(name)
 
         pbm.Description = self.description
         
         for excon in self.excludesConceptReference:
-            pbexcon = pbm.ExcludesConceptReference.append()
-            pbexcon = excon.to_pb()
+            if(excon is not None):
+                pbexcon = pbm.ExcludesConceptReference.append(excon.to_pb())
 
         for incon in self.includesConceptReference:
-            pbincon = pbm.IncludeConceptReference.append()
-            pbincon = incon.to_pb()
+            if(incon is not None):
+                pbincon = pbm.IncludeConceptReference.append(incon.to_pb())
 
         pbm.IsCharacteristic = self.isCharacteristic
 
         for lab in self.label:
-            pblabel = pbm.Label.append()
-            pblabel = lab
+            pblabel = pbm.Label.append(lab)
 
         for simcon in self.similarConcept:
-            pbsimcon = pbm.SimilarConcept.append()
-            pbsimcon = simcon.to_pb()
+            if(simcon is not None):
+                pbsimcon = pbm.SimilarConcept.append(simcon.to_pb())
 
         for subref in self.subclassOfReference:
-            pbsubref = pbm.SubclassOfReference
-            pbsubref = subref.to_pb()
+            if(subref is not None):
+                pbsubref = pbm.SubclassOfReference.append(subref.to_pb())
 
         return pbm
 
@@ -108,20 +109,21 @@ class ConceptualVariable:
     def to_pb(self):
         pbm = ddicdi_pb2.ConceptualVariable()
 
-        pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
-        pbm.ConceptReference = self.conceptReference.to_pb()
+        if(self.categorySchemeReference is not None):
+            pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
+        if(self.conceptReference is not None):
+            pbm.ConceptReference = self.conceptReference.to_pb()
         
         for convarname in self.conceptualVariableName:
-            pbconvarname = pbm.ConceptualVariableName.append()
-            pbconvarname = convarname
+            pbconvarname = pbm.ConceptualVariableName.append(convarname)
 
         pbm.Description = self.description
 
         for lab in label:
-            pblabel = pbm.Label.append()
-            pblabel = lab
+            pblabel = pbm.Label.append(lab)
 
-        pbm.UnitTypeReference = self.unitTypeReference.to_pb
+        if(self.unitTypeReference is not None):
+            pbm.UnitTypeReference = self.unitTypeReference.to_pb
 
         return pbm
 
@@ -156,21 +158,24 @@ class RepresentedVariable:
 
     def to_pb(self):
         pbm = ddicdi_pb2.RepresentedVariable()
-        pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
-        pbm.ConceptReference = self.conceptReference.to_pb()
-        pbm.ConceptualVariableReference = self.conceptualVariableReference.to_pb()
+        if(self.categorySchemeReference is not None):
+            pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
+        if(self.conceptReference is not None):
+            pbm.ConceptReference = self.conceptReference.to_pb()
+        if(self.conceptualVariableReference is not None):
+            pbm.ConceptualVariableReference = self.conceptualVariableReference.to_pb()
         pbm.Description = self.description
         
         for lab in self.label:
-            pblabel = pbm.Label.append()
-            pblabel = lab
+            pblabel = pbm.Label.append(lab)
 
         for repvarname in self.representedVariableName:
-            pbrepvarname = pbm.RepresentedVariableName.append()
-
-        pbm.UnitTypeReference = self.unitTypereference.to_pb()
+            pbrepvarname = pbm.RepresentedVariableName.append(repvarname)
+        if(self.unitTypeReference is not None):
+            pbm.UnitTypeReference = self.unitTypeReference.to_pb()
         pbm.ValueRepresentation = self.valueRepresentation
-        pbm.ValueRepresentationReference = self.valueRepresentationReference.to_pb()
+        if(self.valueRepresentationReference is not None):
+            pbm.ValueRepresentationReference = self.valueRepresentationReference.to_pb()
 
         return pbm
 
@@ -257,8 +262,10 @@ class Variable:
     def to_pb(self):
         pbm = ddicdi_pb2.Variable()
         pbm.AnalysisUnit = self.analysisUnit
-        pbm.ConceptReference = self.conceptReference.to_pb()
-        pbm.ConceptualVariableReference = self.conceptualVariableReference.to_pb()
+        if(self.conceptReference is not None):
+            pbm.ConceptReference = self.conceptReference.to_pb()
+        if(self.conceptualVariableReference is not None):
+            pbm.ConceptualVariableReference = self.conceptualVariableReference.to_pb()
         pbm.Description = self.description
         pbm.EmbargoReference = self.embargoReference
         pbm.Description = self.description
@@ -268,35 +275,37 @@ class Variable:
         pbm.IsWeigh = self.isWeight
         
         for lab in self.label:
-            pblabel = pbm.Label.append()
-            pblabel = lab
+            pblabel = pbm.Label.append(lab)
 
         for mref in self.measurementReference:
-            pbmref = pbm.MeasurementReference.append()
-            pbmref = mref.to_pb()
+            if(mref is not None):
+                pbmref = pbm.MeasurementReference.append(mref.to_pb())
 
         pbm.OutParameter = self.outParameter
 
         for q in self.question:
-            pbq = pbm.Question.append()
-            pbq = q.to_pb()
+            if(q is not None):
+                pbq = pbm.Question.append(q.to_pb())
 
-        pbm.RepresentedVariableReference = self.representedVariableReference.to_pb()
+        if(self.representedVariableReference is not None):
+            pbm.RepresentedVariableReference = self.representedVariableReference.to_pb()
         pbm.SourceParameterReference = self.sourceParemeterReference
         pbm.SourceUnit = self.sourceUnit
 
         for svr in self.sourceVariableReference:
-            psvr = pbm.SourceVariableReference.append()
-            psvr = svr.to_pb()
+            if(svr is not None):
+                psvr = pbm.SourceVariableReference.append(svr.to_pb())
 
-        pbm.UnitTypeReference = self.unitTypeReference.to_pb()
+        if(self.unitTypeReference is not None):
+            pbm.UnitTypeReference = self.unitTypeReference.to_pb()
 
         for uni in self.universe:
-            puni = pbm.Universe.append()
-            puni = uni.to_pb()
+            if(uni is not None):
+                puni = pbm.Universe.append(uni.to_pb())
 
         pbm.VariableRepresentation = self.variableRepresentation
-        pbm.WeightingProcessReference = self.weightingProcessReference.to_pb()
+        if(self.weightingProcessReference is not None):
+            pbm.WeightingProcessReference = self.weightingProcessReference.to_pb()
 
         return pbm
 
@@ -333,24 +342,25 @@ class VariableStatistics:
         pbm = ddicdi_pb2.VariableStatistics()
 
         for fcs in self.filteredCategoryStatistics:
-            pbfcs = pbm.FilteredCategoryStatistics.append()
-            pbfcs = fcs
+            if(fcs is not None):
+                pbfcs = pbm.FilteredCategoryStatistics.append(fcs)
 
-        pbm.ManagedMissingValuesRepresentation = self.managedMissingValuesRepresentation.to_pb()
+        if(self.managedMIssingValuesRepresentation is not None):
+            pbm.ManagedMissingValuesRepresentation = self.managedMissingValuesRepresentation.to_pb()
         pbm.StandardWeightReference = self.standardWeightReference
         
         for sumstat in self.summaryStatistics:
-            pbsumstat = pbm.SummaryStatistics.append()
-            pbsumstat = sumstat
+            pbsumstat = pbm.SummaryStatistics.append(sumstat)
 
         pbm.TotalResponse = self.totalResponse
 
         for ucs in self.unfilteredCategoryStatistics:
-            pbucs = pbm.UnfilteredCategoryStatistics.append()
-            pbucs = ucs
+            pbucs = pbm.UnfilteredCategoryStatistics.append(ucs)
 
-        pbm.VariableReference = self.variableReference.to_pb()
-        pbm.WeightVariableReference = self.weightVariableReference.to_pb()
+        if(self.variableReference is not None):
+            pbm.VariableReference = self.variableReference.to_pb()
+        if(self.weightVariableReference is not None):
+            pbm.WeightVariableReference = self.weightVariableReference.to_pb()
 
         return pbm
 
@@ -377,31 +387,31 @@ class VariableGroup:
     def to_pb(self):
         pbm = ddicdi_pb2.VariableGroup()
 
-        pbm.ConceptReference = self.conceptReference.to_pb()
+        if(self.conceptReference is not None):
+            pbm.ConceptReference = self.conceptReference.to_pb()
         pbm.Description = self.description
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
-            pbkw = pbm.Keyword.append()
-            pbkw = kw
+            pbkw = pbm.Keyword.append(kw)
 
         for lab in label:
-            pblab = pbm.Label.append()
-            pblab = lab
+            pblab = pbm.Label.append(lab)
 
         for sub in subject:
-            pbsub = pbm.Subject.append()
-            pbsub = sub
+            pbsub = pbm.Subject.append(sub)
 
         pbm.TypeOfVariableGroup = self.typeOfVariableGroup
-        pbm.UniverseReference = self.universeReference.to_pb()
+        if(self.universeReference is not None):
+            pbm.UniverseReference = self.universeReference.to_pb()
 
         for vgn in self.variableGroupName:
-            pbvgn = pbm.VariableGroupName.append()
-            pbvgn = vgn
+            pbvgn = pbm.VariableGroupName.append(vgn)
 
-        pbm.VariableGroupReference = self.variableGroupReference.to_pb()
-        pbm.VariableReference = self.variableReference.to_pb()
+        if(self.variableGroupReference is not None):
+            pbm.VariableGroupReference = self.variableGroupReference.to_pb()
+        if(self.variableReference is not None):
+            pbm.VariableReference = self.variableReference.to_pb()
 
         return pbm
 
@@ -427,24 +437,22 @@ class VariableScheme:
         pbm.Description = self.description
 
         for lab in self.label:
-            pblab = pbm.Label.append()
-            pblab = lab
+            pblab = pbm.Label.append(lab)
 
         for vgr in self.variableGroupReference:
-            pbvgr = pbm.VariableGroupReference.append()
-            pbvgr = vgr.to_pb()
+            if(vgr is not None):
+                pbvgr = pbm.VariableGroupReference.append(vgr.to_pb())
 
         for vr in self.variableReference:
-            pbvr = pbm.variableReference.append()
-            pbvr = vr.to_pb()
+            if(vr is not None):
+                pbvr = pbm.variableReference.append(vr.to_pb())
 
         for vsn in self.variableSchemeName:
-            pbvsn = pbm.VariableSchemeName.append()
-            pbvsn = vsn
+            pbvsn = pbm.VariableSchemeName.append(vsn)
 
         for vsr in self.variableSchemeReference:
-            pbvsr = pbm.VariableSchemeReference.append()
-            pbvsr = vsr.to_pb()
+            if(vsr is not None):
+                pbvsr = pbm.VariableSchemeReference.append(vsr.to_pb())
 
         return pbm
 
@@ -467,11 +475,12 @@ class Dataset:
         pbm.ArrayBase = self.arrayBase
 
         for dn in self.dataSetName:
-            pbdn = pbm.DataSetName.append()
-            pbdn = dn
+            pbdn = pbm.DataSetName.append(dn)
 
-        pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
-        pbm.IdentifyingVariableReference = self.IdentifyingVariableReference.to_pb()
+        if(self.defaultVariableSChemeReference is not None):
+            pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
+        if(self.identifyingVariableReference is not None):
+            pbm.IdentifyingVariableReference = self.identifyingVariableReference.to_pb()
         pbm.ItemSet = self.itemSet
         pbm.RecordSet = self.recordSet
         pbm.VariableSet = self.variableSet
@@ -495,10 +504,10 @@ class RecordLayout:
         pbm.CharacterSet = self.characterSet
 
         for di in self.dataItem:
-            pbdi = pbm.DataItem.append()
-            pbdi = di
+            pbdi = pbm.DataItem.append(di)
 
-        pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
+        if(self.defaultVariableSChemeReference is not None):
+            pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
         pbm.NamesOnFirstRow = self.namesOnFirstRow
 
         return pbm
@@ -589,41 +598,40 @@ class PhysicalInstance:
         pbm.Coverage = self.coverage
         
         for dfi in self.dataFileIdentification:
-            pbdfi = pbm.DataFileIdentification.append()
-            pbdfi = dfi
+            pbdfi = pbm.DataFileIdentification.append(dfi)
 
         pbm.DataFileVersion = self.dataFileVersion
 
         for df in self.dataFingerprint:
-            pbdf = pbm.DataFingerprint.append()
-            pbdf = df
+            pbdf = pbm.DataFingerprint.append(df)
 
         for drf in self.dataRelationshipReference:
-            pbdrf = pbm.DataFingerprint.append()
-            pbdrf = drf.to_pb()
+            if(drf is not None):
+                pbdrf = pbm.DataFingerprint.append(drf.to_pb())
 
-        pbm.DefaultMissingValuesReference = self.defaultMissingValuesReference.to_pb()
+        if(self.defaultMissingValuesReference is not None):
+            pbm.DefaultMissingValuesReference = self.defaultMissingValuesReference.to_pb()
         pbm.GrossFileStructure = self.grossFileStructure
 
         for icr in self.informationClassificationReference:
-            pbicr = pbm.InformationClassificationReference.append()
-            pbicr = icr.to_pb()
+            if(icr is not None):
+                pbicr = pbm.InformationClassificationReference.append(icr.to_pb())
 
         pbm.ProprietaryInfo = self.proprietaryInfo
 
         for qsr in self.qualityStatementReference:
-            pbqsr = pbm.QualityStatementReference.append()
-            pbqsr = qsr.to_pb()
+            if(qsr is not None):
+                pbqsr = pbm.QualityStatementReference.append(qsr.to_pb())
 
         for rlf in self.recordLayoutReference:
-            pbrlf = pbm.RecordLayoutReference.append()
-            pbrlf = rlf.to_pb()
+            if(rlf is not None):
+                pbrlf = pbm.RecordLayoutReference.append(rlf.to_pb())
 
         pbm.StatisticalSummary = self.statisticalSummary
 
         for vgr in self.variableGroupReference:
-            pbvgr = pbm.VariableGroupReference.append()
-            pbvgr = vgr.to_pb()
+            if(vgr is not None):
+                pbvgr = pbm.VariableGroupReference.append(vgr.to_pb())
 
         return pbm
 
@@ -671,24 +679,22 @@ class RepresentedVariableScheme:
         pbm.Description = self.description
 
         for lab in self.label:
-            pblab = pbm.Label.append()
-            pblab = lab
+            pblab = pbm.Label.append(lab)
 
         for rvgr in self.representedVariableGroupReference:
-            pbrvgr = pbm.RepresentedVariableGroupReference.append()
-            pbrvgr = rvgr.to_pb()
+            if(rvgr is not None):
+                pbrvgr = pbm.RepresentedVariableGroupReference.append(rvgr.to_pb())
 
         for rvr in self.representedVariableReference:
-            pbrvr = pbm.RepresentedVariableReference.append()
-            pbrvr = rvr.to_pb()
+            if(rvr is not None):
+                pbrvr = pbm.RepresentedVariableReference.append(rvr.to_pb())
 
         for rvsn in self.representedVariableSchemeName:
-            pbrvsn = pbm.RepresentedVariableSchemeName.append()
-            pbrvsn = rvsn
+            pbrvsn = pbm.RepresentedVariableSchemeName.append(rvsn)
 
         for rvsr in self.representedVariableSchemeReference:
-            pbrvsr = pbm.RepresentedVariableSchemeReference.append()
-            pbrvsr = rvsr.to_pb()
+            if(rvsr is not None):
+                pbrvsr = pbm.RepresentedVariableSchemeReference.append(rvsr.to_pb())
 
         return pbm
 
@@ -746,28 +752,28 @@ class LogicalProduct:
         pbm = ddicdi_pb2.LogicalProduct()
 
         for csr in self.categorySchemeReference:
-            pbcsr = pbm.CategorySchemeReference.append()
-            pbcsr = csr.to_pb()
+            if(csr is not None):
+                pbcsr = pbm.CategorySchemeReference.append(csr.to_pb())
 
         for clsr in self.codeListSchemeReference:
-            pbclsr = pbm.CodeListSchemeReference.append()
-            pbclsr = clsr.to_pb()
+            if(clsr is not None):
+                pbclsr = pbm.CodeListSchemeReference.append(clsr.to_pb())
 
         for mrsr in self.managedRepresentationSchemeReference:
-            pbmrsr = pbm.ManagedRepresentationSchemeReference.append()
-            pbmrsr = clsr.to_pb()
+            if(mrsr is not None):
+                pbmrsr = pbm.ManagedRepresentationSchemeReference.append(clsr.to_pb())
 
         for ncsr in self.nCubeSchemeReference:
-            pbncsr = pbm.NCubeSChemeReference.append()
-            pbncsr = ncsr.to_pb()
+            if(ncsr is not None):
+                pbncsr = pbm.NCubeSChemeReference.append(ncsr.to_pb())
 
         for rvsr in self.representedVariableSchemeReference:
-            pbrvsr = pbm.RepresentedVariableSchemeReference.append()
-            pbrvsr = rvsr.to_pb()
+            if(rvsr is not None):
+                pbrvsr = pbm.RepresentedVariableSchemeReference.append(rvsr.to_pb())
 
         for vsr in self.variableSchemeReference:
-            pbvsr = pbm.VariableSchemeReference.append()
-            pbvsr = vsr.to_pb()
+            if(vsr is not None):
+                pbvsr = pbm.VariableSchemeReference.append(vsr.to_pb())
 
         return pbm
 
@@ -800,29 +806,27 @@ class RecordLayoutGroup:
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
-            pbkw = pbm.Keyword.append()
-            pbkw = kw
+            pbkw = pbm.Keyword.append(kw)
 
         for lab in self.label:
-            pblab = pbm.Label.append()
-            pblab = lab
+            pblab = pbm.Label.append(lab)
 
         for rlgn in self.recordLayoutGroupName:
-            pbrlgn = pbm.RecordLayoutGroupName.append()
-            pbrlgn = rlgn
+            pbrlgn = pbm.RecordLayoutGroupName.append(rlgn)
 
-        pbm.RecordLayoutGroupReference = self.recordLayoutGroupReference.to_pb()
-        pbm.RecordLayoutReference = self.recordLayoutReference.to_pb()
+        if(self.recordLayoutGroupReference is not None):
+            pbm.RecordLayoutGroupReference = self.recordLayoutGroupReference.to_pb()
+        if(self.recordLayoutReference is not None):
+            pbm.RecordLayoutReference = self.recordLayoutReference.to_pb()
 
         for sub in self.subject:
-            pbsub = pbm.Subject.append()
-            pbsub = sub
+            pbsub = pbm.Subject.append(sub)
 
         pbm.TypeOfRecordLayoutGroup = self.typeOfRecordLayoutGroup
 
         for uni in self.universe:
-            pbuni = pbm.Universe.append()
-            pbuni = uni.to_pb()
+            if(uni is not None):
+                pbuni = pbm.Universe.append(uni.to_pb())
 
 class PhysicalStructure:
     def __init__(self, defaultDataType, defaultDecimalPositions,
@@ -855,16 +859,13 @@ class PhysicalStructure:
         pbm.DefaultFileFormat = self.fileFormat
         
         for grs in self.grossRecordStructure:
-            pbgrs = pbm.GrossRecordStructure
-            pbgrs = grs
+            pbgrs = pbm.GrossRecordStructure.append(grs)
 
         for lab in self.label:
-            pblab = pbm.Label
-            pblab = lab
+            pblab = pbm.Label.append(lab)
 
         for psn in self.physicalStructureName:
-            pbpsn = pbm.PhysicalStructureName
-            pbpsn = psn
+            pbpsn = pbm.PhysicalStructureName.append(psn)
 
         return pbm
 
@@ -879,7 +880,8 @@ class BaseRecordLayout:
         pbm = ddicdi_pb2.BaseRecordLayout()
 
         pbm.EndOfLineMarker = self.endOfLineMarker
-        pbm.PhysicalStructureLinkReference = self.physicalStructureLinkReference.to_pb()
+        if(self.physicalStructureLinkReference is not None):
+            pbm.PhysicalStructureLinkReference = self.physicalStructureLinkReference.to_pb()
         pbm.TextQualifier = self.textQualifier
 
         return pbm
@@ -907,30 +909,29 @@ class PhysicalStructureGroup:
     def to_pb(self):
         pbm = ddicdi_pb2.PhysicalStructureGroup()
 
-        pbm.ConceptReference = self.conceptReference.to_pb()
+        if(self.conceptReference is not None):
+            pbm.ConceptReference = self.conceptReference.to_pb()
         pbm.Description = self.description
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
-            pbkw = pbm.Keyword.append()
-            pbkw = kw
+            pbkw = pbm.Keyword.append(kw)
 
         for lab in self.label:
-            pblab = pbm.Label.append()
-            pblab = lab
+            pblab = pbm.Label.append(lab)
 
         for psgn in self.physicalStructureGroupName:
-            pbpsgn = pbm.PhysicalStructureGroupName.append()
-            pbpsgn = psgn
+            pbpsgn = pbm.PhysicalStructureGroupName.append(psgn)
 
-        pbm.PhysicalStructureReference = self.physicalStructureReference.to_pb()
+        if(self.physicalStructureReference is not None):
+            pbm.PhysicalStructureReference = self.physicalStructureReference.to_pb()
 
         for sub in self.subject:
-            pbsub = pbm.Subject.append()
-            pbsub = sub
+            pbsub = pbm.Subject.append(sub)
 
-        pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup.to_pb()
+        if(self.typeOfPhysicalStructureGroup is not None):
+            pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup.to_pb()
 
         for uni in self.universe:
-            pbuni = pbm.Unviverse.append()
-            pbuni = uni.to_pb()
+            if(uni is not None):
+                pbuni = pbm.Unviverse.append(uni.to_pb())
