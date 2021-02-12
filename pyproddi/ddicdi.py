@@ -19,47 +19,47 @@ from pyproddi.io.protobuf import ddicdi_pb2 # New protobuf model.
 class Concept:
     def __init__(self, conceptName, description, excludesConceptReference,
                  includesConceptReference, isCharacteristic, label,
-                 similarConcept, subClassOfReference):
+                 similarConcept, subclassOfReference):
         self.conceptName = [] # List of String
         self.conceptName.append(conceptName)
         self.description = description # String
         self.excludesConceptReference = [] # List of Concept
-        self.excludesConceptReference.add(excludesConceptReference)
+        self.excludesConceptReference.append(excludesConceptReference)
         self.includesConceptReference = [] # List of Concept
-        self.includesConceptReference.add(includesConceptReference)
+        self.includesConceptReference.append(includesConceptReference)
         self.isCharacteristic = isCharacteristic # Boolean
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.similarConcept = [] # List of Concept
-        self.similarConcept.add(similarConcept)
+        self.similarConcept.append(similarConcept)
         self.subclassOfReference = [] # List of Concept
-        self.subclassOfReference.add(subclassOfReference)
+        self.subclassOfReference.append(subclassOfReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.Concept()
         
         for name in self.conceptName:
-            pbname = pbm.Name.add()
+            pbname = pbm.Name.append()
             pbname = name
 
         pbm.Description = self.description
         
         for excon in self.excludesConceptReference:
-            pbexcon = pbm.ExcludesConceptReference.add()
+            pbexcon = pbm.ExcludesConceptReference.append()
             pbexcon = excon.to_pb()
 
         for incon in self.includesConceptReference:
-            pbincon = pbm.IncludeConceptReference.add()
+            pbincon = pbm.IncludeConceptReference.append()
             pbincon = incon.to_pb()
 
         pbm.IsCharacteristic = self.isCharacteristic
 
         for lab in self.label:
-            pblabel = pbm.Label.add()
+            pblabel = pbm.Label.append()
             pblabel = lab
 
         for simcon in self.similarConcept:
-            pbsimcon = pbm.SimilarConcept.add()
+            pbsimcon = pbm.SimilarConcept.append()
             pbsimcon = simcon.to_pb()
 
         for subref in self.subclassOfReference:
@@ -98,12 +98,12 @@ class ConceptualVariable:
         self.categorySchemeReference = categorySchemeReference # CategoryScheme
         self.conceptReference = conceptReference # Concept
         self.conceptualVariableName = [] # List of String
-        self.conceptualVariableName.add(conceptualVariableName)
+        self.conceptualVariableName.append(conceptualVariableName)
         self.description = description # String
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.unitTypeReference = [] # List of UnitType
-        self.unitTypeReference.add(unityTypeReference)
+        self.unitTypeReference.append(unityTypeReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.ConceptualVariable()
@@ -112,13 +112,13 @@ class ConceptualVariable:
         pbm.ConceptReference = self.conceptReference.to_pb()
         
         for convarname in self.conceptualVariableName:
-            pbconvarname = pbm.ConceptualVariableName.add()
+            pbconvarname = pbm.ConceptualVariableName.append()
             pbconvarname = convarname
 
         pbm.Description = self.description
 
         for lab in label:
-            pblabel = pbm.Label.add()
+            pblabel = pbm.Label.append()
             pblabel = lab
 
         pbm.UnitTypeReference = self.unitTypeReference.to_pb
@@ -147,9 +147,9 @@ class RepresentedVariable:
         self.conceptualVariableReference = conceptualVariableReference # ConceptualVariable
         self.description = description # String
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.representedVariableName = [] # List of String
-        self.representedVariableName.add(representedVariableName)
+        self.representedVariableName.append(representedVariableName)
         self.unitTypeReference = unitTypeReference # UnitType
         self.valueRepresentation = valueRepresentation # String
         self.valueRepresentationReference = valueRepresentationReference # ManagedRepresentation
@@ -162,11 +162,11 @@ class RepresentedVariable:
         pbm.Description = self.description
         
         for lab in self.label:
-            pblabel = pbm.Label.add()
+            pblabel = pbm.Label.append()
             pblabel = lab
 
         for repvarname in self.representedVariableName:
-            pbrepvarname = pbm.RepresentedVariableName.add()
+            pbrepvarname = pbm.RepresentedVariableName.append()
 
         pbm.UnitTypeReference = self.unitTypereference.to_pb()
         pbm.ValueRepresentation = self.valueRepresentation
@@ -237,20 +237,20 @@ class Variable:
         self.isTemporal = isTemporal # Boolean
         self.isWeight = isWeight # Boolean
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.measurementReference = [] # List of String
-        self.measurementReference.add(measurementReference)
+        self.measurementReference.append(measurementReference)
         self.outParameter = outParameter # String
         self.questionReference = [] # List of Question
-        self.questionReference.add(questionReference)
+        self.questionReference.append(questionReference)
         self.representedVariableReference = representedVariableReference # RepresentedVariable
         self.sourceParameterReference = sourceParameterReference # String
         self.sourceUnit = sourceUnit # String
         self.sourceVariableReference = [] # List of Variable
-        self.sourceVariableReference.add(sourceVariableReference)
+        self.sourceVariableReference.append(sourceVariableReference)
         self.unitTypeReference = unitTypeReference # UnitType
         self.universeReference = [] # List of Universe
-        self.universeReference.add(universeReference)
+        self.universeReference.append(universeReference)
         self.variableRepresentation = variableRepresentation # String
         self.weightingProcessReference = weightingProcessReference # Weighting
 
@@ -268,17 +268,17 @@ class Variable:
         pbm.IsWeigh = self.isWeight
         
         for lab in self.label:
-            pblabel = pbm.Label.add()
+            pblabel = pbm.Label.append()
             pblabel = lab
 
         for mref in self.measurementReference:
-            pbmref = pbm.MeasurementReference.add()
+            pbmref = pbm.MeasurementReference.append()
             pbmref = mref.to_pb()
 
         pbm.OutParameter = self.outParameter
 
         for q in self.question:
-            pbq = pbm.Question.add()
+            pbq = pbm.Question.append()
             pbq = q.to_pb()
 
         pbm.RepresentedVariableReference = self.representedVariableReference.to_pb()
@@ -286,13 +286,13 @@ class Variable:
         pbm.SourceUnit = self.sourceUnit
 
         for svr in self.sourceVariableReference:
-            psvr = pbm.SourceVariableReference.add()
+            psvr = pbm.SourceVariableReference.append()
             psvr = svr.to_pb()
 
         pbm.UnitTypeReference = self.unitTypeReference.to_pb()
 
         for uni in self.universe:
-            puni = pbm.Universe.add()
+            puni = pbm.Universe.append()
             puni = uni.to_pb()
 
         pbm.VariableRepresentation = self.variableRepresentation
@@ -318,14 +318,14 @@ class VariableStatistics:
                  unfilteredCategoryStatistics, variableReference,
                  weightVariableReference):
         self.filteredCategoryStatistics = [] # List of String
-        self.filteredCategoryStatistics.add(filteredCategoryStatistics)
+        self.filteredCategoryStatistics.append(filteredCategoryStatistics)
         self.managedMissingValuesRepresentation = managedMissingValuesRepresentation # MissingValuesReference
         self.standardWeightReference = standardWeightReference # String
         self.summaryStatistic = [] # List of String
-        self.summaryStatistic.add(summaryStatistic)
+        self.summaryStatistic.append(summaryStatistic)
         self.totalResponses = totalResponses # String
         self.unfilteredCategoryStatistics = [] # List of String
-        self.unfilteredCategoryStatistics.add(unfilteredCategoryStatistics)
+        self.unfilteredCategoryStatistics.append(unfilteredCategoryStatistics)
         self.variableReference = variableReference # Variable
         self.weightVariableReference = weightVariableReference # Variable
 
@@ -333,20 +333,20 @@ class VariableStatistics:
         pbm = ddicdi_pb2.VariableStatistics()
 
         for fcs in self.filteredCategoryStatistics:
-            pbfcs = pbm.FilteredCategoryStatistics.add()
+            pbfcs = pbm.FilteredCategoryStatistics.append()
             pbfcs = fcs
 
         pbm.ManagedMissingValuesRepresentation = self.managedMissingValuesRepresentation.to_pb()
         pbm.StandardWeightReference = self.standardWeightReference
         
         for sumstat in self.summaryStatistics:
-            pbsumstat = pbm.SummaryStatistics.add()
+            pbsumstat = pbm.SummaryStatistics.append()
             pbsumstat = sumstat
 
         pbm.TotalResponse = self.totalResponse
 
         for ucs in self.unfilteredCategoryStatistics:
-            pbucs = pbm.UnfilteredCategoryStatistics.add()
+            pbucs = pbm.UnfilteredCategoryStatistics.append()
             pbucs = ucs
 
         pbm.VariableReference = self.variableReference.to_pb()
@@ -362,15 +362,15 @@ class VariableGroup:
         self.description = description # String
         self.isOrdered = isOrdered # Boolean
         self.keyword = [] # List of String
-        self.keyword.add(keyword)
+        self.keyword.append(keyword)
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.subject = [] # List of String
-        self.subject.add(subject)
+        self.subject.append(subject)
         self.typeOfVariableGroup = typeOfVariableGroup # String
         self.universeReference = universeReference # Universe
         self.variableGroupName = [] # List of String
-        self.variableGroupName.add(variableGroupName)
+        self.variableGroupName.append(variableGroupName)
         self.variableGroupReference = variableGroupReference # VariableGroup
         self.variableReference = variableReference # Variable
 
@@ -382,22 +382,22 @@ class VariableGroup:
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
-            pbkw = pbm.Keyword.add()
+            pbkw = pbm.Keyword.append()
             pbkw = kw
 
         for lab in label:
-            pblab = pbm.Label.add()
+            pblab = pbm.Label.append()
             pblab = lab
 
         for sub in subject:
-            pbsub = pbm.Subject.add()
+            pbsub = pbm.Subject.append()
             pbsub = sub
 
         pbm.TypeOfVariableGroup = self.typeOfVariableGroup
         pbm.UniverseReference = self.universeReference.to_pb()
 
         for vgn in self.variableGroupName:
-            pbvgn = pbm.VariableGroupName.add()
+            pbvgn = pbm.VariableGroupName.append()
             pbvgn = vgn
 
         pbm.VariableGroupReference = self.variableGroupReference.to_pb()
@@ -411,15 +411,15 @@ class VariableScheme:
                  variableSchemeReference):
         self.description = description # String
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.variableGroupReference = [] # List of VariableGroup
-        self.variableGroupReference.add(variableGroupReference)
+        self.variableGroupReference.append(variableGroupReference)
         self.variableReference = [] # List of Variable
-        self.variableReference.add(variableReference)
+        self.variableReference.append(variableReference)
         self.variableSchemeName = [] # List of String
-        self.variableSchemeName.add(variableSchemeName)
+        self.variableSchemeName.append(variableSchemeName)
         self.variableSchemeReference = [] # List of VariableScheme
-        self.variableSchemeReference.add(variableSchemeReference)
+        self.variableSchemeReference.append(variableSchemeReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.VariableScheme()
@@ -427,23 +427,23 @@ class VariableScheme:
         pbm.Description = self.description
 
         for lab in self.label:
-            pblab = pbm.Label.add()
+            pblab = pbm.Label.append()
             pblab = lab
 
         for vgr in self.variableGroupReference:
-            pbvgr = pbm.VariableGroupReference.add()
+            pbvgr = pbm.VariableGroupReference.append()
             pbvgr = vgr.to_pb()
 
         for vr in self.variableReference:
-            pbvr = pbm.variableReference.add()
+            pbvr = pbm.variableReference.append()
             pbvr = vr.to_pb()
 
         for vsn in self.variableSchemeName:
-            pbvsn = pbm.VariableSchemeName.add()
+            pbvsn = pbm.VariableSchemeName.append()
             pbvsn = vsn
 
         for vsr in self.variableSchemeReference:
-            pbvsr = pbm.VariableSchemeReference.add()
+            pbvsr = pbm.VariableSchemeReference.append()
             pbvsr = vsr.to_pb()
 
         return pbm
@@ -454,7 +454,7 @@ class Dataset:
                  variableSet):
         self.arrayBase = arrayBase # String
         self.dataSetName = [] # List of String
-        self.dataSetName.add(dataSetName)
+        self.dataSetName.append(dataSetName)
         self.defaultVariableSchemeReference = defaultVariableSchemeReference # VariableScheme
         self.identifyingVariableReference = identifyingVariableReference # Variable
         self.itemSet = itemSet # String
@@ -467,7 +467,7 @@ class Dataset:
         pbm.ArrayBase = self.arrayBase
 
         for dn in self.dataSetName:
-            pbdn = pbm.DataSetName.add()
+            pbdn = pbm.DataSetName.append()
             pbdn = dn
 
         pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
@@ -484,7 +484,7 @@ class RecordLayout:
         self.arrayBase = arrayBase # String
         self.characterSet = characterSet # String
         self.dataItem = [] # List of String
-        self.dataItem.add(dataItem)
+        self.dataItem.append(dataItem)
         self.defaultVariableSchemeReference = defaultVariableSchemeReference # VariableScheme
         self.namesOnFirstRow = namesOnFirstRow # Boolean
 
@@ -495,7 +495,7 @@ class RecordLayout:
         pbm.CharacterSet = self.characterSet
 
         for di in self.dataItem:
-            pbdi = pbm.DataItem.add()
+            pbdi = pbm.DataItem.append()
             pbdi = di
 
         pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
@@ -562,24 +562,24 @@ class PhysicalInstance:
         self.citation = citation # String
         self.coverage = coverage # String
         self.dataFileIdentification = [] # List of String
-        self.dataFileIdentification.add(dataFileIdentification)
+        self.dataFileIdentification.append(dataFileIdentification)
         self.dataFileVersion = dataFileVersion # String
         self.dataFingerprint = [] # List of String
-        self.dataFingerprint.add(dataFingerprint)
+        self.dataFingerprint.append(dataFingerprint)
         self.dataRelationshipReference = [] # List of DataRelationship
-        self.dataRelationshipReference.add(dataRelationshipReference)
+        self.dataRelationshipReference.append(dataRelationshipReference)
         self.defaultMissingValuesReference = defaultMissingValuesReference # ManagedMissingValuesRepresentation
         self.grossFileStructure = grossFileStructure # String
         self.informationClassificationReference = [] # List of InformationClassification
-        self.informationClassificationReference.add(informationClassificationReference)
+        self.informationClassificationReference.append(informationClassificationReference)
         self.proprietaryInfo = proprietaryInfo # Boolean
         self.qualityStatementReference = [] # List of QualityStatement
-        self.qualityStatementReference.add(qualityStatementReference)
+        self.qualityStatementReference.append(qualityStatementReference)
         self.recordLayoutReference = [] # List of RecordLayout
-        self.recordLayoutReference.add(recordLayoutReference)
+        self.recordLayoutReference.append(recordLayoutReference)
         self.statisticalSummary = statisticalSummary # String
         self.variableGroupReference = [] # List of VariableGroup
-        self.variableGroupReference.add(variableGroupReference)
+        self.variableGroupReference.append(variableGroupReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.PhysicalInstance()
@@ -589,40 +589,40 @@ class PhysicalInstance:
         pbm.Coverage = self.coverage
         
         for dfi in self.dataFileIdentification:
-            pbdfi = pbm.DataFileIdentification.add()
+            pbdfi = pbm.DataFileIdentification.append()
             pbdfi = dfi
 
         pbm.DataFileVersion = self.dataFileVersion
 
         for df in self.dataFingerprint:
-            pbdf = pbm.DataFingerprint.add()
+            pbdf = pbm.DataFingerprint.append()
             pbdf = df
 
         for drf in self.dataRelationshipReference:
-            pbdrf = pbm.DataFingerprint.add()
+            pbdrf = pbm.DataFingerprint.append()
             pbdrf = drf.to_pb()
 
         pbm.DefaultMissingValuesReference = self.defaultMissingValuesReference.to_pb()
         pbm.GrossFileStructure = self.grossFileStructure
 
         for icr in self.informationClassificationReference:
-            pbicr = pbm.InformationClassificationReference.add()
+            pbicr = pbm.InformationClassificationReference.append()
             pbicr = icr.to_pb()
 
         pbm.ProprietaryInfo = self.proprietaryInfo
 
         for qsr in self.qualityStatementReference:
-            pbqsr = pbm.QualityStatementReference.add()
+            pbqsr = pbm.QualityStatementReference.append()
             pbqsr = qsr.to_pb()
 
         for rlf in self.recordLayoutReference:
-            pbrlf = pbm.RecordLayoutReference.add()
+            pbrlf = pbm.RecordLayoutReference.append()
             pbrlf = rlf.to_pb()
 
         pbm.StatisticalSummary = self.statisticalSummary
 
         for vgr in self.variableGroupReference:
-            pbvgr = pbm.VariableGroupReference.add()
+            pbvgr = pbm.VariableGroupReference.append()
             pbvgr = vgr.to_pb()
 
         return pbm
@@ -655,15 +655,15 @@ class RepresentedVariableScheme:
                  representedVariableSchemeReference):
         self.description = description # String
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.representedVariableGroupReference = [] # List of RepresentedVariableGroup
-        self.representedVariableGroupReference.add(representedVariableGroupReference)
+        self.representedVariableGroupReference.append(representedVariableGroupReference)
         self.representedVariableReference = [] # List of RepresentedVariable
-        self.representedVariableReference.add(representedVariableReference)
+        self.representedVariableReference.append(representedVariableReference)
         self.representedVariableSchemeName = [] # List of String
-        self.representedVariableSchemeName.add(representedVariableSchemeName)
+        self.representedVariableSchemeName.append(representedVariableSchemeName)
         self.representedVariableSchemeReference = [] # List of RepresentedVariableScheme
-        self.representedVariableSchemeReference.add(representedVariableSchemeReference)
+        self.representedVariableSchemeReference.append(representedVariableSchemeReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.RepresentedVariableScheme()
@@ -671,23 +671,23 @@ class RepresentedVariableScheme:
         pbm.Description = self.description
 
         for lab in self.label:
-            pblab = pbm.Label.add()
+            pblab = pbm.Label.append()
             pblab = lab
 
-        for rvgr in self.representedVariableGroupReference
-            pbrvgr = pbm.RepresentedVariableGroupReference.add()
+        for rvgr in self.representedVariableGroupReference:
+            pbrvgr = pbm.RepresentedVariableGroupReference.append()
             pbrvgr = rvgr.to_pb()
 
-        for rvr in self.representedVariableReference
-            pbrvr = pbm.RepresentedVariableReference.add()
+        for rvr in self.representedVariableReference:
+            pbrvr = pbm.RepresentedVariableReference.append()
             pbrvr = rvr.to_pb()
 
-        for rvsn in self.representedVariableSchemeName
-            pbrvsn = pbm.RepresentedVariableSchemeName.add()
+        for rvsn in self.representedVariableSchemeName:
+            pbrvsn = pbm.RepresentedVariableSchemeName.append()
             pbrvsn = rvsn
 
-        for rvsr in self.representedVariableSchemeReference
-            pbrvsr = pbm.RepresentedVariableSchemeReference.add()
+        for rvsr in self.representedVariableSchemeReference:
+            pbrvsr = pbm.RepresentedVariableSchemeReference.append()
             pbrvsr = rvsr.to_pb()
 
         return pbm
@@ -730,43 +730,43 @@ class LogicalProduct:
                  managedRepresentationSchemeReference, NCubeSchemeReference,
                  representedVariableSchemeReference, variableSchemeReference):
         self.categorySchemeReference = [] # List of CategoryScheme
-        self.categorySchemeReference.add(categorySchemeReference)
+        self.categorySchemeReference.append(categorySchemeReference)
         self.codeListSchemeReference = [] # List of CodeListScheme
-        self.codeListSchemeReference.add(codeListSChemeReference)
+        self.codeListSchemeReference.append(codeListSChemeReference)
         self.managedRepresentationSchemeReference = [] # List of ManagedRepresetnationScheme
-        self.managedRepresentationSchemeReference.add(managedRepresentationSchemeReference)
+        self.managedRepresentationSchemeReference.append(managedRepresentationSchemeReference)
         self.nCubeSchemeReference = [] # List of CubeScheme
-        self.nCubeSchemeReference.add(nCubeSchemeReference)
+        self.nCubeSchemeReference.append(nCubeSchemeReference)
         self.representatedVariableSchemeReference = [] # List of RepresentedVariableScheme
-        self.representatedVariableSchemeReference.add(representedVariableSchemeReference)
+        self.representatedVariableSchemeReference.append(representedVariableSchemeReference)
         self.variableSchemeReference = [] # List of VariableScheme
-        self.variableSchemeReference.add(variableSchemeReference)
+        self.variableSchemeReference.append(variableSchemeReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.LogicalProduct()
 
-        for csr in self.categorySchemeReference
-            pbcsr = pbm.CategorySchemeReference.add()
+        for csr in self.categorySchemeReference:
+            pbcsr = pbm.CategorySchemeReference.append()
             pbcsr = csr.to_pb()
 
-        for clsr in self.codeListSchemeReference
-            pbclsr = pbm.CodeListSchemeReference.add()
+        for clsr in self.codeListSchemeReference:
+            pbclsr = pbm.CodeListSchemeReference.append()
             pbclsr = clsr.to_pb()
 
-        for mrsr in self.managedRepresentationSchemeReference
-            pbmrsr = pbm.ManagedRepresentationSchemeReference.add()
+        for mrsr in self.managedRepresentationSchemeReference:
+            pbmrsr = pbm.ManagedRepresentationSchemeReference.append()
             pbmrsr = clsr.to_pb()
 
-        for ncsr in self.nCubeSchemeReference
-            pbncsr = pbm.NCubeSChemeReference.add()
+        for ncsr in self.nCubeSchemeReference:
+            pbncsr = pbm.NCubeSChemeReference.append()
             pbncsr = ncsr.to_pb()
 
-        for rvsr in self.representedVariableSchemeReference
-            pbrvsr = pbm.RepresentedVariableSchemeReference.add()
+        for rvsr in self.representedVariableSchemeReference:
+            pbrvsr = pbm.RepresentedVariableSchemeReference.append()
             pbrvsr = rvsr.to_pb()
 
-        for vsr in self.variableSchemeReference
-            pbvsr = pbm.VariableSchemeReference.add()
+        for vsr in self.variableSchemeReference:
+            pbvsr = pbm.VariableSchemeReference.append()
             pbvsr = vsr.to_pb()
 
         return pbm
@@ -780,15 +780,15 @@ class RecordLayoutGroup:
         self.description = description # String
         self.isOrdered = isOrdered # Boolean
         self.keyword = [] # List of String
-        self.keyword.add(keyword)
+        self.keyword.append(keyword)
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.recordLayoutGroupName = [] # List of String
-        self.recordLayoutGroupName.add(recordLayoutGroupName)
+        self.recordLayoutGroupName.append(recordLayoutGroupName)
         self.recordLayoutGroupReference = recordLayoutGroupReference # RecordLayoutGroup
         self.recordLayoutReference = recordLayoutReference # RecordLayout
         self.subject = [] # List of String
-        self.subject.add(subject)
+        self.subject.append(subject)
         self.typeOfRecordLayoutGroup = typeOfRecordLayoutGroup # String
         self.universeReference = universeReference # List of Universe
 
@@ -800,28 +800,28 @@ class RecordLayoutGroup:
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
-            pbkw = pbm.Keyword.add()
+            pbkw = pbm.Keyword.append()
             pbkw = kw
 
         for lab in self.label:
-            pblab = pbm.Label.add()
+            pblab = pbm.Label.append()
             pblab = lab
 
         for rlgn in self.recordLayoutGroupName:
-            pbrlgn = pbm.RecordLayoutGroupName.add()
+            pbrlgn = pbm.RecordLayoutGroupName.append()
             pbrlgn = rlgn
 
         pbm.RecordLayoutGroupReference = self.recordLayoutGroupReference.to_pb()
         pbm.RecordLayoutReference = self.recordLayoutReference.to_pb()
 
         for sub in self.subject:
-            pbsub = pbm.Subject.add()
+            pbsub = pbm.Subject.append()
             pbsub = sub
 
         pbm.TypeOfRecordLayoutGroup = self.typeOfRecordLayoutGroup
 
         for uni in self.universe:
-            pbuni = pbm.Universe.add()
+            pbuni = pbm.Universe.append()
             pbuni = uni.to_pb()
 
 class PhysicalStructure:
@@ -837,11 +837,11 @@ class PhysicalStructure:
         self.description = description # String
         self.fileFormat = fileFormat # String
         self.grossRecordStructure = [] # List of String
-        self.grossRecordStructure.add(grossRecordStructure)
+        self.grossRecordStructure.append(grossRecordStructure)
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.physicalStructureName = [] # List of String
-        self.physicalStructureName.add(physicalStructureName)
+        self.physicalStructureName.append(physicalStructureName)
 
     def to_pb(self):
         pbm = ddicdi_pb2.PhysicalStructure()
@@ -892,17 +892,17 @@ class PhysicalStructureGroup:
         self.description = description # String
         self.isOrdered = isOrdered # Boolean
         self.keyword = [] # List of String
-        self.keyword.add(keyword)
+        self.keyword.append(keyword)
         self.label = [] # List of String
-        self.label.add(label)
+        self.label.append(label)
         self.physicalStructureGroupName = [] # List of String
-        self.physicalStructureGroupName.add(physicalStructureGroupName)
+        self.physicalStructureGroupName.append(physicalStructureGroupName)
         self.physicalStructureReference = physicalStructureReference # PhysicalSTructureGroup
         self.subject = [] # List of String
-        self.subject.add(subject)
+        self.subject.append(subject)
         self.typeOfPHysicalStructureGroup = typeOfPHysicalStructureGroup # String
         self.universeReference = [] # List of Universe
-        self.universeReference.add(universeReference)
+        self.universeReference.append(universeReference)
 
     def to_pb(self):
         pbm = ddicdi_pb2.PhysicalStructureGroup()
@@ -912,25 +912,25 @@ class PhysicalStructureGroup:
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
-            pbkw = pbm.Keyword.add()
+            pbkw = pbm.Keyword.append()
             pbkw = kw
 
         for lab in self.label:
-            pblab = pbm.Label.add()
+            pblab = pbm.Label.append()
             pblab = lab
 
         for psgn in self.physicalStructureGroupName:
-            pbpsgn = pbm.PhysicalStructureGroupName.add()
+            pbpsgn = pbm.PhysicalStructureGroupName.append()
             pbpsgn = psgn
 
         pbm.PhysicalStructureReference = self.physicalStructureReference.to_pb()
 
         for sub in self.subject:
-            pbsub = pbm.Subject.add()
+            pbsub = pbm.Subject.append()
             pbsub = sub
 
         pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup.to_pb()
 
         for uni in self.universe:
-            pbuni = pbm.Unviverse.add()
+            pbuni = pbm.Unviverse.append()
             pbuni = uni.to_pb()
