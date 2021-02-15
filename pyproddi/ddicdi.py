@@ -17,23 +17,23 @@ import uuid
 from pyproddi.io.protobuf import ddicdi_pb2 # New protobuf model.
 
 class Concept:
-    def __init__(self, conceptName, description, excludesConceptReference,
-                 includesConceptReference, isCharacteristic, label,
-                 similarConcept, subclassOfReference):
+    def __init__(self, conceptName=[], description="", excludesConceptReference=[],
+                 includesConceptReference=[], isCharacteristic=None, label=[],
+                 similarConcept=[], subclassOfReference=[]):
         self.conceptName = [] # List of String
-        self.conceptName.append(conceptName)
+        self.conceptName.extend(conceptName)
         self.description = description # String
         self.excludesConceptReference = [] # List of Concept
-        self.excludesConceptReference.append(excludesConceptReference)
+        self.excludesConceptReference.extend(excludesConceptReference)
         self.includesConceptReference = [] # List of Concept
-        self.includesConceptReference.append(includesConceptReference)
+        self.includesConceptReference.extend(includesConceptReference)
         self.isCharacteristic = isCharacteristic # Boolean
         self.label = [] # List of String
-        self.label.append(label)
+        self.label.extend(label)
         self.similarConcept = [] # List of Concept
-        self.similarConcept.append(similarConcept)
+        self.similarConcept.extend(similarConcept)
         self.subclassOfReference = [] # List of Concept
-        self.subclassOfReference.append(subclassOfReference)
+        self.subclassOfReference.extend(subclassOfReference)
 
     def to_pb(self):
         if(self is None):

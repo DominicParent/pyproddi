@@ -28,7 +28,9 @@ class ConceptTestCase(unittest.TestCase):
         print("+++++++++++++++++++++++++++++++++++++++")
 
     def test_Concept(self):
-        my_concept = Concept("test_name", "test_desc", None, None, "True", "test_label", None, None)
+        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
+                             description="test_desc", isCharacteristic="True",
+                             label=["test_label"])
         
         print("Python object")
         print(my_concept)
