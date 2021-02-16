@@ -20,20 +20,14 @@ class Concept:
     def __init__(self, conceptName=[], description="", excludesConceptReference=[],
                  includesConceptReference=[], isCharacteristic=None, label=[],
                  similarConcept=[], subclassOfReference=[]):
-        self.conceptName = [] # List of String
-        self.conceptName.extend(conceptName)
+        self.conceptName = conceptName # List of Concept
         self.description = description # String
-        self.excludesConceptReference = [] # List of Concept
-        self.excludesConceptReference.extend(excludesConceptReference)
-        self.includesConceptReference = [] # List of Concept
-        self.includesConceptReference.extend(includesConceptReference)
+        self.excludesConceptReference = excludesConceptReference # List of Concept
+        self.includesConceptReference = includesConceptReference # List of Concept
         self.isCharacteristic = isCharacteristic # Boolean
-        self.label = [] # List of String
-        self.label.extend(label)
-        self.similarConcept = [] # List of Concept
-        self.similarConcept.extend(similarConcept)
-        self.subclassOfReference = [] # List of Concept
-        self.subclassOfReference.extend(subclassOfReference)
+        self.label = label # List of String
+        self.similarConcept = similarConcept # List of Concept
+        self.subclassOfReference = subclassOfReference # List of Concept
 
     def to_pb(self):
         if(self is None):
