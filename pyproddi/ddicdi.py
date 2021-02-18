@@ -140,7 +140,7 @@ class RepresentedVariable:
         self.conceptualVariableReference = conceptualVariableReference # ConceptualVariable
         self.description = description # String
         self.label = label # List of String
-        self.representedVariableName representedVariableName # List of String
+        self.representedVariableName = representedVariableName # List of String
         self.unitTypeReference = unitTypeReference # UnitType
         self.valueRepresentation = valueRepresentation # String
         self.valueRepresentationReference = valueRepresentationReference # ManagedRepresentation
@@ -605,17 +605,6 @@ class RepresentedVariableGroup:
 
     def to_pb(self):
         pbm = ddicdi_pb2.RepresentedVariableGroup()
-        pbm.Name = self.name
-
-        return pbm
-
-# Filler class.
-class RepresentedVariable:
-    def __init__(self, name=""):
-        self.name = name # String
-
-    def to_pb(self):
-        pbm = ddicdi_pb2.RepresentedVariable()
         pbm.Name = self.name
 
         return pbm
