@@ -95,7 +95,7 @@ class ConceptualVariable:
         self.conceptualVariableName = conceptualVariableName # List of String
         self.description = description # String
         self.label = label # List of String
-        self.unitTypeReference = unityTypeReference # List of UnitType
+        self.unitTypeReference = unitTypeReference # List of UnitType
 
     def to_pb(self):
         pbm = ddicdi_pb2.ConceptualVariable()
