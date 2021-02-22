@@ -19,8 +19,9 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import (MissingValuesReference, Variable,
-                             VariableStatistics)
+from pyproddi.ddicdi import (Concept, CategoryScheme, ConceptualVariable, MeasurementItem,
+                             MissingValuesReference, Question, RepresentedVariable, UnitType, Universe,
+                             Variable, VariableStatistics, Weighting)
 
 class VariableStatisticsTestCase(unittest.TestCase):
     def setUp(self):
@@ -28,11 +29,29 @@ class VariableStatisticsTestCase(unittest.TestCase):
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
+        self.concept = Concept(conceptName=["test_name"], description="desc",
+                               isCharacteristic="False", label=["label"])
+        self.cs = CategoryScheme("cs_name")
+        self.ut = UnitType("Unit Type Name")
+        self.cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
+                                     'desc', ['label'], self.ut)
         self.mvr = MissingValuesReference("mvr name")
-        self.var = Variable()
+        self.q = Question("Question name")
+        self.mi = MeasurementItem("Measurement item")
+        self.uni = Universe("Universe Name")
+        self.ut = UnitType("Unit Type Name")
+        self.w = Weighting("Weighting Name")
+        self.rv = RepresentedVariable()
+        self.v = Variable("analysisunit", self.concept, self.cv, "desc",
+                            "embargo ref", False, False, False, ["label"],
+                            [self.mi], "out parameter", [self.q], self.rv,
+                            "sourceparref", "source unit", [],
+                            self.ut, [self.uni], "var rep", self.w)
 
     def test_VariableStatistics(self):
-        my_vs = VariableStatistics()
+        my_vs = VariableStatistics(["fcs"], self.mvr, "std weight ref", 
+                                   ["sum stat"], "total response", ["ucs"],
+                                   self.v, self.v)
         
         print("Python object")
         print(my_vs)

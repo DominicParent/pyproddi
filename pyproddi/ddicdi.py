@@ -381,6 +381,53 @@ class Variable:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.AnalysisUnit = self.analysisUnit
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
+        if(self.conceptualVariableReference is not None):
+            self.conceptualVariableReference.add_to_pb(pbm.ConceptualVariableReference)
+        pbm.Description = self.description
+        pbm.EmbargoReference = self.embargoReference
+        pbm.Description = self.description
+        pbm.EmbargoReference = self.embargoReference
+        pbm.IsGeographic = self.isGeographic
+        pbm.IsTemporal = self.isTemporal
+        pbm.IsWeight = self.isWeight
+        
+        for lab in self.label:
+            pblabel = pbm.Label.append(lab)
+
+        for mref in self.measurementReference:
+            if(mref is not None):
+                pbmref = pbm.MeasurementReference.append(mref.to_pb())
+
+        pbm.OutParameter = self.outParameter
+
+        for q in self.questionReference:
+            if(q is not None):
+                pbq = pbm.QuestionReference.append(q.to_pb())
+
+        if(self.representedVariableReference is not None):
+            self.representedVariableReference.add_to_pb(pbm.RepresentedVariableReference)
+        pbm.SourceParameterReference = self.sourceParameterReference
+        pbm.SourceUnit = self.sourceUnit
+
+        for svr in self.sourceVariableReference:
+            if(svr is not None):
+                psvr = pbm.SourceVariableReference.append(svr.to_pb())
+
+        if(self.unitTypeReference is not None):
+            self.unitTypeReference.add_to_pb(pbm.UnitTypeReference)
+
+        for uni in self.universeReference:
+            if(uni is not None):
+                puni = pbm.UniverseReference.append(uni.to_pb())
+
+        pbm.VariableRepresentation = self.variableRepresentation
+        if(self.weightingProcessReference is not None):
+            self.weightingProcessReference.add_to_pb(pbm.WeightingProcessReference)
+
 # Filler class.
 class MissingValuesReference:
     def __init__(self, name=""):
@@ -417,24 +464,46 @@ class VariableStatistics:
             if(fcs is not None):
                 pbfcs = pbm.FilteredCategoryStatistics.append(fcs)
 
-        if(self.managedMIssingValuesRepresentation is not None):
-            pbm.ManagedMissingValuesRepresentation = self.managedMissingValuesRepresentation.to_pb()
+        if(self.managedMissingValuesRepresentation is not None):
+            self.managedMissingValuesRepresentation.add_to_pb(pbm.ManagedMissingValuesRepresentation)
         pbm.StandardWeightReference = self.standardWeightReference
         
-        for sumstat in self.summaryStatistics:
-            pbsumstat = pbm.SummaryStatistics.append(sumstat)
+        for sumstat in self.summaryStatistic:
+            pbsumstat = pbm.SummaryStatistic.append(sumstat)
 
-        pbm.TotalResponse = self.totalResponse
+        pbm.TotalResponses = self.totalResponses
 
         for ucs in self.unfilteredCategoryStatistics:
             pbucs = pbm.UnfilteredCategoryStatistics.append(ucs)
 
         if(self.variableReference is not None):
-            pbm.VariableReference = self.variableReference.to_pb()
+            self.variableReference.add_to_pb(pbm.VariableReference)
         if(self.weightVariableReference is not None):
-            pbm.WeightVariableReference = self.weightVariableReference.to_pb()
+            self.weightVariableReference.add_to_pb(pbm.WeightVariableReference)
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        for fcs in self.filteredCategoryStatistics:
+            if(fcs is not None):
+                pbfcs = pbm.FilteredCategoryStatistics.append(fcs)
+
+        if(self.managedMissingValuesRepresentation is not None):
+            self.managedMissingValuesRepresentation.add_to_pb(pbm.ManagedMissingValuesRepresentation)
+        pbm.StandardWeightReference = self.standardWeightReference
+        
+        for sumstat in self.summaryStatistic:
+            pbsumstat = pbm.SummaryStatistic.append(sumstat)
+
+        pbm.TotalResponses = self.totalResponses
+
+        for ucs in self.unfilteredCategoryStatistics:
+            pbucs = pbm.UnfilteredCategoryStatistics.append(ucs)
+
+        if(self.variableReference is not None):
+            self.variableReference.add_to_pb(pbm.VariableReference)
+        if(self.weightVariableReference is not None):
+            self.weightVariableReference.add_to_pb(pbm.WeightVariableReference)
 
 class VariableGroup:
     def __init__(self, conceptReference=None, description=[], isOrdered=False, keyword=[],
