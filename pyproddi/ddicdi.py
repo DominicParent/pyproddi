@@ -169,6 +169,9 @@ class ManagedRepresentation:
 
         return pbm
 
+    def add_to_pb(self, self):
+        pbm.Name = self.name
+
 class RepresentedVariable:
     def __init__(self, categorySchemeReference=None, conceptReference=None,
                  conceptualVariableReference=None, description="", label=[],
@@ -219,6 +222,9 @@ class MeasurementItem:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 # Filler class.
 class Question:
     def __init__(self, name=""):
@@ -229,6 +235,9 @@ class Question:
         pbm.Name = self.name
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
 
 # Filler class.
 class Universe:
@@ -241,6 +250,9 @@ class Universe:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 # Filler class.
 class Weighting:
     def __init__(self, name=""):
@@ -251,6 +263,9 @@ class Weighting:
         pbm.Name = self.name
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
 
 class Variable:
     def __init__(self, analysisUnit="", conceptReference=None,
@@ -342,6 +357,9 @@ class MissingValuesReference:
         pbm.Name = self.name
         
         return pbm
+
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
 
 class VariableStatistics:
     def __init__(self, filteredCategoryStatistics=[], 
@@ -533,6 +551,9 @@ class DataRelationship:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 # Filler class.
 class ManagedMissingValuesRepresentation:
     def __init__(self, name=""):
@@ -648,6 +669,9 @@ class RepresentedVariableGroup:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 class RepresentedVariableScheme:
     def __init__(self, description="", label=[], representedVariableGroupReference=[],
                  representedVariableReference=[], representedVariableSchemeName=[],
@@ -695,6 +719,9 @@ class CodeListScheme:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 # Filler class.
 class ManagedRepresentationScheme:
     def __init__(self, name=""):
@@ -706,6 +733,9 @@ class ManagedRepresentationScheme:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 # Filler class.
 class CubeScheme:
     def __init__(self, name=""):
@@ -716,6 +746,9 @@ class CubeScheme:
         pbm.Name = self.name
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
 
 class LogicalProduct:
     def __init__(self, categorySchemeReference=[], codeListSchemeReference=[],
