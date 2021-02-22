@@ -19,26 +19,43 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (Concept, ConceptualVariable, Question,
+                             RepresentedVariable, MeasurementItem, Variable,
+                             UnitType, Universe, Weighting, CategoryScheme)
 
-class ConceptTestCase(unittest.TestCase):
+class VariableTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.concept = Concept(conceptName=["test_name"], description="desc",
+                               isCharacteristic="False", label=["label"])
+        self.cs = CategoryScheme("cs_name")
+        self.q = Question("Question Name")
+        self.mi = MeasurementItem("Measurement item")
+        self.rv = RepresentedVariable()
+        self.var = Variable()
+        self.ut = UnitType("Unit Type Name")
+        self.uni = Universe("Universe Name")
+        self.w = Weighting("Weighting Name")
+        self.cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
+                                     'desc', ['label'], self.ut)
+
+    def test_Variable(self):
+        my_var = Variable("analysisunit", self.concept, self.cv, "desc",
+                          "embargo ref", False, False, False, ["label"],
+                          [self.mi], "out parameter", [self.q],
+                          self.rv, "sourceparref", "source unit", [self.var],
+                          self.ut, [self.uni], "var rep", self.w)
         
         print("Python object")
-        print(my_concept)
+        print(my_var)
 
-        my_concept_pb = my_concept.to_pb()
+        my_var_pb = my_var.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_var_pb)
 
 if __name__ == "__main__":
     unittest.main()

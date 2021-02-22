@@ -335,16 +335,16 @@ class Variable:
         pbm = ddicdi_pb2.Variable()
         pbm.AnalysisUnit = self.analysisUnit
         if(self.conceptReference is not None):
-            pbm.ConceptReference = self.conceptReference.to_pb()
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
         if(self.conceptualVariableReference is not None):
-            pbm.ConceptualVariableReference = self.conceptualVariableReference.to_pb()
+            self.conceptualVariableReference.add_to_pb(pbm.ConceptualVariableReference)
         pbm.Description = self.description
         pbm.EmbargoReference = self.embargoReference
         pbm.Description = self.description
         pbm.EmbargoReference = self.embargoReference
         pbm.IsGeographic = self.isGeographic
         pbm.IsTemporal = self.isTemporal
-        pbm.IsWeigh = self.isWeight
+        pbm.IsWeight = self.isWeight
         
         for lab in self.label:
             pblabel = pbm.Label.append(lab)
@@ -355,13 +355,13 @@ class Variable:
 
         pbm.OutParameter = self.outParameter
 
-        for q in self.question:
+        for q in self.questionReference:
             if(q is not None):
-                pbq = pbm.Question.append(q.to_pb())
+                pbq = pbm.QuestionReference.append(q.to_pb())
 
         if(self.representedVariableReference is not None):
-            pbm.RepresentedVariableReference = self.representedVariableReference.to_pb()
-        pbm.SourceParameterReference = self.sourceParemeterReference
+            self.representedVariableReference.add_to_pb(pbm.RepresentedVariableReference)
+        pbm.SourceParameterReference = self.sourceParameterReference
         pbm.SourceUnit = self.sourceUnit
 
         for svr in self.sourceVariableReference:
@@ -369,15 +369,15 @@ class Variable:
                 psvr = pbm.SourceVariableReference.append(svr.to_pb())
 
         if(self.unitTypeReference is not None):
-            pbm.UnitTypeReference = self.unitTypeReference.to_pb()
+            self.unitTypeReference.add_to_pb(pbm.UnitTypeReference)
 
-        for uni in self.universe:
+        for uni in self.universeReference:
             if(uni is not None):
-                puni = pbm.Universe.append(uni.to_pb())
+                puni = pbm.UniverseReference.append(uni.to_pb())
 
         pbm.VariableRepresentation = self.variableRepresentation
         if(self.weightingProcessReference is not None):
-            pbm.WeightingProcessReference = self.weightingProcessReference.to_pb()
+            self.weightingProcessReference.add_to_pb(pbm.WeightingProcessReference)
 
         return pbm
 

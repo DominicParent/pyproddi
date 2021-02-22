@@ -19,26 +19,28 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (MissingValuesReference, Variable,
+                             VariableStatistics)
 
-class ConceptTestCase(unittest.TestCase):
+class VariableStatisticsTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.mvr = MissingValuesReference("mvr name")
+        self.var = Variable()
+
+    def test_VariableStatistics(self):
+        my_vs = VariableStatistics()
         
         print("Python object")
-        print(my_concept)
+        print(my_vs)
 
-        my_concept_pb = my_concept.to_pb()
+        my_vs_pb = my_vs.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_vs_pb)
 
 if __name__ == "__main__":
     unittest.main()

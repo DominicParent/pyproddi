@@ -35,7 +35,7 @@ class ConceptualVariableTestCase(unittest.TestCase):
 
     def test_ConceptualVariable(self):
         my_cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
-                                   'desc', ['lable'], self.ut)
+                                   'desc', ['label'], self.ut)
         
         print("Python object")
         print(my_cv)
