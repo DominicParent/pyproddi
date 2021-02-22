@@ -506,7 +506,7 @@ class VariableStatistics:
             self.weightVariableReference.add_to_pb(pbm.WeightVariableReference)
 
 class VariableGroup:
-    def __init__(self, conceptReference=None, description=[], isOrdered=False, keyword=[],
+    def __init__(self, conceptReference=None, description="", isOrdered=False, keyword=[],
                  label=[], subject=[], typeOfVariableGroup="", universeReference=None,
                  variableGroupName=[], variableGroupReference=None, variableReference=None):
         self.conceptReference = conceptReference # Concept
@@ -525,32 +525,59 @@ class VariableGroup:
         pbm = ddicdi_pb2.VariableGroup()
 
         if(self.conceptReference is not None):
-            pbm.ConceptReference = self.conceptReference.to_pb()
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
         pbm.Description = self.description
         pbm.IsOrdered = self.isOrdered
 
         for kw in self.keyword:
             pbkw = pbm.Keyword.append(kw)
 
-        for lab in label:
+        for lab in self.label:
             pblab = pbm.Label.append(lab)
 
-        for sub in subject:
+        for sub in self.subject:
             pbsub = pbm.Subject.append(sub)
 
         pbm.TypeOfVariableGroup = self.typeOfVariableGroup
         if(self.universeReference is not None):
-            pbm.UniverseReference = self.universeReference.to_pb()
+            self.universeReference.add_to_pb(pbm.UniverseReference)
 
         for vgn in self.variableGroupName:
             pbvgn = pbm.VariableGroupName.append(vgn)
 
         if(self.variableGroupReference is not None):
-            pbm.VariableGroupReference = self.variableGroupReference.to_pb()
+            self.variableGroupReference.add_to_pb(pbm.VariableGroupReference)
         if(self.variableReference is not None):
-            pbm.VariableReference = self.variableReference.to_pb()
+            self.variableReference.add_to_pb(pbm.VariableReference)
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
+        pbm.Description = self.description
+        pbm.IsOrdered = self.isOrdered
+
+        for kw in self.keyword:
+            pbkw = pbm.Keyword.append(kw)
+
+        for lab in self.label:
+            pblab = pbm.Label.append(lab)
+
+        for sub in self.subject:
+            pbsub = pbm.Subject.append(sub)
+
+        pbm.TypeOfVariableGroup = self.typeOfVariableGroup
+        if(self.universeReference is not None):
+            self.universeReference.add_to_pb(pbm.UniverseReference)
+
+        for vgn in self.variableGroupName:
+            pbvgn = pbm.VariableGroupName.append(vgn)
+
+        if(self.variableGroupReference is not None):
+            self.variableGroupReference.add_to_pb(pbm.VariableGroupReference)
+        if(self.variableReference is not None):
+            pbm.VariableReference = self.variableReference.to_pb()
 
 class VariableScheme:
     def __init__(self, description="", label=[], variableGroupReference=[],
