@@ -63,6 +63,36 @@ class Concept:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        if(self is None):
+            return None
+
+        for name in self.conceptName:
+            pbname = pbm.ConceptName.append(name)
+
+        pbm.Description = self.description
+        
+        for excon in self.excludesConceptReference:
+            if(excon is not None):
+                pbexcon = pbm.ExcludesConceptReference.append(excon.to_pb())
+
+        for incon in self.includesConceptReference:
+            if(incon is not None):
+                pbincon = pbm.IncludeConceptReference.append(incon.to_pb())
+
+        pbm.IsCharacteristic = self.isCharacteristic
+
+        for lab in self.label:
+            pblabel = pbm.Label.append(lab)
+
+        for simcon in self.similarConcept:
+            if(simcon is not None):
+                pbsimcon = pbm.SimilarConcept.append(simcon.to_pb())
+
+        for subref in self.subclassOfReference:
+            if(subref is not None):
+                pbsubref = pbm.SubclassOfReference.append(subref.to_pb())
+
 # Filler class.
 class CategoryScheme:
     def __init__(self, name=""):
@@ -75,6 +105,9 @@ class CategoryScheme:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
+
 # Filler class.
 class UnitType:
     def __init__(self, name=""):
@@ -85,6 +118,9 @@ class UnitType:
         pbm.Name = self.name
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        pbm.Name = self.name
 
 class ConceptualVariable:
     def __init__(self, categorySchemeReference=None, conceptReference=None,
@@ -101,20 +137,23 @@ class ConceptualVariable:
         pbm = ddicdi_pb2.ConceptualVariable()
 
         if(self.categorySchemeReference is not None):
-            pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
+#            pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
+            self.categorySchemeReference.add_to_pb(pbm.CategorySchemeReference)
         if(self.conceptReference is not None):
-            pbm.ConceptReference = self.conceptReference.to_pb()
+#            pbm.ConceptReference = self.conceptReference.to_pb()
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
         
         for convarname in self.conceptualVariableName:
             pbconvarname = pbm.ConceptualVariableName.append(convarname)
 
         pbm.Description = self.description
 
-        for lab in label:
+        for lab in self.label:
             pblabel = pbm.Label.append(lab)
 
         if(self.unitTypeReference is not None):
-            pbm.UnitTypeReference = self.unitTypeReference.to_pb
+#            pbm.UnitTypeReference = self.unitTypeReference.to_pb()
+            self.unitTypeReference.add_to_pb(pbm.UnitTypeReference)
 
         return pbm
 

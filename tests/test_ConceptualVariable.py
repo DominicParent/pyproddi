@@ -29,13 +29,13 @@ class ConceptualVariableTestCase(unittest.TestCase):
         print("+++++++++++++++++++++++++++++++++++++++")
 
         self.cs = CategoryScheme('cs_name')
-        self.concept = Concept(['concept_name'], "desc",[],[],False,
+        self.concept = Concept(['concept_name'], "desc",[],[],'False',
                                ['test_label'],[],[])
         self.ut = UnitType('ut_name')
 
     def test_ConceptualVariable(self):
         my_cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
-                                   'desc', ['lable'], [self.ut])
+                                   'desc', ['lable'], self.ut)
         
         print("Python object")
         print(my_cv)
