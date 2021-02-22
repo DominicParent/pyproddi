@@ -137,10 +137,8 @@ class ConceptualVariable:
         pbm = ddicdi_pb2.ConceptualVariable()
 
         if(self.categorySchemeReference is not None):
-#            pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
             self.categorySchemeReference.add_to_pb(pbm.CategorySchemeReference)
         if(self.conceptReference is not None):
-#            pbm.ConceptReference = self.conceptReference.to_pb()
             self.conceptReference.add_to_pb(pbm.ConceptReference)
         
         for convarname in self.conceptualVariableName:
@@ -152,10 +150,26 @@ class ConceptualVariable:
             pblabel = pbm.Label.append(lab)
 
         if(self.unitTypeReference is not None):
-#            pbm.UnitTypeReference = self.unitTypeReference.to_pb()
             self.unitTypeReference.add_to_pb(pbm.UnitTypeReference)
 
         return pbm
+
+    def add_to_pb(self, pbm):
+        if(self.categorySchemeReference is not None):
+            self.categorySchemeReference.add_to_pb(pbm.CategorySchemeReference)
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
+        
+        for convarname in self.conceptualVariableName:
+            pbconvarname = pbm.ConceptualVariableName.append(convarname)
+
+        pbm.Description = self.description
+
+        for lab in self.label:
+            pblabel = pbm.Label.append(lab)
+
+        if(self.unitTypeReference is not None):
+            self.unitTypeReference.add_to_pb(pbm.UnitTypeReference)
 
 # Filler class.
 class ManagedRepresentation:
@@ -169,7 +183,7 @@ class ManagedRepresentation:
 
         return pbm
 
-    def add_to_pb(self, self):
+    def add_to_pb(self, pbm):
         pbm.Name = self.name
 
 class RepresentedVariable:
@@ -190,6 +204,28 @@ class RepresentedVariable:
     def to_pb(self):
         pbm = ddicdi_pb2.RepresentedVariable()
         if(self.categorySchemeReference is not None):
+            self.categorySchemeReference.add_to_pb(pbm.CategorySchemeReference)
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
+        if(self.conceptualVariableReference is not None):
+            self.conceptualVariableReference.add_to_pb(pbm.ConceptualVariableReference)
+        pbm.Description = self.description
+        
+        for lab in self.label:
+            pblabel = pbm.Label.append(lab)
+
+        for repvarname in self.representedVariableName:
+            pbrepvarname = pbm.RepresentedVariableName.append(repvarname)
+        if(self.unitTypeReference is not None):
+            self.unitTypeReference.add_to_pb(pbm.UnitTypeReference)
+        pbm.ValueRepresentation = self.valueRepresentation
+        if(self.valueRepresentationReference is not None):
+            self.valueRepresentationReference.add_to_pb(pbm.ValueRepresentationReference)
+
+        return pbm
+
+    def add_to_pb(self, pbm):
+        if(self.categorySchemeReference is not None):
             pbm.CategorySchemeReference = self.categorySchemeReference.to_pb()
         if(self.conceptReference is not None):
             pbm.ConceptReference = self.conceptReference.to_pb()
@@ -207,8 +243,6 @@ class RepresentedVariable:
         pbm.ValueRepresentation = self.valueRepresentation
         if(self.valueRepresentationReference is not None):
             pbm.ValueRepresentationReference = self.valueRepresentationReference.to_pb()
-
-        return pbm
 
 # Filler class.
 class MeasurementItem:
