@@ -19,26 +19,35 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (Concept, Dataset, Universe, Variable,
+                             VariableGroup, VariableScheme)
 
-class ConceptTestCase(unittest.TestCase):
+class DatasetTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.concept = Concept(conceptName=["test name"], description="desc",
+                               isCharacteristic="False", label=["label"])
+        self.uni = Universe("Universe name")
+        self.v = Variable()
+        self.vg = VariableGroup(self.concept, "desc", True, ["keyword"],
+                                ["label"], ["subject"], "var type", self.uni,
+                                ["var group name"], VariableGroup(), self.v)
+        self.vs = VariableScheme("desc", ["label"], [self.vg], [self.v],
+                                 ["var scheme name"], [])
+
+    def test_Dataset(self):
+        my_dataset = Dataset("arraybase", ["dataset name"], )
         
         print("Python object")
-        print(my_concept)
+        print(my_dataset)
 
-        my_concept_pb = my_concept.to_pb()
+        my_dataset_pb = my_dataset.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_dataset_pb)
 
 if __name__ == "__main__":
     unittest.main()

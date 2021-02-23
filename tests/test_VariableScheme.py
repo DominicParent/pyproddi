@@ -22,7 +22,7 @@ from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, Universe, Variable, VariableGroup,
                              VariableScheme)
 
-class ConceptTestCase(unittest.TestCase):
+class VariableSchemeTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)

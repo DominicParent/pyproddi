@@ -617,14 +617,14 @@ class VariableScheme:
 
 class Dataset:
     def __init__(self, arrayBase = "", dataSetName=[], defaultVariableSchemeReference=None,
-                 identifyingVariableReference=[], itemSet="", recordSet="", 
+                 identifyingVariableReference=None, itemSet="", recordSet="", 
                  variableSet=""):
         self.arrayBase = arrayBase # String
         self.dataSetName = dataSetName # List of String
         self.defaultVariableSchemeReference = defaultVariableSchemeReference # VariableScheme
         self.identifyingVariableReference = identifyingVariableReference # Variable
         self.itemSet = itemSet # String
-        seelf.recordSet = recordSet # String
+        self.recordSet = recordSet # String
         self.variableSet = variableSet # String
 
     def to_pb(self):
@@ -635,7 +635,7 @@ class Dataset:
         for dn in self.dataSetName:
             pbdn = pbm.DataSetName.append(dn)
 
-        if(self.defaultVariableSChemeReference is not None):
+        if(self.defaultVariableSchemeReference is not None):
             pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
         if(self.identifyingVariableReference is not None):
             pbm.IdentifyingVariableReference = self.identifyingVariableReference.to_pb()
