@@ -604,7 +604,7 @@ class VariableScheme:
 
         for vr in self.variableReference:
             if(vr is not None):
-                pbvr = pbm.variableReference.append(vr.to_pb())
+                pbvr = pbm.VariableReference.append(vr.to_pb())
 
         for vsn in self.variableSchemeName:
             pbvsn = pbm.VariableSchemeName.append(vsn)

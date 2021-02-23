@@ -140,7 +140,7 @@ message VariableGroup {
 message VariableScheme {
     string Description = 1;
     repeated string Label = 2;
-    repeated VariableGroup VariableGroupeReference = 3;
+    repeated VariableGroup VariableGroupReference = 3;
     repeated Variable VariableReference = 4;
     repeated string VariableSchemeName = 5;
     repeated VariableScheme VariableSchemeReference = 6;
