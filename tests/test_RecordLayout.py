@@ -19,26 +19,29 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (Concept, Universe, Variable, VariableGroup,
+                             VariableScheme, RecordLayout)
 
-class ConceptTestCase(unittest.TestCase):
+class RecordLayoutTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.vs = VariableScheme("desc", ["label"], [VariableGroup()],
+                                 [Variable()], ["var scheme name"], [])
+
+    def test_RecordLayout(self):
+        my_rl = RecordLayout("arraybase", "char set", ["data item list"],
+                             self.vs, False)
         
         print("Python object")
-        print(my_concept)
+        print(my_rl)
 
-        my_concept_pb = my_concept.to_pb()
+        my_rl_pb = my_rl.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_rl_pb)
 
 if __name__ == "__main__":
     unittest.main()

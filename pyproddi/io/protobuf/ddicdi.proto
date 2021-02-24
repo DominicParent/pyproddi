@@ -157,7 +157,7 @@ message Dataset {
 }
 
 message RecordLayout {
-    string ArryaBase = 1;
+    string ArrayBase = 1;
     string CharacterSet = 2;
     repeated string DataItem = 3;
     VariableScheme DefaultVariableSchemeReference = 4;

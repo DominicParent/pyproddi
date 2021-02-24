@@ -615,6 +615,28 @@ class VariableScheme:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+
+        pbm.Description = self.description
+
+        for lab in self.label:
+            pblab = pbm.Label.append(lab)
+
+        for vgr in self.variableGroupReference:
+            if(vgr is not None):
+                pbvgr = pbm.VariableGroupReference.append(vgr.to_pb())
+
+        for vr in self.variableReference:
+            if(vr is not None):
+                pbvr = pbm.VariableReference.append(vr.to_pb())
+
+        for vsn in self.variableSchemeName:
+            pbvsn = pbm.VariableSchemeName.append(vsn)
+
+        for vsr in self.variableSchemeReference:
+            if(vsr is not None):
+                pbvsr = pbm.VariableSchemeReference.append(vsr.to_pb())
+
 class Dataset:
     def __init__(self, arrayBase = "", dataSetName=[], defaultVariableSchemeReference=None,
                  identifyingVariableReference=None, itemSet="", recordSet="", 
@@ -663,8 +685,8 @@ class RecordLayout:
         for di in self.dataItem:
             pbdi = pbm.DataItem.append(di)
 
-        if(self.defaultVariableSChemeReference is not None):
-            pbm.DefaultVariableSchemeReference = self.defaultVariableSchemeReference.to_pb()
+        if(self.defaultVariableSchemeReference is not None):
+            self.defaultVariableSchemeReference.add_to_pb(pbm.DefaultVariableSchemeReference)
         pbm.NamesOnFirstRow = self.namesOnFirstRow
 
         return pbm
