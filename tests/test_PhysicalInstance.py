@@ -19,26 +19,46 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (Concept, DataRelationship,
+                             ManagedMissingValuesRepresentation,
+                             InformationClassification, QualityStatement,
+                             VariableScheme, VariableGroup, Variable,
+                             RecordLayout, Universe, PhysicalInstance)
 
-class ConceptTestCase(unittest.TestCase):
+class PhysicalInstanceTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.concept = Concept(conceptName=["test name"], description="desc",
+                               isCharacteristic="False", label=["label"])
+        self.dr = DataRelationship("Data Relationship")
+        self.mmvr = ManagedMissingValuesRepresentation("MMVR")
+        self.ic = InformationClassification("Information Classification")
+        self.qs = QualityStatement("Quality Statement")
+        self.vs = VariableScheme("desc", ["label"], [VariableGroup()],
+                                 [Variable()], ["var scheme name"], [])
+        self.rl = RecordLayout("arraybase", "char set", ["data item list"],
+                               self.vs, False)
+        self.vg = VariableGroup(self.concept, "desc", True, ["keyword"],
+                                ["label"], ["subject"], "var type",
+                                Universe("uni name"), ["var group name"],
+                                VariableGroup(), Variable())
+
+    def test_PhysicalInstance(self):
+        my_pi = PhysicalInstance("byteorder", "citation", "coverage", ["dfi"],
+                                 "dfv", ["df"], [self.dr], self.mmvr, "gfs",
+                                 [self.ic], False, [self.qs], [self.rl],
+                                 "stat sum", [self.vg])
         
         print("Python object")
-        print(my_concept)
+        print(my_pi)
 
-        my_concept_pb = my_concept.to_pb()
+        my_pi_pb = my_pi.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_pi_pb)
 
 if __name__ == "__main__":
     unittest.main()

@@ -718,6 +718,10 @@ class ManagedMissingValuesRepresentation:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+
+        pbm.Name = self.name
+
 # Filler class.
 class InformationClassification:
     def __init__(self, name=""):
@@ -782,10 +786,10 @@ class PhysicalInstance:
 
         for drf in self.dataRelationshipReference:
             if(drf is not None):
-                pbdrf = pbm.DataFingerprint.append(drf.to_pb())
+                pbdrf = pbm.DataRelationshipReference.append(drf.to_pb())
 
         if(self.defaultMissingValuesReference is not None):
-            pbm.DefaultMissingValuesReference = self.defaultMissingValuesReference.to_pb()
+            self.defaultMissingValuesReference.add_to_pb(pbm.DefaultMissingValuesReference)
         pbm.GrossFileStructure = self.grossFileStructure
 
         for icr in self.informationClassificationReference:
