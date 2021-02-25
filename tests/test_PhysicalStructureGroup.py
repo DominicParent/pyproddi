@@ -19,39 +19,34 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (Concept, PhysicalStructureGroup, Universe)
 
-class ConceptTestCase(unittest.TestCase):
+class PhysicalStructureGroupTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept2 = Concept(conceptName=["test_name2","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept3 = Concept(conceptName=["test_name3","test_name2","test_name3"], 
-                             description="test_desc",excludesConceptReference=[my_concept, my_concept2], isCharacteristic="True",
-                             label=["test_label"])
+        self.concept = Concept(conceptName=["name"], description="desc",
+                               isCharacteristic="True", label=["label"])
+        self.uni = Universe("Name")
+        self.psg = PhysicalStructureGroup(self.concept, "desc", False,
+                                          ["keyw"], ["label"], ["psgn"],
+                                          PhysicalStructureGroup(),
+                                          ["subject"], "topsg", [self.uni])
+
+    def test_PhysicalStructureGroup(self):
+        my_psg = PhysicalStructureGroup(self.concept, "desc", False, ["keyw"],
+                                        ["label"], ["psgn"], self.psg,
+                                        ["subject"], "topsg", [self.uni])
         
         print("Python object")
-        print(my_concept)
+        print(my_psg)
 
-        my_concept_pb = my_concept.to_pb()
+        my_psg_pb = my_psg.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
-
-        my_concept3_pb = my_concept3.to_pb()
-
-        print("Protocol buffer message with")
-        print(my_concept3_pb)
+        print(my_psg_pb)
 
 if __name__ == "__main__":
     unittest.main()

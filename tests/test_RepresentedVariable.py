@@ -19,39 +19,35 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (CategoryScheme, Concept, ConceptualVariable,
+                             UnitType, ManagedRepresentation,
+                             RepresentedVariable)
 
-class ConceptTestCase(unittest.TestCase):
+class RepresentedVariableTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept2 = Concept(conceptName=["test_name2","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept3 = Concept(conceptName=["test_name3","test_name2","test_name3"], 
-                             description="test_desc",excludesConceptReference=[my_concept, my_concept2], isCharacteristic="True",
-                             label=["test_label"])
+        self.csr = CategoryScheme("CSName")
+        self.cr = Concept(conceptName=["Concept Name"], description="Description",
+                          isCharacteristic="True", label=["concept label"])
+        self.ut = UnitType("UT Name")
+        self.mr = ManagedRepresentation("MR Name")
+        self.cvr = ConceptualVariable(self.csr, self.cr, ["con_var_name"],
+                                     'desc', ['label'], self.ut)
+
+    def test_RepresentedVariable(self):
+        my_rv = RepresentedVariable(self.csr, self.cr, self.cvr, "desc",
+                                    ['label'],['rvn'], self.ut, 'vr', self.mr)
         
         print("Python object")
-        print(my_concept)
+        print(my_rv)
 
-        my_concept_pb = my_concept.to_pb()
+        my_rv_pb = my_rv.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
-
-        my_concept3_pb = my_concept3.to_pb()
-
-        print("Protocol buffer message with")
-        print(my_concept3_pb)
+        print(my_rv_pb)
 
 if __name__ == "__main__":
     unittest.main()

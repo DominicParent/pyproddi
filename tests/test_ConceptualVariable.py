@@ -19,39 +19,31 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (CategoryScheme, Concept, UnitType,
+                             ConceptualVariable)
 
-class ConceptTestCase(unittest.TestCase):
+class ConceptualVariableTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept2 = Concept(conceptName=["test_name2","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept3 = Concept(conceptName=["test_name3","test_name2","test_name3"], 
-                             description="test_desc",excludesConceptReference=[my_concept, my_concept2], isCharacteristic="True",
-                             label=["test_label"])
+        self.cs = CategoryScheme('cs_name')
+        self.concept = Concept(['concept_name'], "desc",[],[],'False',
+                               ['test_label'],[],[])
+        self.ut = UnitType('ut_name')
+
+    def test_ConceptualVariable(self):
+        my_cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
+                                   'desc', ['label'], self.ut)
         
         print("Python object")
-        print(my_concept)
+        print(my_cv)
 
-        my_concept_pb = my_concept.to_pb()
+        my_cv_pb = my_cv.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
-
-        my_concept3_pb = my_concept3.to_pb()
-
-        print("Protocol buffer message with")
-        print(my_concept3_pb)
+        print(my_cv_pb)
 
 if __name__ == "__main__":
     unittest.main()

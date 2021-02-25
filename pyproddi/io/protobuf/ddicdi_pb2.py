@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x64\x64icdi.proto\x12\x06\x64\x64icdi\"\x99\x02\n\x07\x43oncept\x12\x13\n\x0b\x43onceptName\x18\x01 \x03(\t\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x31\n\x18\x45xcludesConceptReference\x18\x03 \x03(\x0b\x32\x0f.ddicdi.Concept\x12\x31\n\x18IncludesConceptReference\x18\x04 \x03(\x0b\x32\x0f.ddicdi.Concept\x12\x18\n\x10IsCharacteristic\x18\x05 \x01(\t\x12\r\n\x05Label\x18\x06 \x03(\t\x12\'\n\x0eSimilarConcept\x18\x07 \x03(\x0b\x32\x0f.ddicdi.Concept\x12,\n\x13SubclassOfReference\x18\x08 \x03(\x0b\x32\x0f.ddicdi.Concept\"\x1e\n\x0e\x43\x61tegoryScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x18\n\x08UnitType\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xe9\x01\n\x12\x43onceptualVariable\x12\x37\n\x17\x43\x61tegorySchemeReference\x18\x01 \x01(\x0b\x32\x16.ddicdi.CategoryScheme\x12)\n\x10\x43onceptReference\x18\x02 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x1e\n\x16\x43onceptualVariableName\x18\x03 \x03(\t\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12+\n\x11UnitTypeReference\x18\x06 \x01(\x0b\x32\x10.ddicdi.UnitType\"%\n\x15ManagedRepresentation\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x8e\x03\n\x13RepresentedVariable\x12\x37\n\x17\x43\x61tegorySchemeReference\x18\x01 \x01(\x0b\x32\x16.ddicdi.CategoryScheme\x12)\n\x10\x43onceptReference\x18\x02 \x01(\x0b\x32\x0f.ddicdi.Concept\x12?\n\x1b\x43onceptualVariableReference\x18\x03 \x01(\x0b\x32\x1a.ddicdi.ConceptualVariable\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\x1f\n\x17RepresentedVariableName\x18\x06 \x03(\t\x12+\n\x11UnitTypeReference\x18\x07 \x01(\x0b\x32\x10.ddicdi.UnitType\x12\x1b\n\x13ValueRepresentation\x18\x08 \x01(\t\x12\x43\n\x1cValueRepresentationReference\x18\t \x01(\x0b\x32\x1d.ddicdi.ManagedRepresentation\"\x1f\n\x0fMeasurementItem\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x18\n\x08Question\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x18\n\x08Universe\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x19\n\tWeighting\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xdc\x05\n\x08Variable\x12\x14\n\x0c\x41nalysisUnit\x18\x01 \x01(\t\x12)\n\x10\x43onceptReference\x18\x02 \x01(\x0b\x32\x0f.ddicdi.Concept\x12?\n\x1b\x43onceptualVariableReference\x18\x03 \x01(\x0b\x32\x1a.ddicdi.ConceptualVariable\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12\x18\n\x10\x45mbargoReference\x18\x05 \x01(\t\x12\x14\n\x0cIsGeographic\x18\x06 \x01(\x08\x12\x12\n\nIsTemporal\x18\x07 \x01(\x08\x12\x10\n\x08IsWeight\x18\x08 \x01(\x08\x12\r\n\x05Label\x18\t \x03(\t\x12\x35\n\x14MeasurementReference\x18\n \x03(\x0b\x32\x17.ddicdi.MeasurementItem\x12\x14\n\x0cOutParameter\x18\x0b \x01(\t\x12+\n\x11QuestionReference\x18\x0c \x03(\x0b\x32\x10.ddicdi.Question\x12\x41\n\x1cRepresentedVariableReference\x18\r \x01(\x0b\x32\x1b.ddicdi.RepresentedVariable\x12 \n\x18SourceParameterReference\x18\x0e \x01(\t\x12\x12\n\nSourceUnit\x18\x0f \x01(\t\x12\x31\n\x17SourceVariableReference\x18\x10 \x03(\x0b\x32\x10.ddicdi.Variable\x12+\n\x11UnitTypeReference\x18\x11 \x01(\x0b\x32\x10.ddicdi.UnitType\x12+\n\x11UniverseReference\x18\x12 \x03(\x0b\x32\x10.ddicdi.Universe\x12\x1e\n\x16VariableRepresentation\x18\x13 \x01(\t\x12\x34\n\x19WeightingProcessReference\x18\x14 \x01(\x0b\x32\x11.ddicdi.Weighting\"&\n\x16MissingValuesReference\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xdd\x02\n\x12VariableStatistics\x12\"\n\x1a\x46ilteredCategoryStatistics\x18\x01 \x03(\t\x12J\n\"ManagedMissingValuesRepresentation\x18\x02 \x01(\x0b\x32\x1e.ddicdi.MissingValuesReference\x12\x1f\n\x17StandardWeightReference\x18\x03 \x01(\t\x12\x18\n\x10SummaryStatistic\x18\x04 \x03(\t\x12\x16\n\x0eTotalResponses\x18\x05 \x01(\t\x12$\n\x1cUnfilteredCategoryStatistics\x18\x06 \x03(\t\x12+\n\x11VariableReference\x18\x07 \x01(\x0b\x32\x10.ddicdi.Variable\x12\x31\n\x17WeightVariableReference\x18\x08 \x01(\x0b\x32\x10.ddicdi.Variable\"\xdc\x02\n\rVariableGroup\x12)\n\x10\x43onceptReference\x18\x01 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x11\n\tIsOrdered\x18\x03 \x01(\x08\x12\x0f\n\x07Keyword\x18\x04 \x03(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\x0f\n\x07Subject\x18\x06 \x03(\t\x12\x1b\n\x13TypeOfVariableGroup\x18\x07 \x01(\t\x12+\n\x11UniverseReference\x18\x08 \x01(\x0b\x32\x10.ddicdi.Universe\x12\x19\n\x11VariableGroupName\x18\t \x03(\t\x12\x35\n\x16VariableGroupReference\x18\n \x01(\x0b\x32\x15.ddicdi.VariableGroup\x12+\n\x11VariableReference\x18\x0b \x01(\x0b\x32\x10.ddicdi.Variable\"\xee\x01\n\x0eVariableScheme\x12\x13\n\x0b\x44\x65scription\x18\x01 \x01(\t\x12\r\n\x05Label\x18\x02 \x03(\t\x12\x36\n\x17VariableGroupeReference\x18\x03 \x03(\x0b\x32\x15.ddicdi.VariableGroup\x12+\n\x11VariableReference\x18\x04 \x03(\x0b\x32\x10.ddicdi.Variable\x12\x1a\n\x12VariableSchemeName\x18\x05 \x03(\t\x12\x37\n\x17VariableSchemeReference\x18\x06 \x03(\x0b\x32\x16.ddicdi.VariableScheme\"\xe2\x01\n\x07\x44\x61taset\x12\x11\n\tArrayBase\x18\x01 \x01(\t\x12\x13\n\x0b\x44\x61taSetName\x18\x02 \x03(\t\x12>\n\x1e\x44\x65\x66\x61ultVariableSchemeReference\x18\x03 \x01(\x0b\x32\x16.ddicdi.VariableScheme\x12\x36\n\x1cIdentifyingVariableReference\x18\x04 \x01(\x0b\x32\x10.ddicdi.Variable\x12\x0f\n\x07ItemSet\x18\x05 \x01(\t\x12\x11\n\tRecordSet\x18\x06 \x01(\t\x12\x13\n\x0bVariableSet\x18\x07 \x01(\t\"\xa2\x01\n\x0cRecordLayout\x12\x11\n\tArryaBase\x18\x01 \x01(\t\x12\x14\n\x0c\x43haracterSet\x18\x02 \x01(\t\x12\x10\n\x08\x44\x61taItem\x18\x03 \x03(\t\x12>\n\x1e\x44\x65\x66\x61ultVariableSchemeReference\x18\x04 \x01(\x0b\x32\x16.ddicdi.VariableScheme\x12\x17\n\x0fNamesOnFirstRow\x18\x05 \x01(\x08\" \n\x10\x44\x61taRelationship\x12\x0c\n\x04Name\x18\x01 \x01(\t\"2\n\"ManagedMissingValuesRepresentation\x12\x0c\n\x04Name\x18\x01 \x01(\t\")\n\x19InformationClassification\x12\x0c\n\x04Name\x18\x01 \x01(\t\" \n\x10QualityStatement\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xf4\x04\n\x10PhysicalInstance\x12\x11\n\tByteOrder\x18\x01 \x01(\t\x12\x10\n\x08\x43itation\x18\x02 \x01(\t\x12\x10\n\x08\x43overage\x18\x03 \x01(\t\x12\x1e\n\x16\x44\x61taFileIdentification\x18\x04 \x03(\t\x12\x17\n\x0f\x44\x61taFileVersion\x18\x05 \x01(\t\x12\x17\n\x0f\x44\x61taFingerprint\x18\x06 \x03(\t\x12;\n\x19\x44\x61taRelationshipReference\x18\x07 \x03(\x0b\x32\x18.ddicdi.DataRelationship\x12Q\n\x1d\x44\x65\x66\x61ultMissingValuesReference\x18\x08 \x01(\x0b\x32*.ddicdi.ManagedMissingValuesRepresentation\x12\x1a\n\x12GrossFileStructure\x18\t \x01(\t\x12M\n\"InformationClassificationReference\x18\n \x03(\x0b\x32!.ddicdi.InformationClassification\x12\x17\n\x0fProprietaryInfo\x18\x0b \x01(\x08\x12;\n\x19QualityStatementReference\x18\x0c \x03(\x0b\x32\x18.ddicdi.QualityStatement\x12\x33\n\x15RecordLayoutReference\x18\r \x03(\x0b\x32\x14.ddicdi.RecordLayout\x12\x1a\n\x12StatisticalSummary\x18\x0e \x01(\t\x12\x35\n\x16VariableGroupReference\x18\x0f \x03(\x0b\x32\x15.ddicdi.VariableGroup\"(\n\x18RepresentedVariableGroup\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xc5\x02\n\x19RepresentedVariableScheme\x12\x13\n\x0b\x44\x65scription\x18\x01 \x01(\t\x12\r\n\x05Label\x18\x02 \x03(\t\x12K\n!RepresentedVariableGroupReference\x18\x03 \x03(\x0b\x32 .ddicdi.RepresentedVariableGroup\x12\x41\n\x1cRepresentedVariableReference\x18\x04 \x03(\x0b\x32\x1b.ddicdi.RepresentedVariable\x12%\n\x1dRepresentedVariableSchemeName\x18\x05 \x03(\t\x12M\n\"RepresentedVariableSchemeReference\x18\x06 \x03(\x0b\x32!.ddicdi.RepresentedVariableScheme\"\x1e\n\x0e\x43odeListScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"+\n\x1bManagedRepresentationScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x1a\n\nCubeScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x8f\x03\n\x0eLogicalProduct\x12\x37\n\x17\x43\x61tegorySchemeReference\x18\x01 \x03(\x0b\x32\x16.ddicdi.CategoryScheme\x12\x37\n\x17\x43odeListSchemeReference\x18\x02 \x03(\x0b\x32\x16.ddicdi.CodeListScheme\x12Q\n$ManagedRepresentationSchemeReference\x18\x03 \x03(\x0b\x32#.ddicdi.ManagedRepresentationScheme\x12\x30\n\x14NCubeSchemeReference\x18\x04 \x03(\x0b\x32\x12.ddicdi.CubeScheme\x12M\n\"RepresentedVariableSchemeReference\x18\x05 \x03(\x0b\x32!.ddicdi.RepresentedVariableScheme\x12\x37\n\x17VariableSchemeReference\x18\x06 \x03(\x0b\x32\x16.ddicdi.VariableScheme\"\xf8\x02\n\x11RecordLayoutGroup\x12)\n\x10\x43onceptReference\x18\x01 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x11\n\tIsOrdered\x18\x03 \x01(\x08\x12\x0f\n\x07Keyword\x18\x04 \x03(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\x1d\n\x15RecordLayoutGroupName\x18\x06 \x03(\t\x12=\n\x1aRecordLayoutGroupReference\x18\x07 \x01(\x0b\x32\x19.ddicdi.RecordLayoutGroup\x12\x33\n\x15RecordLayoutReference\x18\x08 \x01(\x0b\x32\x14.ddicdi.RecordLayout\x12\x0f\n\x07Subject\x18\t \x03(\t\x12\x1f\n\x17TypeOfRecordLayoutGroup\x18\n \x01(\t\x12+\n\x11UniverseReference\x18\x0b \x03(\x0b\x32\x10.ddicdi.Universe\"\xa1\x02\n\x11PhysicalStructure\x12\x17\n\x0f\x44\x65\x66\x61ultDataType\x18\x01 \x01(\t\x12\x1f\n\x17\x44\x65\x66\x61ultDecimalPositions\x18\x02 \x01(\t\x12\x1f\n\x17\x44\x65\x66\x61ultDecimalSeparator\x18\x03 \x01(\t\x12\x18\n\x10\x44\x65\x66\x61ultDelimiter\x18\x04 \x01(\t\x12\"\n\x1a\x44\x65\x66\x61ultDigitGroupSeparator\x18\x05 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x06 \x01(\t\x12\x12\n\nFileFormat\x18\x07 \x01(\t\x12\x1c\n\x14GrossRecordStructure\x18\x08 \x03(\t\x12\r\n\x05Label\x18\t \x03(\t\x12\x1d\n\x15PhysicalStructureName\x18\n \x03(\t\"\x85\x01\n\x10\x42\x61seRecordLayout\x12\x17\n\x0f\x45ndOfLineMarker\x18\x01 \x01(\t\x12\x41\n\x1ePhysicalStructureLinkReference\x18\x02 \x01(\x0b\x32\x19.ddicdi.PhysicalStructure\x12\x15\n\rTextQualifier\x18\x03 \x01(\t\"\xd7\x02\n\x16PhysicalStructureGroup\x12)\n\x10\x43onceptReference\x18\x01 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x11\n\tIsOrdered\x18\x03 \x01(\x08\x12\x0f\n\x07Keyword\x18\x04 \x03(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\"\n\x1aPhysicalStructureGroupName\x18\x06 \x03(\t\x12\x42\n\x1aPhysicalStructureReference\x18\x07 \x01(\x0b\x32\x1e.ddicdi.PhysicalStructureGroup\x12\x0f\n\x07Subject\x18\x08 \x03(\t\x12$\n\x1cTypeOfPhysicalStructureGroup\x18\t \x01(\t\x12+\n\x11UniverseReference\x18\n \x03(\x0b\x32\x10.ddicdi.Universeb\x06proto3'
+  serialized_pb=b'\n\x0c\x64\x64icdi.proto\x12\x06\x64\x64icdi\"\x99\x02\n\x07\x43oncept\x12\x13\n\x0b\x43onceptName\x18\x01 \x03(\t\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x31\n\x18\x45xcludesConceptReference\x18\x03 \x03(\x0b\x32\x0f.ddicdi.Concept\x12\x31\n\x18IncludesConceptReference\x18\x04 \x03(\x0b\x32\x0f.ddicdi.Concept\x12\x18\n\x10IsCharacteristic\x18\x05 \x01(\t\x12\r\n\x05Label\x18\x06 \x03(\t\x12\'\n\x0eSimilarConcept\x18\x07 \x03(\x0b\x32\x0f.ddicdi.Concept\x12,\n\x13SubclassOfReference\x18\x08 \x03(\x0b\x32\x0f.ddicdi.Concept\"\x1e\n\x0e\x43\x61tegoryScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x18\n\x08UnitType\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xe9\x01\n\x12\x43onceptualVariable\x12\x37\n\x17\x43\x61tegorySchemeReference\x18\x01 \x01(\x0b\x32\x16.ddicdi.CategoryScheme\x12)\n\x10\x43onceptReference\x18\x02 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x1e\n\x16\x43onceptualVariableName\x18\x03 \x03(\t\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12+\n\x11UnitTypeReference\x18\x06 \x01(\x0b\x32\x10.ddicdi.UnitType\"%\n\x15ManagedRepresentation\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x8e\x03\n\x13RepresentedVariable\x12\x37\n\x17\x43\x61tegorySchemeReference\x18\x01 \x01(\x0b\x32\x16.ddicdi.CategoryScheme\x12)\n\x10\x43onceptReference\x18\x02 \x01(\x0b\x32\x0f.ddicdi.Concept\x12?\n\x1b\x43onceptualVariableReference\x18\x03 \x01(\x0b\x32\x1a.ddicdi.ConceptualVariable\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\x1f\n\x17RepresentedVariableName\x18\x06 \x03(\t\x12+\n\x11UnitTypeReference\x18\x07 \x01(\x0b\x32\x10.ddicdi.UnitType\x12\x1b\n\x13ValueRepresentation\x18\x08 \x01(\t\x12\x43\n\x1cValueRepresentationReference\x18\t \x01(\x0b\x32\x1d.ddicdi.ManagedRepresentation\"\x1f\n\x0fMeasurementItem\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x18\n\x08Question\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x18\n\x08Universe\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x19\n\tWeighting\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xdc\x05\n\x08Variable\x12\x14\n\x0c\x41nalysisUnit\x18\x01 \x01(\t\x12)\n\x10\x43onceptReference\x18\x02 \x01(\x0b\x32\x0f.ddicdi.Concept\x12?\n\x1b\x43onceptualVariableReference\x18\x03 \x01(\x0b\x32\x1a.ddicdi.ConceptualVariable\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12\x18\n\x10\x45mbargoReference\x18\x05 \x01(\t\x12\x14\n\x0cIsGeographic\x18\x06 \x01(\x08\x12\x12\n\nIsTemporal\x18\x07 \x01(\x08\x12\x10\n\x08IsWeight\x18\x08 \x01(\x08\x12\r\n\x05Label\x18\t \x03(\t\x12\x35\n\x14MeasurementReference\x18\n \x03(\x0b\x32\x17.ddicdi.MeasurementItem\x12\x14\n\x0cOutParameter\x18\x0b \x01(\t\x12+\n\x11QuestionReference\x18\x0c \x03(\x0b\x32\x10.ddicdi.Question\x12\x41\n\x1cRepresentedVariableReference\x18\r \x01(\x0b\x32\x1b.ddicdi.RepresentedVariable\x12 \n\x18SourceParameterReference\x18\x0e \x01(\t\x12\x12\n\nSourceUnit\x18\x0f \x01(\t\x12\x31\n\x17SourceVariableReference\x18\x10 \x03(\x0b\x32\x10.ddicdi.Variable\x12+\n\x11UnitTypeReference\x18\x11 \x01(\x0b\x32\x10.ddicdi.UnitType\x12+\n\x11UniverseReference\x18\x12 \x03(\x0b\x32\x10.ddicdi.Universe\x12\x1e\n\x16VariableRepresentation\x18\x13 \x01(\t\x12\x34\n\x19WeightingProcessReference\x18\x14 \x01(\x0b\x32\x11.ddicdi.Weighting\"&\n\x16MissingValuesReference\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xdd\x02\n\x12VariableStatistics\x12\"\n\x1a\x46ilteredCategoryStatistics\x18\x01 \x03(\t\x12J\n\"ManagedMissingValuesRepresentation\x18\x02 \x01(\x0b\x32\x1e.ddicdi.MissingValuesReference\x12\x1f\n\x17StandardWeightReference\x18\x03 \x01(\t\x12\x18\n\x10SummaryStatistic\x18\x04 \x03(\t\x12\x16\n\x0eTotalResponses\x18\x05 \x01(\t\x12$\n\x1cUnfilteredCategoryStatistics\x18\x06 \x03(\t\x12+\n\x11VariableReference\x18\x07 \x01(\x0b\x32\x10.ddicdi.Variable\x12\x31\n\x17WeightVariableReference\x18\x08 \x01(\x0b\x32\x10.ddicdi.Variable\"\xdc\x02\n\rVariableGroup\x12)\n\x10\x43onceptReference\x18\x01 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x11\n\tIsOrdered\x18\x03 \x01(\x08\x12\x0f\n\x07Keyword\x18\x04 \x03(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\x0f\n\x07Subject\x18\x06 \x03(\t\x12\x1b\n\x13TypeOfVariableGroup\x18\x07 \x01(\t\x12+\n\x11UniverseReference\x18\x08 \x01(\x0b\x32\x10.ddicdi.Universe\x12\x19\n\x11VariableGroupName\x18\t \x03(\t\x12\x35\n\x16VariableGroupReference\x18\n \x01(\x0b\x32\x15.ddicdi.VariableGroup\x12+\n\x11VariableReference\x18\x0b \x01(\x0b\x32\x10.ddicdi.Variable\"\xed\x01\n\x0eVariableScheme\x12\x13\n\x0b\x44\x65scription\x18\x01 \x01(\t\x12\r\n\x05Label\x18\x02 \x03(\t\x12\x35\n\x16VariableGroupReference\x18\x03 \x03(\x0b\x32\x15.ddicdi.VariableGroup\x12+\n\x11VariableReference\x18\x04 \x03(\x0b\x32\x10.ddicdi.Variable\x12\x1a\n\x12VariableSchemeName\x18\x05 \x03(\t\x12\x37\n\x17VariableSchemeReference\x18\x06 \x03(\x0b\x32\x16.ddicdi.VariableScheme\"\xe2\x01\n\x07\x44\x61taset\x12\x11\n\tArrayBase\x18\x01 \x01(\t\x12\x13\n\x0b\x44\x61taSetName\x18\x02 \x03(\t\x12>\n\x1e\x44\x65\x66\x61ultVariableSchemeReference\x18\x03 \x01(\x0b\x32\x16.ddicdi.VariableScheme\x12\x36\n\x1cIdentifyingVariableReference\x18\x04 \x01(\x0b\x32\x10.ddicdi.Variable\x12\x0f\n\x07ItemSet\x18\x05 \x01(\t\x12\x11\n\tRecordSet\x18\x06 \x01(\t\x12\x13\n\x0bVariableSet\x18\x07 \x01(\t\"\xa2\x01\n\x0cRecordLayout\x12\x11\n\tArrayBase\x18\x01 \x01(\t\x12\x14\n\x0c\x43haracterSet\x18\x02 \x01(\t\x12\x10\n\x08\x44\x61taItem\x18\x03 \x03(\t\x12>\n\x1e\x44\x65\x66\x61ultVariableSchemeReference\x18\x04 \x01(\x0b\x32\x16.ddicdi.VariableScheme\x12\x17\n\x0fNamesOnFirstRow\x18\x05 \x01(\x08\" \n\x10\x44\x61taRelationship\x12\x0c\n\x04Name\x18\x01 \x01(\t\"2\n\"ManagedMissingValuesRepresentation\x12\x0c\n\x04Name\x18\x01 \x01(\t\")\n\x19InformationClassification\x12\x0c\n\x04Name\x18\x01 \x01(\t\" \n\x10QualityStatement\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xf4\x04\n\x10PhysicalInstance\x12\x11\n\tByteOrder\x18\x01 \x01(\t\x12\x10\n\x08\x43itation\x18\x02 \x01(\t\x12\x10\n\x08\x43overage\x18\x03 \x01(\t\x12\x1e\n\x16\x44\x61taFileIdentification\x18\x04 \x03(\t\x12\x17\n\x0f\x44\x61taFileVersion\x18\x05 \x01(\t\x12\x17\n\x0f\x44\x61taFingerprint\x18\x06 \x03(\t\x12;\n\x19\x44\x61taRelationshipReference\x18\x07 \x03(\x0b\x32\x18.ddicdi.DataRelationship\x12Q\n\x1d\x44\x65\x66\x61ultMissingValuesReference\x18\x08 \x01(\x0b\x32*.ddicdi.ManagedMissingValuesRepresentation\x12\x1a\n\x12GrossFileStructure\x18\t \x01(\t\x12M\n\"InformationClassificationReference\x18\n \x03(\x0b\x32!.ddicdi.InformationClassification\x12\x17\n\x0fProprietaryInfo\x18\x0b \x01(\x08\x12;\n\x19QualityStatementReference\x18\x0c \x03(\x0b\x32\x18.ddicdi.QualityStatement\x12\x33\n\x15RecordLayoutReference\x18\r \x03(\x0b\x32\x14.ddicdi.RecordLayout\x12\x1a\n\x12StatisticalSummary\x18\x0e \x01(\t\x12\x35\n\x16VariableGroupReference\x18\x0f \x03(\x0b\x32\x15.ddicdi.VariableGroup\"(\n\x18RepresentedVariableGroup\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\xc5\x02\n\x19RepresentedVariableScheme\x12\x13\n\x0b\x44\x65scription\x18\x01 \x01(\t\x12\r\n\x05Label\x18\x02 \x03(\t\x12K\n!RepresentedVariableGroupReference\x18\x03 \x03(\x0b\x32 .ddicdi.RepresentedVariableGroup\x12\x41\n\x1cRepresentedVariableReference\x18\x04 \x03(\x0b\x32\x1b.ddicdi.RepresentedVariable\x12%\n\x1dRepresentedVariableSchemeName\x18\x05 \x03(\t\x12M\n\"RepresentedVariableSchemeReference\x18\x06 \x03(\x0b\x32!.ddicdi.RepresentedVariableScheme\"\x1e\n\x0e\x43odeListScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"+\n\x1bManagedRepresentationScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x1a\n\nCubeScheme\x12\x0c\n\x04Name\x18\x01 \x01(\t\"\x8f\x03\n\x0eLogicalProduct\x12\x37\n\x17\x43\x61tegorySchemeReference\x18\x01 \x03(\x0b\x32\x16.ddicdi.CategoryScheme\x12\x37\n\x17\x43odeListSchemeReference\x18\x02 \x03(\x0b\x32\x16.ddicdi.CodeListScheme\x12Q\n$ManagedRepresentationSchemeReference\x18\x03 \x03(\x0b\x32#.ddicdi.ManagedRepresentationScheme\x12\x30\n\x14NCubeSchemeReference\x18\x04 \x03(\x0b\x32\x12.ddicdi.CubeScheme\x12M\n\"RepresentedVariableSchemeReference\x18\x05 \x03(\x0b\x32!.ddicdi.RepresentedVariableScheme\x12\x37\n\x17VariableSchemeReference\x18\x06 \x03(\x0b\x32\x16.ddicdi.VariableScheme\"\xf8\x02\n\x11RecordLayoutGroup\x12)\n\x10\x43onceptReference\x18\x01 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x11\n\tIsOrdered\x18\x03 \x01(\x08\x12\x0f\n\x07Keyword\x18\x04 \x03(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\x1d\n\x15RecordLayoutGroupName\x18\x06 \x03(\t\x12=\n\x1aRecordLayoutGroupReference\x18\x07 \x01(\x0b\x32\x19.ddicdi.RecordLayoutGroup\x12\x33\n\x15RecordLayoutReference\x18\x08 \x01(\x0b\x32\x14.ddicdi.RecordLayout\x12\x0f\n\x07Subject\x18\t \x03(\t\x12\x1f\n\x17TypeOfRecordLayoutGroup\x18\n \x01(\t\x12+\n\x11UniverseReference\x18\x0b \x03(\x0b\x32\x10.ddicdi.Universe\"\xa1\x02\n\x11PhysicalStructure\x12\x17\n\x0f\x44\x65\x66\x61ultDataType\x18\x01 \x01(\t\x12\x1f\n\x17\x44\x65\x66\x61ultDecimalPositions\x18\x02 \x01(\t\x12\x1f\n\x17\x44\x65\x66\x61ultDecimalSeparator\x18\x03 \x01(\t\x12\x18\n\x10\x44\x65\x66\x61ultDelimiter\x18\x04 \x01(\t\x12\"\n\x1a\x44\x65\x66\x61ultDigitGroupSeparator\x18\x05 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x06 \x01(\t\x12\x12\n\nFileFormat\x18\x07 \x01(\t\x12\x1c\n\x14GrossRecordStructure\x18\x08 \x03(\t\x12\r\n\x05Label\x18\t \x03(\t\x12\x1d\n\x15PhysicalStructureName\x18\n \x03(\t\"\x85\x01\n\x10\x42\x61seRecordLayout\x12\x17\n\x0f\x45ndOfLineMarker\x18\x01 \x01(\t\x12\x41\n\x1ePhysicalStructureLinkReference\x18\x02 \x01(\x0b\x32\x19.ddicdi.PhysicalStructure\x12\x15\n\rTextQualifier\x18\x03 \x01(\t\"\xd7\x02\n\x16PhysicalStructureGroup\x12)\n\x10\x43onceptReference\x18\x01 \x01(\x0b\x32\x0f.ddicdi.Concept\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x11\n\tIsOrdered\x18\x03 \x01(\x08\x12\x0f\n\x07Keyword\x18\x04 \x03(\t\x12\r\n\x05Label\x18\x05 \x03(\t\x12\"\n\x1aPhysicalStructureGroupName\x18\x06 \x03(\t\x12\x42\n\x1aPhysicalStructureReference\x18\x07 \x01(\x0b\x32\x1e.ddicdi.PhysicalStructureGroup\x12\x0f\n\x07Subject\x18\x08 \x03(\t\x12$\n\x1cTypeOfPhysicalStructureGroup\x18\t \x01(\t\x12+\n\x11UniverseReference\x18\n \x03(\x0b\x32\x10.ddicdi.Universeb\x06proto3'
 )
 
 
@@ -888,7 +888,7 @@ _VARIABLESCHEME = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='VariableGroupeReference', full_name='ddicdi.VariableScheme.VariableGroupeReference', index=2,
+      name='VariableGroupReference', full_name='ddicdi.VariableScheme.VariableGroupReference', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -928,7 +928,7 @@ _VARIABLESCHEME = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=2633,
-  serialized_end=2871,
+  serialized_end=2870,
 )
 
 
@@ -1001,8 +1001,8 @@ _DATASET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2874,
-  serialized_end=3100,
+  serialized_start=2873,
+  serialized_end=3099,
 )
 
 
@@ -1015,7 +1015,7 @@ _RECORDLAYOUT = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ArryaBase', full_name='ddicdi.RecordLayout.ArryaBase', index=0,
+      name='ArrayBase', full_name='ddicdi.RecordLayout.ArrayBase', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -1061,8 +1061,8 @@ _RECORDLAYOUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3103,
-  serialized_end=3265,
+  serialized_start=3102,
+  serialized_end=3264,
 )
 
 
@@ -1093,8 +1093,8 @@ _DATARELATIONSHIP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3267,
-  serialized_end=3299,
+  serialized_start=3266,
+  serialized_end=3298,
 )
 
 
@@ -1125,8 +1125,8 @@ _MANAGEDMISSINGVALUESREPRESENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3301,
-  serialized_end=3351,
+  serialized_start=3300,
+  serialized_end=3350,
 )
 
 
@@ -1157,8 +1157,8 @@ _INFORMATIONCLASSIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3353,
-  serialized_end=3394,
+  serialized_start=3352,
+  serialized_end=3393,
 )
 
 
@@ -1189,8 +1189,8 @@ _QUALITYSTATEMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3396,
-  serialized_end=3428,
+  serialized_start=3395,
+  serialized_end=3427,
 )
 
 
@@ -1319,8 +1319,8 @@ _PHYSICALINSTANCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3431,
-  serialized_end=4059,
+  serialized_start=3430,
+  serialized_end=4058,
 )
 
 
@@ -1351,8 +1351,8 @@ _REPRESENTEDVARIABLEGROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4061,
-  serialized_end=4101,
+  serialized_start=4060,
+  serialized_end=4100,
 )
 
 
@@ -1418,8 +1418,8 @@ _REPRESENTEDVARIABLESCHEME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4104,
-  serialized_end=4429,
+  serialized_start=4103,
+  serialized_end=4428,
 )
 
 
@@ -1450,8 +1450,8 @@ _CODELISTSCHEME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4431,
-  serialized_end=4461,
+  serialized_start=4430,
+  serialized_end=4460,
 )
 
 
@@ -1482,8 +1482,8 @@ _MANAGEDREPRESENTATIONSCHEME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4463,
-  serialized_end=4506,
+  serialized_start=4462,
+  serialized_end=4505,
 )
 
 
@@ -1514,8 +1514,8 @@ _CUBESCHEME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4508,
-  serialized_end=4534,
+  serialized_start=4507,
+  serialized_end=4533,
 )
 
 
@@ -1581,8 +1581,8 @@ _LOGICALPRODUCT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4537,
-  serialized_end=4936,
+  serialized_start=4536,
+  serialized_end=4935,
 )
 
 
@@ -1683,8 +1683,8 @@ _RECORDLAYOUTGROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4939,
-  serialized_end=5315,
+  serialized_start=4938,
+  serialized_end=5314,
 )
 
 
@@ -1778,8 +1778,8 @@ _PHYSICALSTRUCTURE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5318,
-  serialized_end=5607,
+  serialized_start=5317,
+  serialized_end=5606,
 )
 
 
@@ -1824,8 +1824,8 @@ _BASERECORDLAYOUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5610,
-  serialized_end=5743,
+  serialized_start=5609,
+  serialized_end=5742,
 )
 
 
@@ -1919,8 +1919,8 @@ _PHYSICALSTRUCTUREGROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5746,
-  serialized_end=6089,
+  serialized_start=5745,
+  serialized_end=6088,
 )
 
 _CONCEPT.fields_by_name['ExcludesConceptReference'].message_type = _CONCEPT
@@ -1951,7 +1951,7 @@ _VARIABLEGROUP.fields_by_name['ConceptReference'].message_type = _CONCEPT
 _VARIABLEGROUP.fields_by_name['UniverseReference'].message_type = _UNIVERSE
 _VARIABLEGROUP.fields_by_name['VariableGroupReference'].message_type = _VARIABLEGROUP
 _VARIABLEGROUP.fields_by_name['VariableReference'].message_type = _VARIABLE
-_VARIABLESCHEME.fields_by_name['VariableGroupeReference'].message_type = _VARIABLEGROUP
+_VARIABLESCHEME.fields_by_name['VariableGroupReference'].message_type = _VARIABLEGROUP
 _VARIABLESCHEME.fields_by_name['VariableReference'].message_type = _VARIABLE
 _VARIABLESCHEME.fields_by_name['VariableSchemeReference'].message_type = _VARIABLESCHEME
 _DATASET.fields_by_name['DefaultVariableSchemeReference'].message_type = _VARIABLESCHEME

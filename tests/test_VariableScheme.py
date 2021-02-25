@@ -19,39 +19,35 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (Concept, Universe, Variable, VariableGroup,
+                             VariableScheme)
 
-class ConceptTestCase(unittest.TestCase):
+class VariableSchemeTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept2 = Concept(conceptName=["test_name2","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
-        
-        my_concept3 = Concept(conceptName=["test_name3","test_name2","test_name3"], 
-                             description="test_desc",excludesConceptReference=[my_concept, my_concept2], isCharacteristic="True",
-                             label=["test_label"])
+        self.concept = Concept(conceptName=["test name"], description="desc",
+                               isCharacteristic="False", label=["label"])
+        self.uni = Universe("Universe name")
+        self.v = Variable()
+        self.vg = VariableGroup()
+        self.vg2 = VariableGroup(self.concept, "desc", True, ["keyword"],
+                                ["label"], ["subject"], "var type", self.uni,
+                                ["var group name"], self.vg, self.v)
+
+    def test_VariableScheme(self):
+        my_vs = VariableScheme("desc", ["label"],[self.vg2],[self.v],
+                               ["var scheme name"],[])
         
         print("Python object")
-        print(my_concept)
+        print(my_vs)
 
-        my_concept_pb = my_concept.to_pb()
+        my_vs_pb = my_vs.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
-
-        my_concept3_pb = my_concept3.to_pb()
-
-        print("Protocol buffer message with")
-        print(my_concept3_pb)
+        print(my_vs_pb)
 
 if __name__ == "__main__":
     unittest.main()
