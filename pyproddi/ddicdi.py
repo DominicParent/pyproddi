@@ -1041,7 +1041,7 @@ class RecordLayoutGroup:
 class PhysicalStructure:
     def __init__(self, defaultDataType="", defaultDecimalPositions="",
                  defaultDecimalSeparator="", defaultDelimiter="", 
-                 defaultDigitalGroupSeparator="", description="", fileFormat="",
+                 defaultDigitGroupSeparator="", description="", fileFormat="",
                  grossRecordStructure=[], label=[], physicalStructureName=[]):
         self.defaultDataType = defaultDataType # String
         self.defaultDecimalPositions = defaultDecimalPositions # String
@@ -1063,7 +1063,7 @@ class PhysicalStructure:
         pbm.DefaultDelimiter = self.defaultDelimiter
         pbm.DefaultDigitGroupSeparator = self.defaultDigitGroupSeparator
         pbm.Description = self.description
-        pbm.DefaultFileFormat = self.fileFormat
+        pbm.FileFormat = self.fileFormat
         
         for grs in self.grossRecordStructure:
             pbgrs = pbm.GrossRecordStructure.append(grs)

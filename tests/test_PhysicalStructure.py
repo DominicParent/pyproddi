@@ -19,26 +19,25 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import PhysicalStructure
 
-class ConceptTestCase(unittest.TestCase):
+class PhysicalStructureTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+    def test_PhysicalStructure(self):
+        my_ps = PhysicalStructure("ddt", "ddp", "dds", "dd", "ddgs", "desc",
+                                  "df", ["grs"], ["label"], ["psn"])
         
         print("Python object")
-        print(my_concept)
+        print(my_ps)
 
-        my_concept_pb = my_concept.to_pb()
+        my_ps_pb = my_ps.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_ps_pb)
 
 if __name__ == "__main__":
     unittest.main()
