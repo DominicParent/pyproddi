@@ -1130,7 +1130,7 @@ class PhysicalStructureGroup:
         pbm = ddicdi_pb2.PhysicalStructureGroup()
 
         if(self.conceptReference is not None):
-            pbm.ConceptReference = self.conceptReference.to_pb()
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
         pbm.Description = self.description
         pbm.IsOrdered = self.isOrdered
 
@@ -1144,14 +1144,44 @@ class PhysicalStructureGroup:
             pbpsgn = pbm.PhysicalStructureGroupName.append(psgn)
 
         if(self.physicalStructureReference is not None):
-            pbm.PhysicalStructureReference = self.physicalStructureReference.to_pb()
+            self.physicalStructureReference.add_to_pb(pbm.PhysicalStructureReference)
 
         for sub in self.subject:
             pbsub = pbm.Subject.append(sub)
 
         if(self.typeOfPhysicalStructureGroup is not None):
-            pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup.to_pb()
+            pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup
 
-        for uni in self.universe:
+        for uni in self.universeReference:
             if(uni is not None):
-                pbuni = pbm.Unviverse.append(uni.to_pb())
+                pbuni = pbm.UniverseReference.append(uni.to_pb())
+
+        return pbm
+    
+    def add_to_pb(self, pbm):
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
+        pbm.Description = self.description
+        pbm.IsOrdered = self.isOrdered
+
+        for kw in self.keyword:
+            pbkw = pbm.Keyword.append(kw)
+
+        for lab in self.label:
+            pblab = pbm.Label.append(lab)
+
+        for psgn in self.physicalStructureGroupName:
+            pbpsgn = pbm.PhysicalStructureGroupName.append(psgn)
+
+        if(self.physicalStructureReference is not None):
+            self.physicalStructureReference.add_to_pb(pbm.PhysicalStructureReference)
+
+        for sub in self.subject:
+            pbsub = pbm.Subject.append(sub)
+
+        if(self.typeOfPhysicalStructureGroup is not None):
+            pbm.TypeOfPhysicalStructureGroup = self.typeOfPhysicalStructureGroup
+
+        for uni in self.universeReference:
+            if(uni is not None):
+                pbuni = pbm.UniverseReference.append(uni.to_pb())
