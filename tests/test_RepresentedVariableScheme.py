@@ -19,26 +19,40 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (CategoryScheme, Concept, ConceptualVariable,
+                             ManagedRepresentation, RepresentedVariable, 
+                             RepresentedVariableGroup,
+                             RepresentedVariableScheme, UnitType)
 
-class ConceptTestCase(unittest.TestCase):
+class RepresentedVariableSchemeTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.csr = CategoryScheme("CSName")
+        self.cr = Concept(conceptName=["Concept Name"], description="Desc",
+                          isCharacteristic="True", label=["label"])
+        self.ut = UnitType("UT Name")
+        self.mr = ManagedRepresentation("MR Name")
+        self.cvr = ConceptualVariable(self.csr, self.cr, ["con_var_name"],
+                                      'desc', ['label'], self.ut)
+        self.rv = RepresentedVariable(self.csr, self.cr, self.cvr, "desc",
+                                      ["label"], ['rvn'], self.ut, 'vr', self.mr)
+        self.rvg = RepresentedVariableGroup("name")
+        self.rvs = RepresentedVariableScheme()
+
+    def test_RepresentedVariableScheme(self):
+        my_rvs = RepresentedVariableScheme("desc", ["label"], [self.rvg], 
+                                           [self.rv], ["vsn"], [self.rvs])
         
         print("Python object")
-        print(my_concept)
+        print(my_rvs)
 
-        my_concept_pb = my_concept.to_pb()
+        my_rvs_pb = my_rvs.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_rvs_pb)
 
 if __name__ == "__main__":
     unittest.main()
