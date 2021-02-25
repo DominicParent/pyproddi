@@ -691,6 +691,19 @@ class RecordLayout:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm = ddicdi_pb2.RecordLayout()
+
+        pbm.ArrayBase = self.arrayBase
+        pbm.CharacterSet = self.characterSet
+
+        for di in self.dataItem:
+            pbdi = pbm.DataItem.append(di)
+
+        if(self.defaultVariableSchemeReference is not None):
+            self.defaultVariableSchemeReference.add_to_pb(pbm.DefaultVariableSchemeReference)
+        pbm.NamesOnFirstRow = self.namesOnFirstRow
+
 # Filler class.
 class DataRelationship:
     def __init__(self, name=""):
@@ -966,7 +979,8 @@ class RecordLayoutGroup:
     def to_pb(self):
         pbm = ddicdi_pb2.RecordLayoutGroup()
 
-        pbm.ConceptReference = self.conceptReference.to_pb()
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
         pbm.Description = self.description
         pbm.IsOrdered = self.isOrdered
 
@@ -980,7 +994,38 @@ class RecordLayoutGroup:
             pbrlgn = pbm.RecordLayoutGroupName.append(rlgn)
 
         if(self.recordLayoutGroupReference is not None):
-            pbm.RecordLayoutGroupReference = self.recordLayoutGroupReference.to_pb()
+            self.recordLayoutGroupReference.add_to_pb(pbm.RecordLayoutGroupReference)
+        if(self.recordLayoutReference is not None):
+            self.recordLayoutReference.add_to_pb(pbm.RecordLayoutReference)
+
+        for sub in self.subject:
+            pbsub = pbm.Subject.append(sub)
+
+        pbm.TypeOfRecordLayoutGroup = self.typeOfRecordLayoutGroup
+
+        for uni in self.universeReference:
+            if(uni is not None):
+                pbuni = pbm.UniverseReference.append(uni.to_pb())
+
+        return pbm
+
+    def add_to_pb(self, pbm):
+        if(self.conceptReference is not None):
+            self.conceptReference.add_to_pb(pbm.ConceptReference)
+        pbm.Description = self.description
+        pbm.IsOrdered = self.isOrdered
+
+        for kw in self.keyword:
+            pbkw = pbm.Keyword.append(kw)
+
+        for lab in self.label:
+            pblab = pbm.Label.append(lab)
+
+        for rlgn in self.recordLayoutGroupName:
+            pbrlgn = pbm.RecordLayoutGroupName.append(rlgn)
+
+        if(self.recordLayoutGroupReference is not None):
+            self.recordLayoutGroupReference.add_to_pb(pbm.RecordLayoutGroupReference)
         if(self.recordLayoutReference is not None):
             pbm.RecordLayoutReference = self.recordLayoutReference.to_pb()
 
@@ -989,9 +1034,9 @@ class RecordLayoutGroup:
 
         pbm.TypeOfRecordLayoutGroup = self.typeOfRecordLayoutGroup
 
-        for uni in self.universe:
+        for uni in self.universeReference:
             if(uni is not None):
-                pbuni = pbm.Universe.append(uni.to_pb())
+                pbuni = pbm.UniverseReference.append(uni.to_pb())
 
 class PhysicalStructure:
     def __init__(self, defaultDataType="", defaultDecimalPositions="",
