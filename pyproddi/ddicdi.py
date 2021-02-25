@@ -908,13 +908,13 @@ class CubeScheme:
 
 class LogicalProduct:
     def __init__(self, categorySchemeReference=[], codeListSchemeReference=[],
-                 managedRepresentationSchemeReference=[], NCubeSchemeReference=[],
+                 managedRepresentationSchemeReference=[], nCubeSchemeReference=[],
                  representedVariableSchemeReference=[], variableSchemeReference=[]):
         self.categorySchemeReference = categorySchemeReference # List of CategoryScheme
-        self.codeListSchemeReference = codeListSChemeReference # List of CodeListScheme
+        self.codeListSchemeReference = codeListSchemeReference # List of CodeListScheme
         self.managedRepresentationSchemeReference = managedRepresentationSchemeReference # List of ManagedRepresentationScheme
         self.nCubeSchemeReference = nCubeSchemeReference # List of CubeScheme
-        self.representatedVariableSchemeReference = representedVariableSchemeReference # List of RepresentedVariableScheme
+        self.representedVariableSchemeReference = representedVariableSchemeReference # List of RepresentedVariableScheme
         self.variableSchemeReference = variableSchemeReference # List of VariableScheme
 
     def to_pb(self):
@@ -930,11 +930,11 @@ class LogicalProduct:
 
         for mrsr in self.managedRepresentationSchemeReference:
             if(mrsr is not None):
-                pbmrsr = pbm.ManagedRepresentationSchemeReference.append(clsr.to_pb())
+                pbmrsr = pbm.ManagedRepresentationSchemeReference.append(mrsr.to_pb())
 
         for ncsr in self.nCubeSchemeReference:
             if(ncsr is not None):
-                pbncsr = pbm.NCubeSChemeReference.append(ncsr.to_pb())
+                pbncsr = pbm.NCubeSchemeReference.append(ncsr.to_pb())
 
         for rvsr in self.representedVariableSchemeReference:
             if(rvsr is not None):

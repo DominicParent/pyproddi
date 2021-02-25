@@ -19,26 +19,39 @@
 import unittest
 
 from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import Concept
+from pyproddi.ddicdi import (CategoryScheme, CodeListScheme, CubeScheme,
+                             ManagedRepresentationScheme, LogicalProduct, 
+                             RepresentedVariableScheme, VariableScheme,
+                             RepresentedVariableGroup, RepresentedVariable)
 
-class ConceptTestCase(unittest.TestCase):
+class LogicalProductTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-    def test_Concept(self):
-        my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
-                             description="test_desc", isCharacteristic="True",
-                             label=["test_label"])
+        self.cs = CategoryScheme("Name")
+        self.cls = CodeListScheme("Name")
+        self.cubes = CubeScheme("Name")
+        self.mrs = ManagedRepresentationScheme("Name")
+        self.rvg = RepresentedVariableGroup("Name")
+        self.rv = RepresentedVariable()
+        self.rvs = RepresentedVariableScheme()
+        self.rvs2 = RepresentedVariableScheme("desc", ["label"], [self.rvg],
+                                             [self.rv], ["vsn"], [self.rvs])
+        self.vs = VariableScheme()
+
+    def test_LogicalProduct(self):
+        my_lp = LogicalProduct([self.cs], [self.cls], [self.mrs], [self.cubes],
+                               [self.rvs2], [self.vs])
         
         print("Python object")
-        print(my_concept)
+        print(my_lp)
 
-        my_concept_pb = my_concept.to_pb()
+        my_lp_pb = my_lp.to_pb()
 
         print("Protocol buffer message")
-        print(my_concept_pb)
+        print(my_lp_pb)
 
 if __name__ == "__main__":
     unittest.main()
