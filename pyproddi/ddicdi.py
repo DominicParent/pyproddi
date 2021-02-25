@@ -1076,6 +1076,24 @@ class PhysicalStructure:
 
         return pbm
 
+    def add_to_pb(self, pbm):
+        pbm.DefaultDataType = self.defaultDataType
+        pbm.DefaultDecimalPositions = self.defaultDecimalPositions
+        pbm.DefaultDecimalSeparator = self.defaultDecimalSeparator
+        pbm.DefaultDelimiter = self.defaultDelimiter
+        pbm.DefaultDigitGroupSeparator = self.defaultDigitGroupSeparator
+        pbm.Description = self.description
+        pbm.FileFormat = self.fileFormat
+        
+        for grs in self.grossRecordStructure:
+            pbgrs = pbm.GrossRecordStructure.append(grs)
+
+        for lab in self.label:
+            pblab = pbm.Label.append(lab)
+
+        for psn in self.physicalStructureName:
+            pbpsn = pbm.PhysicalStructureName.append(psn)
+
 class BaseRecordLayout:
     def __init__(self, endOfLineMarker="", physicalStructureLinkReference=None,
                  textQualifier=""):
@@ -1088,7 +1106,7 @@ class BaseRecordLayout:
 
         pbm.EndOfLineMarker = self.endOfLineMarker
         if(self.physicalStructureLinkReference is not None):
-            pbm.PhysicalStructureLinkReference = self.physicalStructureLinkReference.to_pb()
+            self.physicalStructureLinkReference.add_to_pb(pbm.PhysicalStructureLinkReference)
         pbm.TextQualifier = self.textQualifier
 
         return pbm
