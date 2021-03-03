@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-chema.org/draft-07/schema#",
+
+  "definitions": {
+    "Concept": {
+      "$id": "#Concept",
+      "type": "object",
+      "properties": {
+        "ConceptName": {"type": "string"},
+        "Description": {"type": "string"},
+        "ExcludesConceptReference": {"$ref": "#/definitions/Concept"},
+        "IncludesConceptReference": {"$ref": "#/definitions/Concept"},
+        "IsCharacteristic": {"type": "string"},
+        "Label": {"type": "string"},
+        "SimilarConcept": {"$ref": "#/definitions/Concept"},
+        "SubclassOfReference": {"$ref": "#/definitions/Concept"}
+      }
+    },
+    "CategoryScheme": {
+      "$id": "CategoryScheme",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "UnitType": {
+      "$id": "UnitType",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "ConceptualVariable": {
+      "$id": "ConceptualVariable",
+      "type": "object",
+      "properties": {
+        "CategorySchemeReference": {"$ref": "#/definitions/CategoryScheme"},
+        "ConceptReference": {"$ref": "#/definitions/Concept"},
+        "ConceptVariableName": {"type": "string"},
+        "Description": {"type": "string"},
+        "Label": {"type": "string"},
+        "UnitTypeReference": {"$ref": "#/definitions/UnitType"}
+      }
+    },
+    "ManagedRepresentation": {
+      "$id": "ManagedRepresentation",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "RepresentedVariable": {
+      "$id": "RepresentedVariable",
+      "type": "object",
+      "properties": {
+        "CategorySchemeReference": {"$ref": "#/definitions/CategoryScheme"},
+        "ConceptReference": {"$ref": "#/definitions/Concept"},
+        "ConceptualVariableReference": {"$ref": "#/definitions/ConceptualVariable"},
+        "Description": {"type": "string"},
+        "Label": {"type": "string"},
+        "RepresentedVariableName": {"type": "string"},
+        "UnitTypeReference": {"$ref": "#/definitions/UnitType"},
+        "ValueRepresentation": {"type": "string"},
+        "ValueRepresentationReference": {"$ref": "#/definitions/ManagedRepresentation"}
+      }
+    },
+    "MeasurementItem": {
+      "$id": "MeasurementItem",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "Question": {
+      "$id": "Question",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "Universe": {
+      "$id": "Universe",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "Weighting": {
+      "$id": "Weighting",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "Variable": {
+      "$id": "Variable",
+      "type": "object",
+      "properties": {
+        "AnalysisUnit": {"type": "string"},
+        "ConceptReference": {"$ref":"#/definitions/Concept"},
+        "ConceptualVariableReference": {"$ref":"#/definitions/ConceputalVariable"},
+        "Description": {"type": "string"},
+        "EmbargoReference": {"type": "string"},
+        "IsGeographic": {"type": "boolean"},
+        "IsTemporal": {"type": "boolean"},
+        "IsWeight": {"type": "boolean"},
+        "Label": {"type": "string"},
+        "MeasurementReference": {"$ref":"#/definitions/MeasurementItem"},
+        "OutParameter": {"type": "string"},
+        "QuestionReference": {"$ref":"#/definitions/Question"},
+        "RepresentedVariableReference": {"$ref":"#/definitions/RepresentedVariable"},
+        "SourceParameterReference": {"type": "string"},
+        "SourceUnit": {"type": "string"},
+        "SourceVariableReference": {"$ref":"#/definitions/Variable"},
+        "UnitTypeReference": {"$ref":"#/definitions/UnitType"},
+        "UniverseReference": {"$ref":"#/definitions/Universe"},
+        "VariableRepresentation": {"type": "string"},
+        "WeightingProcessReference": {"$ref":"#/definitions/Weighting"}
+      }
+    },
+    "MissingValuesReference": {
+      "$id": "MissingValuesreference",
+      "type": "object",
+      "properties": {
+        "Name": {"type": "string"}
+      }
+    },
+    "VariableStatistics": {
+      "$id": "VariableStatistics",
+      "type": "object",
+      "properties": {
+        "FilteredCategoryStatistics": {"type": "string"},
+        "ManagedMissingValuesRepresentation": {"$ref":"#/definitions/MissingValuesReference"},
+        "StandardWeightReference": {"type": "string"},
+        "SummaryStatistic": {"type": "string"},
+        "TotalResponses": {"type": "string"},
+        "UnfilteredCategoryStatistics": {"type": "string"},
+        "VariableReference": {"$ref":"#/definitions/Variable"},
+        "WeightVariableReference": {"$ref":"#/definitions/Variable"}
+      }
+    },
+    "VariableGroup": {
+      "$id": "VariableGroup",
+      "type": "object",
+      "properties": {
+        "ConceptReference": {"$ref":"#/definitions/Concept"},
+        "Description": {"type": "string"},
+        "IsOrdered": {"type": "boolean"},
+        "Keyword": {"type": "string"},
+        "Label": {"type": "string"},
+        "Subject": {"type": "string"},
+        "TypeOfVariableGroup": {"type": "string"},
+        "UniverseReference": {"$ref":"#/definitions/Universe"},
+        "VariableGroupName": {"type": "string"},
+        "VariableGroupReference": {"$ref":"#/definitions/VariableGroup"},
+        "VariableReference": {"$ref":"#/definitions/Variable"}
+      }
+    }
+  }
+}
