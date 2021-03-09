@@ -32,6 +32,8 @@ class JsonSchemaTestCase(unittest.TestCase):
 
     def test_JsonSchemaValidate(self):
         print(self.schema)
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
 
 if __name__ == "__main__":
     unittest.main()
