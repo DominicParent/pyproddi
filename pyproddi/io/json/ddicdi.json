@@ -596,6 +596,37 @@
   "type": "object",
 
   "properties": {
-    "Concept": { "$ref": "#/definitions/Concept"}
+    "Concept": {"$ref": "#/definitions/Concept"},
+    "CategoryScheme": {"$ref": "#/definitions/CategoryScheme"},
+    "UnitType": {"$ref": "#/definitions/UnitType"},
+    "ConceptualVariable": {"$ref": "#/definitions/ConceptualVariable"},
+    "ManagedRepresentation": {"$ref": "#/definitions/ManagedRepresentation"},
+    "RepresentedVariable": {"$ref": "#/definitions/RepresentedVariable"},
+    "MeasurementItem": {"$ref": "#/definitions/MeasurementItem"},
+    "Question": {"$ref": "#/definitions/Question"},
+    "Universe": {"$ref": "#/definitions/Universe"},
+    "Weighting": {"$ref": "#/definitions/Weighting"},
+    "Variable": {"$ref": "#/definitions/Variable"},
+    "MissingValuesReference": {"$ref": "#/definitions/MissingValuesReference"},
+    "VariableStatistics": {"$ref": "#/definitions/VariableStatistics"},
+    "VariableGroup": {"$ref": "#/definitions/VariableGroup"},
+    "VariableScheme": {"$ref": "#/definitions/VariableScheme"},
+    "Dataset": {"$ref": "#/definitions/Dataset"},
+    "RecordLayout": {"$ref": "#/definitions/RecordLayout"},
+    "DataRelationship": {"$ref": "#/definitions/DataRelationship"},
+    "ManagedMissingValuesRepresentation": {"$ref": "#/definitions/ManagedMissingValuesRepresentation"},
+    "InformationClassification": {"$ref": "#/definitions/InformationClassification"},
+    "QualityStatement": {"$ref": "#/definitions/QualityStatement"},
+    "PhysicalInstance": {"$ref": "#/definitions/PhysicalInstance"},
+    "RepresentedVariableGroup": {"$ref": "#/definitions/RepresentedVariableGroup"},
+    "RepresentedVariableSCheme": {"$ref": "#/definitions/RepresentedVariableSCheme"},
+    "CodeListScheme": {"$ref": "#/definitions/CodeListScheme"},
+    "ManagedRepresentationScheme": {"$ref": "#/definitions/ManagedRepresentationScheme"},
+    "CubeScheme": {"$ref": "#/definitions/CubeScheme"},
+    "LogicalProduct": {"$ref": "#/definitions/LogicalProduct"},
+    "RecordLayoutGroup": {"$ref": "#/definitions/RecordLayoutGroup"},
+    "PhysicalStructure": {"$ref": "#/definitions/PhysicalStructure"},
+    "BaseRecordLayout": {"$ref": "#/definitions/BaseRecordLayout"},
+    "PhysicalStructureGroup": {"$ref": "#/definitions/PhysicalStructureGroup"}
   }
 }
