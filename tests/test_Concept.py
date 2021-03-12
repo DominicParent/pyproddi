@@ -65,18 +65,35 @@ class ConceptTestCase(unittest.TestCase):
         print(my_concept3_pb)
 
     def test_Concept_json(self):
-#        with open("pyproddi/io/json/ddicdi.json") as f:
-#            self.schema = json.load(f)
         
         jsonmessage = {
         "Concept" : {
             "ConceptName" : ["testname"],
-            "Description" : "This is a description"
+            "Description" : "This is a description",
+            "ExcludesConceptReference" : [],
+            "IncludesConceptReference" : [],
+            "IsCharacteristic" : "A characteristic",
+            "Label" : [],
+            "SimilarConcept" : [],
+            "SubclassOfReference" : []
+          }
+        }
+
+        jsonmessage2 = {
+        "Concept" : {
+            "ConceptName" : ["testname"],
+            "Description" : "This is a description",
+            "ExcludesConceptReference" : [jsonmessage],
+            "IncludesConceptReference" : [jsonmessage],
+            "IsCharacteristic" : "A characteristic",
+            "Label" : [],
+            "SimilarConcept" : [jsonmessage],
+            "SubclassOfReference" : [jsonmessage]
           }
         }
 
         print("JSON Concept message")
-        print(validate(instance=jsonmessage, schema=self.schema))
+        print(validate(instance=jsonmessage2, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

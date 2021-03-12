@@ -10,49 +10,49 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Description": {"type": "string"},
         "ExcludesConceptReference": {
           "type": "array",
           "items": {"$ref": "#/definitions/Concept"},
           "default": []
-        },
+          },
         "IncludesConceptReference": {
           "type": "array",
           "items": {"$ref": "#/definitions/Concept"},
           "default": []
-        },
+          },
         "IsCharacteristic": {"type": "string"},
         "Label": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "SimilarConcept": {
           "type": "array",
           "items": {"$ref": "#/definitions/Concept"},
           "default": []
-        },
+          },
         "SubclassOfReference": {
           "type": "array",
           "items": {"$ref": "#/definitions/Concept"},
           "default": []
-      }
-    },
+        }
+      },
     "CategoryScheme": {
       "$id": "CategoryScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "UnitType": {
       "$id": "UnitType",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "ConceptualVariable": {
       "$id": "ConceptualVariable",
       "type": "object",
@@ -63,23 +63,23 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Description": {"type": "string"},
         "Label": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "UnitTypeReference": {"$ref": "#/definitions/UnitType"}
-      }
-    },
+        }
+      },
     "ManagedRepresentation": {
       "$id": "ManagedRepresentation",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "RepresentedVariable": {
       "$id": "RepresentedVariable",
       "type": "object",
@@ -92,45 +92,45 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "RepresentedVariableName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "UnitTypeReference": {"$ref": "#/definitions/UnitType"},
         "ValueRepresentation": {"type": "string"},
         "ValueRepresentationReference": {"$ref": "#/definitions/ManagedRepresentation"}
-      }
-    },
+        }
+      },
     "MeasurementItem": {
       "$id": "MeasurementItem",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "Question": {
       "$id": "Question",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "Universe": {
       "$id": "Universe",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "Weighting": {
       "$id": "Weighting",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "Variable": {
       "$id": "Variable",
       "type": "object",
@@ -147,18 +147,18 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "MeasurementReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/MeasurementItem"},
           "default": []
-        },
+          },
         "OutParameter": {"type": "string"},
         "QuestionReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/Question"},
           "default": []
-        },
+          },
         "RepresentedVariableReference": {"$ref":"#/definitions/RepresentedVariable"},
         "SourceParameterReference": {"type": "string"},
         "SourceUnit": {"type": "string"},
@@ -166,24 +166,24 @@
           "type": "array",
           "items": {"$ref":"#/definitions/Variable"},
           "default": []
-        },
+          },
         "UnitTypeReference": {"$ref":"#/definitions/UnitType"},
         "UniverseReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/Universe"},
           "default": []
-        },
+          },
         "VariableRepresentation": {"type": "string"},
         "WeightingProcessReference": {"$ref":"#/definitions/Weighting"}
-      }
-    },
+        }
+      },
     "MissingValuesReference": {
       "$id": "MissingValuesreference",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "VariableStatistics": {
       "$id": "VariableStatistics",
       "type": "object",
@@ -192,24 +192,24 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "ManagedMissingValuesRepresentation": {"$ref":"#/definitions/MissingValuesReference"},
         "StandardWeightReference": {"type": "string"},
         "SummaryStatistic": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "TotalResponses": {"type": "string"},
         "UnfilteredCategoryStatistics": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "VariableReference": {"$ref":"#/definitions/Variable"},
         "WeightVariableReference": {"$ref":"#/definitions/Variable"}
-      }
-    },
+        }
+      },
     "VariableGroup": {
       "$id": "VariableGroup",
       "type": "object",
@@ -221,28 +221,28 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Label": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Subject": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "TypeOfVariableGroup": {"type": "string"},
         "UniverseReference": {"$ref":"#/definitions/Universe"},
         "VariableGroupName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "VariableGroupReference": {"$ref":"#/definitions/VariableGroup"},
         "VariableReference": {"$ref":"#/definitions/Variable"}
-      }
-    },
+        }
+      },
     "VariableScheme": {
       "$id": "VariableScheme",
       "type": "object",
@@ -252,29 +252,29 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "VariableGroupReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/VariableGroup"},
           "default": []
-        },
+          },
         "VariableReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/Variable"},
           "default": []
-        },
+          },
         "VariableSchemeName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "VariableSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/VariableScheme"},
           "default": []
+          }
         }
-      }
-    },
+      },
     "Dataset": {
       "$id": "Dataset",
       "type": "object",
@@ -284,14 +284,14 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "DefaultVariableSchemeReference": {"$ref":"#/definitions/VariableScheme"},
         "IdentifyingVariableReference": {"$ref":"#/definitions/Variable"},
         "ItemSet": {"type": "string"},
         "RecordSet": {"type": "string"},
         "VariableSet": {"type": "string"}
-      }
-    },
+        }
+      },
     "RecordLayout": {
       "$id": "RecordLayout",
       "type": "object",
@@ -302,39 +302,39 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "DefaultVariableSchemeReference": {"$ref":"#/definitions/VariableScheme"},
         "NamesOnFirstRow": {"type": "boolean"}
-      }
-    },
+        }
+      },
     "DataRelationship": {
       "$id": "DataRelationship",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "ManagedMissingValuesRepresentation": {
       "$id": "ManagedMissingValuesRepresentation",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "InformationClassification": {
       "$id": "InformationClassification",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "QualityStatement": {
       "$id": "QualityStatement",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "PhysicalInstance": {
       "$id": "PhysicalInstance",
       "type": "object",
@@ -346,51 +346,51 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "DataFileVersion": {"type": "string"},
         "DataFingerprint": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "DataRelationshipReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/DataRelationship"},
           "default": []
-        },
+          },
         "DefaultMissingValuesReference": {"$ref":"#/definitions/ManagedMissingValuesRepresentation"},
         "GrossFileStructure": {"type": "string"},
         "InformationClassificationReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/InformationClassification"},
           "default": []
-        },
+          },
         "ProprietaryInfo": {"type": "boolean"},
         "QualityStatementReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/QualityStatement"},
           "default": []
-        },
+          },
         "RecordLayoutReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/RecordLayout"},
           "default": []
-        },
+          },
         "StatisticalSummary": {"type": "string"},
         "VariableGroupReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/VariableGroup"},
           "default": []
+          }
         }
-      }
-    },
+      },
     "RepresentedVariableGroup": {
       "$id": "RepresentedVariableGroup",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "RepresentedVariableScheme": {
       "$id": "RepresentedVariableScheme",
       "type": "object",
@@ -400,50 +400,50 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "RepresentedVariableGroupReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/RepresentedVariableGroup"},
           "default": []
-        },
+          },
         "RepresentedVariableReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/RepresentedVariable"},
           "default": []
-        },
+          },
         "RepresentedVariableSchemeName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "RepresentedVariableSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/RepresentedVariableScheme"},
           "default": []
+          }
         }
-      }
-    },
+      },
     "CodeListScheme": {
       "$id": "CodeListScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "ManagedRepresentationScheme": {
       "$id": "ManagedRepresentationScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "CubeScheme": {
       "$id": "CubeScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
-      }
-    },
+        }
+      },
     "LogicalProduct": {
       "$id": "LogicalProduct",
       "type": "object",
@@ -452,34 +452,34 @@
           "type": "array",
           "items": {"$ref":"#/definitions/CategoryScheme"},
           "default": []
-        },
+          },
         "CodeListSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/CodeListScheme"},
           "default": []
-        },
+          },
         "ManagedRepresentationSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/ManagedRepresentationScheme"},
           "default": []
-        },
+          },
         "NCubeSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/CubeScheme"},
           "default": []
-        },
+          },
         "RepresentedVariableSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/RepresentedVariableScheme"},
           "default": []
-        },
+          },
         "VariableSchemeReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/VariableScheme"},
           "default": []
+          }
         }
-      }
-    },
+      },
     "RecordLayoutGroup": {
       "$id": "RecordLayoutGroup",
       "type": "object",
@@ -491,32 +491,32 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Label": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "RecordLayoutGroupName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "RecordLayoutGroupReference": {"$ref":"#/definitions/RecordLayoutGroup"},
         "RecordLayoutReference": {"$ref":"#/definitons/RecordLayout"},
         "Subject": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "TypeOfRecordLayoutGroup": {"type": "string"},
         "UniverseReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/Universe"},
           "default": []
+          }
         }
-      }
-    },
+      },
     "PhysicalStructure": {
       "$id": "PhysicalStructure",
       "type": "object",
@@ -532,19 +532,19 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Label": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "PhysicalStructureName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
+          }
         }
-      }
-    },
+      },
     "BaseRecordLayout": {
       "$id": "BaseRecordLayout",
       "type": "object",
@@ -552,8 +552,8 @@
         "EndOfLineMarker": {"type": "string"},
         "PhysicalStructureLinkReference": {"$ref":"#/definitions/PhysicalStructure"},
         "TextQualifier": {"type": "string"}
-      }
-    },
+        }
+      },
     "PhysicalStructureGroup": {
       "$id": "PhysicalStructureGroup",
       "type": "object",
@@ -565,31 +565,37 @@
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "Label": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "PhysicalStructureGroupName": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "PhysicalStructureReference": {"$ref":"#/definitions/PhysicalStructureGroup"},
         "Subject": {
           "type": "array",
           "items": {"type": "string"},
           "default": []
-        },
+          },
         "TypeOfPHysicalStructureGroup": {"type": "string"},
         "UniverseReference": {
           "type": "array",
           "items": {"$ref":"#/definitions/Universe"},
           "default": []
+          }
         }
       }
     }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "Concept": { "$ref": "#/definitions/Concept"}
   }
-}
 }
