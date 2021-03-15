@@ -51,12 +51,12 @@ class ConceptualVariableTestCase(unittest.TestCase):
 
     def test_ConceptualVariable_json(self):
         cv_json = {
-            "ConceptualVarialbe" : {
+            "ConceptualVariable" : {
                 "CategorySchemeReference" : {},
                 "ConceptReference" : {},
-                "ConceptVariableName" : {"Test", "Test"},
-                "Description" : {"This is a description"},
-                "Label" : {"Label1", "Label2"},
+                "ConceptVariableName" : ["Test", "Test"],
+                "Description" : "This is a description",
+                "Label" : ["Label1", "Label2"],
                 "UnitTypeReference" : {}
             }
         }

@@ -3,7 +3,6 @@
 
   "definitions": {
     "Concept": {
-      "$id": "#Concept",
       "type": "object",
       "properties": {
         "ConceptName": {
@@ -37,24 +36,22 @@
           "type": "array",
           "items": {"$ref": "#/definitions/Concept"},
           "default": []
+          }
         }
       },
     "CategoryScheme": {
-      "$id": "CategoryScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "UnitType": {
-      "$id": "UnitType",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "ConceptualVariable": {
-      "$id": "ConceptualVariable",
       "type": "object",
       "properties": {
         "CategorySchemeReference": {"$ref": "#/definitions/CategoryScheme"},
@@ -74,14 +71,12 @@
         }
       },
     "ManagedRepresentation": {
-      "$id": "ManagedRepresentation",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "RepresentedVariable": {
-      "$id": "RepresentedVariable",
       "type": "object",
       "properties": {
         "CategorySchemeReference": {"$ref": "#/definitions/CategoryScheme"},
@@ -104,35 +99,30 @@
         }
       },
     "MeasurementItem": {
-      "$id": "MeasurementItem",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "Question": {
-      "$id": "Question",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "Universe": {
-      "$id": "Universe",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "Weighting": {
-      "$id": "Weighting",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "Variable": {
-      "$id": "Variable",
       "type": "object",
       "properties": {
         "AnalysisUnit": {"type": "string"},
@@ -178,14 +168,12 @@
         }
       },
     "MissingValuesReference": {
-      "$id": "MissingValuesreference",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "VariableStatistics": {
-      "$id": "VariableStatistics",
       "type": "object",
       "properties": {
         "FilteredCategoryStatistics": {
@@ -211,7 +199,6 @@
         }
       },
     "VariableGroup": {
-      "$id": "VariableGroup",
       "type": "object",
       "properties": {
         "ConceptReference": {"$ref":"#/definitions/Concept"},
@@ -244,7 +231,6 @@
         }
       },
     "VariableScheme": {
-      "$id": "VariableScheme",
       "type": "object",
       "properties": {
         "Description": {"type": "string"},
@@ -276,7 +262,6 @@
         }
       },
     "Dataset": {
-      "$id": "Dataset",
       "type": "object",
       "properties": {
         "ArrayBase": {"type": "string"},
@@ -293,7 +278,6 @@
         }
       },
     "RecordLayout": {
-      "$id": "RecordLayout",
       "type": "object",
       "properties": {
         "ArrayBase": {"type": "string"},
@@ -308,35 +292,30 @@
         }
       },
     "DataRelationship": {
-      "$id": "DataRelationship",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "ManagedMissingValuesRepresentation": {
-      "$id": "ManagedMissingValuesRepresentation",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "InformationClassification": {
-      "$id": "InformationClassification",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "QualityStatement": {
-      "$id": "QualityStatement",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "PhysicalInstance": {
-      "$id": "PhysicalInstance",
       "type": "object",
       "properties": {
         "ByteOrder": {"type": "string"},
@@ -385,14 +364,12 @@
         }
       },
     "RepresentedVariableGroup": {
-      "$id": "RepresentedVariableGroup",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "RepresentedVariableScheme": {
-      "$id": "RepresentedVariableScheme",
       "type": "object",
       "properties": {
         "Description": {"type": "string"},
@@ -424,28 +401,24 @@
         }
       },
     "CodeListScheme": {
-      "$id": "CodeListScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "ManagedRepresentationScheme": {
-      "$id": "ManagedRepresentationScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "CubeScheme": {
-      "$id": "CubeScheme",
       "type": "object",
       "properties": {
         "Name": {"type": "string"}
         }
       },
     "LogicalProduct": {
-      "$id": "LogicalProduct",
       "type": "object",
       "properties": {
         "CategorySchemeReference": {
@@ -481,7 +454,6 @@
         }
       },
     "RecordLayoutGroup": {
-      "$id": "RecordLayoutGroup",
       "type": "object",
       "properties": {
         "ConceptReference": {"$ref":"#/definitions/Concept"},
@@ -518,7 +490,6 @@
         }
       },
     "PhysicalStructure": {
-      "$id": "PhysicalStructure",
       "type": "object",
       "properties": {
         "DefaultDataType": {"type": "string"},
@@ -546,7 +517,6 @@
         }
       },
     "BaseRecordLayout": {
-      "$id": "BaseRecordLayout",
       "type": "object",
       "properties": {
         "EndOfLineMarker": {"type": "string"},
@@ -555,7 +525,6 @@
         }
       },
     "PhysicalStructureGroup": {
-      "$id": "PhysicalStructureGroup",
       "type": "object",
       "properties": {
         "ConceptReference": {"$ref":"#/definitions/Concept"},
@@ -590,8 +559,7 @@
           }
         }
       }
-    }
-  },
+    },
 
   "type": "object",
 
