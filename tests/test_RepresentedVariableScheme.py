@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (CategoryScheme, Concept, ConceptualVariable,
@@ -42,6 +43,12 @@ class RepresentedVariableSchemeTestCase(unittest.TestCase):
         self.rvg = RepresentedVariableGroup("name")
         self.rvs = RepresentedVariableScheme()
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_RepresentedVariableScheme(self):
         my_rvs = RepresentedVariableScheme("desc", ["label"], [self.rvg], 
                                            [self.rv], ["vsn"], [self.rvs])
@@ -53,6 +60,21 @@ class RepresentedVariableSchemeTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_rvs_pb)
+
+    def test_RepresentedVariableScheme_json(self):
+        my_rvs_json = {
+        "RepresentedVariableScheme" : {
+            "Description" : "test",
+            "Label" : ["lab1"],
+            "RepresentedVariableGroupReference" : [],
+            "RepresentedVariableReference" : [],
+            "RepresentedVariableSchemeName" : ["name1", "name2", "name3"],
+            "RepresentedVariableSchemeReference" : []
+          }
+        }
+
+        print("JSON RepresentedVariableScheme message")
+        print(validate(instance=my_rvs_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()
