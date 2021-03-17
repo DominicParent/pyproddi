@@ -475,7 +475,7 @@
           "default": []
           },
         "RecordLayoutGroupReference": {"$ref":"#/definitions/RecordLayoutGroup"},
-        "RecordLayoutReference": {"$ref":"#/definitons/RecordLayout"},
+        "RecordLayoutReference": {"$ref":"#/definitions/RecordLayout"},
         "Subject": {
           "type": "array",
           "items": {"type": "string"},
