@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, PhysicalStructureGroup, Universe)
@@ -35,6 +36,12 @@ class PhysicalStructureGroupTestCase(unittest.TestCase):
                                           PhysicalStructureGroup(),
                                           ["subject"], "topsg", [self.uni])
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+           self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_PhysicalStructureGroup(self):
         my_psg = PhysicalStructureGroup(self.concept, "desc", False, ["keyw"],
                                         ["label"], ["psgn"], self.psg,
@@ -47,6 +54,24 @@ class PhysicalStructureGroupTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_psg_pb)
+
+    def test_PhysicalStructureGroup_json(self):
+        my_psg_json = {
+        "PhysicalStructureGroup" : {
+            "ConceptReference" : {},
+            "Description" : "Some desc.",
+            "IsOrdered" : False,
+            "Keyword" : ["kw1", "kw2", "kw3", "kw4", "kw5", "kw6"],
+            "Label" : ["lab1"],
+            "PhysicalStructureGroupName"  : ["name1"],
+            "PhysicalStructureReference" : {},
+            "TypeOfPhysicalStructureGroup" : "topsg",
+            "UniverseReference" : []
+          }
+        }
+
+        print("JSON PhysicalStructureGroup")
+        print(validate(instance=my_psg_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()
