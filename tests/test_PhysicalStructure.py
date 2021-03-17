@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import PhysicalStructure
@@ -26,6 +27,12 @@ class PhysicalStructureTestCase(unittest.TestCase):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
+
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
 
     def test_PhysicalStructure(self):
         my_ps = PhysicalStructure("ddt", "ddp", "dds", "dd", "ddgs", "desc",
@@ -38,6 +45,25 @@ class PhysicalStructureTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_ps_pb)
+
+    def test_PhysicalStructure_json(self):
+        my_ps_json = {
+          "PhysicalStructure" : {
+              "DefaultDataType" : "ddt",
+              "DefaultDecimalPositions" : "ddp",
+              "DefaultDecimalSeparator" : "dds",
+              "DefaultDelimiter" : "dd",
+              "DefaultDigitGroupSeparator" : "ddgs",
+              "Description" : "Some desc.",
+              "FileFormat" : "ff",
+              "GrossRecordStructure" : ["grs1", "grs2", "grs3", "grs4"],
+              "Label" : ["lab1"],
+              "PhysicalStructureName" : ["psn1", "psn2", "psn3", "psn4"]
+          }
+        }
+
+        print("JSON PhysicalStructure message")
+        print(validate(instance=my_ps_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()
