@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (CategoryScheme, Concept, UnitType,
@@ -33,6 +34,9 @@ class ConceptualVariableTestCase(unittest.TestCase):
                                ['test_label'],[],[])
         self.ut = UnitType('ut_name')
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
     def test_ConceptualVariable(self):
         my_cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
                                    'desc', ['label'], self.ut)
@@ -44,6 +48,21 @@ class ConceptualVariableTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_cv_pb)
+
+    def test_ConceptualVariable_json(self):
+        cv_json = {
+            "ConceptualVariable" : {
+                "CategorySchemeReference" : {},
+                "ConceptReference" : {},
+                "ConceptVariableName" : ["Test", "Test"],
+                "Description" : "This is a description",
+                "Label" : ["Label1", "Label2"],
+                "UnitTypeReference" : {}
+            }
+        }
+
+        print("JSON ConceptualVariable message")
+        print(validate(instance=cv_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

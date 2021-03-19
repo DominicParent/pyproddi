@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, Universe, Variable, VariableGroup,
@@ -37,6 +38,12 @@ class VariableSchemeTestCase(unittest.TestCase):
                                 ["label"], ["subject"], "var type", self.uni,
                                 ["var group name"], self.vg, self.v)
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_VariableScheme(self):
         my_vs = VariableScheme("desc", ["label"],[self.vg2],[self.v],
                                ["var scheme name"],[])
@@ -48,6 +55,21 @@ class VariableSchemeTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_vs_pb)
+
+    def test_VariableScheme_json(self):
+        my_vs_json = {
+        "VariableScheme" : {
+            "Description" : "Some desc.",
+            "Label" : ["lab1", "lab2"],
+            "VariableGroupReference" : [],
+            "VariableReference" : [],
+            "VariableSchemeName" : ["name1", "name2", "name3"],
+            "VariableSchemeReference" : []
+          }
+        }
+
+        print("JSON VariableScheme Message")
+        print(validate(instance=my_vs_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

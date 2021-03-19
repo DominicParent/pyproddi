@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, CategoryScheme, ConceptualVariable, MeasurementItem,
@@ -48,6 +49,12 @@ class VariableStatisticsTestCase(unittest.TestCase):
                             "sourceparref", "source unit", [],
                             self.ut, [self.uni], "var rep", self.w)
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_VariableStatistics(self):
         my_vs = VariableStatistics(["fcs"], self.mvr, "std weight ref", 
                                    ["sum stat"], "total response", ["ucs"],
@@ -60,6 +67,23 @@ class VariableStatisticsTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_vs_pb)
+
+    def test_VariableStatistics_json(self):
+        my_vs_json = {
+        "VariableStatistics" : {
+            "FilteredCategoryStatistics" : ["fcs1", "fcs2"],
+            "ManagedMissingValuesRepresentation" : {},
+            "StandardWeightReference" : "Some swr.",
+            "SummaryStatistic" : ["sumstat1"],
+            "TotalResponses" : "tr",
+            "UnfilteredCategoryStatistics" : ["ucs1", "ucs2", "ucs3", "ucs4"],
+            "VariableReference" : {},
+            "WeightVariableReference" : {}
+          }
+        }
+
+        print("JSON VariableStatistics message")
+        print(validate(instance=my_vs_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

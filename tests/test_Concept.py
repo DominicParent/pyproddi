@@ -17,6 +17,8 @@
 # limitations under the License.
 
 import unittest
+import json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import Concept
@@ -26,6 +28,15 @@ class ConceptTestCase(unittest.TestCase):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
+
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema:")
+        print(self.schema)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
 
     def test_Concept(self):
         my_concept = Concept(conceptName=["test_name","test_name2","test_name3"], 
@@ -52,6 +63,37 @@ class ConceptTestCase(unittest.TestCase):
 
         print("Protocol buffer message with")
         print(my_concept3_pb)
+
+    def test_Concept_json(self):
+        
+        jsonmessage = {
+        "Concept" : {
+            "ConceptName" : ["testname"],
+            "Description" : "This is a description",
+            "ExcludesConceptReference" : [],
+            "IncludesConceptReference" : [],
+            "IsCharacteristic" : "A characteristic",
+            "Label" : [],
+            "SimilarConcept" : [],
+            "SubclassOfReference" : []
+          }
+        }
+
+        jsonmessage2 = {
+        "Concept" : {
+            "ConceptName" : ["testname"],
+            "Description" : "This is a description",
+            "ExcludesConceptReference" : [jsonmessage],
+            "IncludesConceptReference" : [jsonmessage],
+            "IsCharacteristic" : "A characteristic",
+            "Label" : [],
+            "SimilarConcept" : [jsonmessage],
+            "SubclassOfReference" : [jsonmessage]
+          }
+        }
+
+        print("JSON Concept message")
+        print(validate(instance=jsonmessage2, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

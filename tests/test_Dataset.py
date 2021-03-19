@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, Dataset, Universe, Variable,
@@ -38,6 +39,12 @@ class DatasetTestCase(unittest.TestCase):
         self.vs = VariableScheme("desc", ["label"], [self.vg], [self.v],
                                  ["var scheme name"], [])
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_Dataset(self):
         my_dataset = Dataset("arraybase", ["dataset name"], )
         
@@ -48,6 +55,22 @@ class DatasetTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_dataset_pb)
+
+    def test_Dataset_json(self):
+        my_dataset_json = {
+          "Dataset" : {
+            "ArrayBase" : "Some arraybase.",
+            "DataSetName" : ["dsn1", "dsn2"],
+            "DefaultVariableSchemeReference" : {},
+            "IdentifyingVariableReference" : {},
+            "ItemSet" : "An item set.",
+            "RecordSet" : "A record set.",
+            "VariableSet" : "A variable set."
+          }
+        }
+
+        print("JSON Dataset message")
+        print(validate(instance=my_dataset_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

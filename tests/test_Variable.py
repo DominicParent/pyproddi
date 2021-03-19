@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, ConceptualVariable, Question,
@@ -42,6 +43,12 @@ class VariableTestCase(unittest.TestCase):
         self.cv = ConceptualVariable(self.cs, self.concept, ['con_var_name'],
                                      'desc', ['label'], self.ut)
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_Variable(self):
         my_var = Variable("analysisunit", self.concept, self.cv, "desc",
                           "embargo ref", False, False, False, ["label"],
@@ -56,6 +63,35 @@ class VariableTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_var_pb)
+
+    def test_Variable_json(self):
+        my_var_json = {
+        "Variable" : {
+            "AnalysisUnit" : "Some value.",
+            "ConceptReference" : {},
+            "ConceptualVariableReference" : {},
+            "Description" : "Some description.",
+            "EmbargoReference" : "Some embargo.",
+            "IsGeographic" : True,
+            "IsTemporal" : False,
+            "IsWeight" : True,
+            "Label" : ["label1", "Label2", "label3"],
+            "MeasurementReference" : [],
+            "OutParameter" : "Some output.",
+            "QuestionReference" : [],
+            "RepresentedVariableReference" : {},
+            "SourceParameterReference" : "Some param ref.",
+            "SourceUnit" : "Some source unit.",
+            "SourceVariableReference" : [],
+            "UnitTypeReference" : {},
+            "UniverseReference" : [],
+            "VariableRepresentation" : "Some var rep.",
+            "WeightingProcessReference" : {}
+          }
+        }
+
+        print("JSON Variable message")
+        print(validate(instance=my_var_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

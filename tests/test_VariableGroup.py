@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, Universe, Variable, VariableGroup)
@@ -33,6 +34,12 @@ class VariableGroupTestCase(unittest.TestCase):
         self.uni = Universe("Universe name")
         self.vg = VariableGroup()
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_VariableGroup(self):
         my_vg = VariableGroup(self.concept, "desc", True, ["keyword"],
                               ["label"], ["subject"], "var type", self.uni,
@@ -45,6 +52,26 @@ class VariableGroupTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_vg_pb)
+
+    def test_VariableGroup_json(self):
+        my_vg_json = {
+        "VariableGroup": {
+            "ConceptReference" : {},
+            "Description" : "A description.",
+            "IsOrdered" : False,
+            "Keyword" : ["kw1"],
+            "Label" : ["label1"],
+            "Subject" : ["sub1", "sub2"],
+            "TypeOfVariableGroup" : "tovg",
+            "UniverseReference" : {},
+            "VariableGroupName" : ["vgn1", "vgn2"],
+            "VariableGroupReference" : {},
+            "VariableReference" : {}
+          }
+        }
+
+        print("JSON VariableGroup message")
+        print(validate(instance=my_vg_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

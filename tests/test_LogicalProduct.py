@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (CategoryScheme, CodeListScheme, CubeScheme,
@@ -41,6 +42,12 @@ class LogicalProductTestCase(unittest.TestCase):
                                              [self.rv], ["vsn"], [self.rvs])
         self.vs = VariableScheme()
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_LogicalProduct(self):
         my_lp = LogicalProduct([self.cs], [self.cls], [self.mrs], [self.cubes],
                                [self.rvs2], [self.vs])
@@ -52,6 +59,21 @@ class LogicalProductTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_lp_pb)
+
+    def test_LogicalProduct_json(self):
+        my_lp_json = {
+        "LogicalProduct" : {
+            "CategorySchemeReference" : [],
+            "CodeListSchemeReference" : [],
+            "ManagedRepresentationSchemeReference" : [],
+            "NCubeSchemeReference" : [],
+            "RepresentedVariableSchemeReference" : [],
+            "VariableSchemeReference" : []
+          }
+        }
+
+        print("JSON LogicalProduct message")
+        print(validate(instance=my_lp_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

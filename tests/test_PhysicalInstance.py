@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, DataRelationship,
@@ -46,6 +47,12 @@ class PhysicalInstanceTestCase(unittest.TestCase):
                                 Universe("uni name"), ["var group name"],
                                 VariableGroup(), Variable())
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_PhysicalInstance(self):
         my_pi = PhysicalInstance("byteorder", "citation", "coverage", ["dfi"],
                                  "dfv", ["df"], [self.dr], self.mmvr, "gfs",
@@ -59,6 +66,30 @@ class PhysicalInstanceTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_pi_pb)
+
+    def test_PhysicalInstance_json(self):
+        my_pi_json = {
+        "PhysicalInstance" : {
+            "ByteOrder" : "little endian",
+            "Citation" : "Some citation",
+            "Coverage" : "90%",
+            "DataFileIdentification" : ["dfi1", "dfi2"],
+            "DataFileVersion" : "v9.0.0",
+            "DataFingerprint" : ["df1", "df2"],
+            "DataRelationshipReference" : [],
+            "DefaultMissingValuesReference" : {},
+            "GrossFileStructure" : "posix compliant",
+            "InformationClassificationReference" : [],
+            "ProprietaryInfo" : False,
+            "QualityStatementReference": [],
+            "RecordLayoutReference" : [],
+            "StatisticalSummary" : "A stats summary.",
+            "VariableGroupReference" : []
+          }
+        }
+
+        print("JSON PhysicalInstance message")
+        print(validate(instance=my_pi_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

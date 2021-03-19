@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
+import unittest, json
+from jsonschema import Draft7Validator, validate
 
 from pyproddi.io.protobuf import ddicdi_pb2
 from pyproddi.ddicdi import (Concept, RecordLayout, RecordLayoutGroup,
@@ -35,6 +36,12 @@ class RecordLayoutGroupTestCase(unittest.TestCase):
                                VariableScheme(), False)
         self.uni = Universe("Name")
 
+        with open("pyproddi/io/json/ddicdi.json") as f:
+            self.schema = json.load(f)
+
+        print("Schema validator result:")
+        print(Draft7Validator.check_schema(self.schema))
+
     def test_RecordLayoutGroup(self):
         my_rlg = RecordLayoutGroup(self.concept, 'desc', False, ['keyw'],
                                    ['label'], ['rlgname'], self.rlg, self.rl,
@@ -47,6 +54,23 @@ class RecordLayoutGroupTestCase(unittest.TestCase):
 
         print("Protocol buffer message")
         print(my_rlg_pb)
+
+    def test_RecordLayoutGroup_json(self):
+        my_rlg_json = {
+        "RecordLayoutGroup" : {
+            "ConceptReference" : {},
+            "Description" : "Some desc.",
+            "IsOrdered" : True,
+            "Keyword" : ["kw1", "kw2"],
+            "Label" : ["label1"],
+            "RecordLayoutGroupName" : ["name1", "name2", "name3"],
+            "RecordLayoutGroupReference" : {},
+            "RecordLayoutReference" : {}
+          }
+        }
+
+        print("JSON RecordLayoutGroup message")
+        print(validate(instance=my_rlg_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()

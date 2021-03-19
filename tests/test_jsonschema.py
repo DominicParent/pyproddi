@@ -16,49 +16,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest, json
-from jsonschema import Draft7Validator, validate
+import unittest
+import json
+from jsonschema import Draft7Validator
 
-from pyproddi.io.protobuf import ddicdi_pb2
-from pyproddi.ddicdi import (BaseRecordLayout, PhysicalStructure)
 
-class BaseRecordLayoutTestCase(unittest.TestCase):
+class JsonSchemaTestCase(unittest.TestCase):
     def setUp(self):
         print("+++++++++++++++++++++++++++++++++++++++")
         print("Begining new TestCase %s" % self._testMethodName)
         print("+++++++++++++++++++++++++++++++++++++++")
 
-        self.ps = PhysicalStructure("ddt", "ddp", "dds", "dd", "ddgs", "desc",
-                                    "df", ["grs"], ["label"], ["psn"])
-
         with open("pyproddi/io/json/ddicdi.json") as f:
             self.schema = json.load(f)
 
+    def test_JsonSchemaValidate(self):
+        print(self.schema)
         print("Schema validator result:")
         print(Draft7Validator.check_schema(self.schema))
-
-    def test_BaseRecordLayout(self):
-        my_brl = BaseRecordLayout("eolm", self.ps, "tq")
-        
-        print("Python object")
-        print(my_brl)
-
-        my_brl_pb = my_brl.to_pb()
-
-        print("Protocol buffer message")
-        print(my_brl_pb)
-
-    def test_BaseRecordLayout_json(self):
-        my_brl_json = {
-        "BaseRecordLayout" : {
-            "EndOfLineMarker" : ",",
-            "PhysicalStructureLinkReference" : {},
-            "TextQualifier" : "maybe"
-          }
-        }
-
-        print("JSON BaseRecordLayout message")
-        print(validate(instance=my_brl_json, schema=self.schema))
 
 if __name__ == "__main__":
     unittest.main()
