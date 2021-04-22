@@ -18,3 +18,4 @@ channels:
 dependencies:
     - python=3.9
     - protobuf
+    - jsonschema
